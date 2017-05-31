@@ -1,0 +1,58 @@
+/* Display information about event */
+div.info-table { 
+  display: flex; 
+  flex-direction: column;
+}
+div.info-tr { 
+  padding-top: 2px;
+  display: inline-flex; 
+}
+div.separate{
+  margin-top: 15px; 
+}
+div.info-label, div.info { 
+  display: block;  
+}
+div.info-label{
+	opacity: 0.7;
+}
+div.info {
+	padding-left: 10px;
+}
+/* TODO: Integrated map */
+div.map {
+	opacity: 0.4;
+	padding: 5px;
+	margin: 5px;
+	border: solid white;
+}
+
+
+/* Signup form */
+div.signup {
+	border: dotted rgb(255,180,180);
+	border: dotted rgba(255,255,255,0.7);
+	padding: 5px;
+	display: flex;
+	flex-direction: column;
+}
+div.signup .info-label{
+	margin-top: 11px;
+}
+div.signup input[type=text],
+div.signup textarea
+{
+	display: block;
+	margin: 5px 10px;
+}
+div.signup input[type=submit] {
+	/* Some sort of dark grey */
+	background-color: #5b5b5b;
+	margin: 10px 5px;
+}
+
+/* Admin links */
+a.post-edit-link {
+	margin-right: 10px;
+}
+

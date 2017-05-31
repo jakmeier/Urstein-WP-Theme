@@ -1,0 +1,17 @@
+/* Links to upcomming events */
+div.urstein-wrap h3 {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+div.urstein-wrap ul {
+	margin-bottom: 10px;
+	list-style-type: square;
+	padding-left: 20px;
+}
+div.urstein-wrap li {
+	
+	font-size: 15px;
+}
+div.urstein-wrap a {
+    text-decoration: none;
+}

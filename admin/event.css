@@ -1,0 +1,15 @@
+.group-checkbox ul {
+    list-style-type: none;
+}
+.group-checkbox li {
+    float: left;
+}
+.group-checkbox li label {
+    display: block;
+    padding-left: 8px;
+    min-width: 100px;
+}
+.clear-float {
+	clear:both;
+	float: none;
+}
