@@ -35,4 +35,15 @@ function get_the_group_url($groupid){
 	$result = $wpdb->get_results("SELECT page FROM groups WHERE id =" . $groupid .";");
 	return get_permalink(intval($result[0]->page));
 }
+/* Looks up one fitting thumbnail for one or many groups */
+function get_group_thumbnail($groups){
+	if(is_array($groups)){
+		//TODO: Filter for special combinations (Puma + Cobra)
+	}
+	else{
+		//TODO: Lookup attached default thumbnail for group
+	}
+	// Default picture:
+	return get_theme_mod('urstein_custom_img_event');
+}
 ?>		

@@ -25,6 +25,19 @@ function get_next_event($groupid) {
 	return $event;
 }
 
+// Get all group names that belong to an event
+function get_groups_of_event($postid){
+	$groups = all_groups();
+	$result = array();
+	$meta = get_post_meta($postid);
+	foreach($groups as $id => $name){
+		if( intval($meta['group' . $id][0]) === 1 ){
+			$result[$id] = $name;
+		}
+	}
+	return $result;
+}
+
 // Safe insert into signup DB
 function add_signup_entry($postid, $value, $name, $comment) {
 	/*Data validation*/	

@@ -102,7 +102,7 @@ body a {
 }
 
 body a:hover {
-	color: #3bc492;
+	color: white;
 	text-decoration: none;
 }
 
@@ -869,7 +869,7 @@ input[type="button"],
 	position: relative;
 }
 
-.post-content a { color: #3bc492; }
+.post-content a { color: lightgrey; }
 .post-content a:hover { text-decoration: underline; }
 
 
@@ -1767,7 +1767,9 @@ img#wpstats { display: none; }
 
 @media ( max-width: 900px ) {
 	
-	
+	.header.section-inner { 
+		max-width: 70%; 
+	}
 	
 	/* Nav toggle --------------------------------------- */
 	
@@ -1958,6 +1960,9 @@ img#wpstats { display: none; }
 
 @media ( max-width: 600px ) {
 	
+	.header.section-inner { 
+		max-width: 80%; 
+	}
 	
 	/* Structure --------------------------------------- */	
 	
@@ -2067,6 +2072,9 @@ img#wpstats { display: none; }
 
 @media ( max-width: 400px ) {
 
+	.header.section-inner { 
+		max-width: 95%; 
+	}
 
 	/* Header --------------------------------------- */	
 	

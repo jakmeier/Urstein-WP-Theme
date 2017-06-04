@@ -1,72 +1,61 @@
-<?php/* Setting up event post type */
-require_once('admin/event.php');
-remove_filter( 'the_content', 'wpautop' );
+<?php/*Remove standard posts */function remove_posts_menu() {    remove_menu_page('edit.php');}add_action('admin_init', 'remove_posts_menu');/* Setting up custom post types */
+require_once('admin/event.php');require_once('admin/news.php');/* Changinge admin view for home page to display quicklinks*/require_once('admin/home.php');
+remove_filter( 'the_content', 'wpautop' );
 remove_filter( 'the_excerpt', 'wpautop' );
 
 // Theme setup
 add_action( 'after_setup_theme', 'urstein_setup' );
 
-function urstein_setup() {
-	
-	// Automatic feed
+function urstein_setup() {
+	// Automatic feed
 	add_theme_support( 'automatic-feed-links' );
-	
-	// Set content-width
-	global $content_width;
+	// Set content-width
+	global $content_width;
 	if ( ! isset( $content_width ) ) $content_width = 600;
-	
-	// Post thumbnails
-	add_theme_support( 'post-thumbnails' );
-	add_image_size( 'post-image', 1240, 9999 );
-	add_image_size( 'post-thumb', 508, 9999 );
-	
-	// Title tag
-	add_theme_support( 'title-tag' );
-	
+
+	// Post thumbnails
+	add_theme_support( 'post-thumbnails' );
+	add_image_size( 'post-image', 1240, 9999 );
+	add_image_size( 'post-thumb', 508, 9999 );
+	// Title tag
+	add_theme_support( 'title-tag' );
+	
 	// Custom header/*
-	$args = array(
-		'width'         => 1440,
-		'height'        => 900,
-		'default-image' => get_template_directory_uri() . '/images/bg.jpg',
-		'uploads'       => true,
-		'header-text'  	=> false
-		
-	);
-	add_theme_support( 'custom-header', $args );
-	*/
+	$args = array(
+		'width'         => 1440,
+		'height'        => 900,
+		'default-image' => get_template_directory_uri() . '/images/bg.jpg',
+		'uploads'       => true,
+		'header-text'  	=> false
+	);
+	add_theme_support( 'custom-header', $args );
+	*/
 	// Post formats
 	add_theme_support( 'post-formats', array( 'gallery' ) );
 		
-	// Jetpack infinite scroll
-	add_theme_support( 'infinite-scroll', array(
-		'type' 				=> 		'click',
-	    'container'			=> 		'posts',
-	    'wrapper'			=>		false,
-		'footer' 			=> 		false,
+	// Jetpack infinite scroll
+	add_theme_support( 'infinite-scroll', array(
+		'type' 				=> 		'click',
+	    'container'			=> 		'posts',
+	    'wrapper'			=>		false,
+		'footer' 			=> 		false,
 	) );
 	
-	// Add nav menu
+	// Add nav menu
 	register_nav_menu( 'primary', __('Primary Menu','urstein') );
 }
-
-
 // Register and enqueue Javascript files
-function urstein_load_javascript_files() {
-
-	if ( !is_admin() ) {		
-		wp_enqueue_script( 'urstein_flexslider', get_template_directory_uri().'/js/flexslider.js', array('jquery'), '', true );
-		wp_enqueue_script( 'urstein_doubletaptogo', get_template_directory_uri().'/js/doubletaptogo.js', array('jquery'), '', true );
-		wp_enqueue_script( 'urstein_global', get_template_directory_uri().'/js/global.js', array('jquery'), '', true );
-		
-		if ( is_singular() ) { 
-			wp_enqueue_script( "comment-reply" );
+function urstein_load_javascript_files() {
+	if ( !is_admin() ) {		
+		wp_enqueue_script( 'urstein_flexslider', get_template_directory_uri().'/js/flexslider.js', array('jquery'), '', true );
+		wp_enqueue_script( 'urstein_doubletaptogo', get_template_directory_uri().'/js/doubletaptogo.js', array('jquery'), '', true );
+		wp_enqueue_script( 'urstein_global', get_template_directory_uri().'/js/global.js', array('jquery'), '', true );		
+		if ( is_singular() ) { 
+			wp_enqueue_script( "comment-reply" );
 		}
 	}
-}
-
+}
 add_action( 'wp_enqueue_scripts', 'urstein_load_javascript_files' );
-
-
 // Register and enqueue styles
 function urstein_load_style() {
 	if ( !is_admin() ) {
@@ -90,43 +79,34 @@ function html_js_class () {
     echo '<script>document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>'. "\n";
 }
 add_action( 'wp_head', 'html_js_class', 1 );
-
-
-// Urstein archive navigation function
-function urstein_archive_navigation() {
-	
-	global $wp_query;
-	
-	if ( $wp_query->max_num_pages > 1 ) : ?>
-				
-		<div class="archive-nav">
-			
-			<?php 
-				if ( get_previous_posts_link() ) {
-					previous_posts_link( '<span class="fa fw fa-angle-left"></span>' );
-				} else {
-					echo '<span class="fa fw fa-angle-left"></span>';
-				} 
+
+// Urstein archive navigation function
+function urstein_archive_navigation() {
+	global $wp_query;
+	if ( $wp_query->max_num_pages > 1 ) : ?>
+		<div class="archive-nav">
+			<?php 
+				if ( get_previous_posts_link() ) {
+					previous_posts_link( '<span class="fa fw fa-angle-left"></span>' );
+				} else {
+					echo '<span class="fa fw fa-angle-left"></span>';
+				} 
 			?>
 			<span class="sep">/</span>
 			<?php 
-				if ( get_next_posts_link() ) {
-					next_posts_link( '<span class="fa fw fa-angle-right"></span>' );
-				} else {
-					echo '<span class="fa fw fa-angle-right"></span>';
+				if ( get_next_posts_link() ) {
+					next_posts_link( '<span class="fa fw fa-angle-right"></span>' );
+				} else {
+					echo '<span class="fa fw fa-angle-right"></span>';
 				} 
 			?>
-			
-			<div class="clear"></div>
-				
+			<div class="clear"></div>
 		</div> <!-- /archive-nav-->
-						
 	<?php endif;
 }
-
-
-// Style the admin area
-function urstein_admin_area_style() { 
+
+// Style the admin area
+function urstein_admin_area_style() { 
    echo '
 <style type="text/css">
 
@@ -138,45 +118,32 @@ function urstein_admin_area_style() {
 </style>';
 }
 
-add_action('admin_head', 'urstein_admin_area_style');
-
-
+add_action('admin_head', 'urstein_admin_area_style');
 // Add body classes to single pages
 add_filter('body_class','urstein_post_class_to_page');
- 
+ 
 function urstein_post_class_to_page( $classes ){
- 
     if ( is_page() || is_404() || ( is_search() && !have_posts() ) ) {
-        $classes[] = 'post single';
-    }
-    
+        $classes[] = 'post single';
+    } 
     return $classes;
-}
-
-
+}
 // Add body class if is mobile
 add_filter('body_class','urstein_is_mobile_body_class');
  
-function urstein_is_mobile_body_class( $classes ){
- 
-    if ( wp_is_mobile() ) {
-        $classes[] = 'wp-is-mobile';
-    }
-    
-    return $classes;
+function urstein_is_mobile_body_class( $classes ){
+    if ( wp_is_mobile() ) {
+        $classes[] = 'wp-is-mobile';
+    }
+    return $classes;
 }
-
-
 // Flexslider function for format-gallery
 function urstein_flexslider($size) {
-
-	if ( is_page()) :
-		$attachment_parent = $post->ID;
-	else : 
-		$attachment_parent = get_the_ID();
-	endif;
-
-	if($images = get_posts(array(
+	if ( is_page()) :
+		$attachment_parent = $post->ID;
+	else : 
+		$attachment_parent = get_the_ID();
+	endif;	if($images = get_posts(array(
 		'post_parent'    => $attachment_parent,
 		'post_type'      => 'attachment',
 		'numberposts'    => -1, // show all
@@ -184,66 +151,43 @@ function urstein_flexslider($size) {
 		'post_mime_type' => 'image',
                 'orderby'        => 'menu_order',
                 'order'           => 'ASC',
-	))) { ?>
-	
-		<div class="flexslider">
-		
+	))) { ?>
+		<div class="flexslider">
 			<ul class="slides">
-	
-				<?php foreach($images as $image) { 
-				
-					$attimg = wp_get_attachment_image($image->ID, $size); ?>
-					
-					<li>
-						<?php echo $attimg; ?>
-					</li>
-					
-				<?php }; ?>
-		
-			</ul>
-			
-		</div><?php
-		
-	}
+				<?php foreach($images as $image) { 
+					$attimg = wp_get_attachment_image($image->ID, $size); ?>
+					<li>
+						<?php echo $attimg; ?>
+					</li>
+				<?php }; ?>
+			</ul>
+		</div><?php
+	}
 }
-
-
-
 // Related posts function
 function urstein_related_posts() { ?>
-	
 <div class="related-posts posts section-inner">
-			
-	<?php 
-							
-		global $post;
-		$cat_ID = array();
-		$categories = get_the_category();
-		foreach($categories as $category) {
-			array_push($cat_ID,$category->cat_ID);
+	<?php 
+		global $post;
+		$cat_ID = array();
+		$categories = get_the_category();
+		foreach($categories as $category) {
+			array_push($cat_ID,$category->cat_ID);
 		}
-		
-		$related_posts = new WP_Query( apply_filters(
-		'rowling_related_posts_args', array(
-		        'posts_per_page'		=>	3,
-		        'post_status'			=>	'publish',
-		        'category__in'			=>	$cat_ID,
-		        'post__not_in'			=>	array($post->ID),
+		$related_posts = new WP_Query( apply_filters(
+		'rowling_related_posts_args', array(
+		        'posts_per_page'		=>	3,
+		        'post_status'			=>	'publish',
+		        'category__in'			=>	$cat_ID,
+		        'post__not_in'			=>	array($post->ID),
 		        'ignore_sticky_posts'	=>	true
 		) ) );
-		
-		if ($related_posts->have_posts()) :
-			
-			while ( $related_posts->have_posts() ) : $related_posts->the_post(); ?>
-			
+		if ($related_posts->have_posts()) :
+			while ( $related_posts->have_posts() ) : $related_posts->the_post(); ?>
 			<?php global $post; ?>
-					
 			<?php get_template_part( 'content', get_post_format() ); ?>
-		
-		<?php endwhile; ?>
-			
+		<?php endwhile; ?>	
 	<?php else: // If there are no other posts in the post categories, get random posts ?>
-	
 		<?php
 				
 			$related_posts = new WP_Query( apply_filters(
@@ -274,116 +218,37 @@ function urstein_related_posts() { ?>
 	<?php wp_reset_query(); ?>
 
 </div> <!-- /related-posts --> <?php
-	
-}
-
-
-// Comment function
-if ( ! function_exists( 'urstein_comment' ) ) :
-function urstein_comment( $comment, $args, $depth ) {
-	$GLOBALS['comment'] = $comment;
-	switch ( $comment->comment_type ) :
-		case 'pingback' :
-		case 'trackback' :
-	?>
-	
-	<li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
-	
-		<?php __( 'Pingback:', 'urstein' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( 'Edit', 'urstein' ), '<span class="edit-link">', '</span>' ); ?>
-		
-	</li>
-	<?php
-			break;
-		default :
-		global $post;
-	?>
-	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
-	
-		<div id="comment-<?php comment_ID(); ?>" class="comment">
-			
-			<h4 class="comment-title">
-				<?php echo get_comment_author_link(); ?>
-				<span><a class="comment-date-link" href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ) ?>" title="<?php echo get_comment_date() . ' at ' . get_comment_time(); ?>"><?php echo get_comment_date(get_option('date_format')) ?></a>
-				<?php
-					if ( $post = get_post($post->ID) ) {
-			            if ( $comment->user_id === $post->post_author )
-			               echo ' &mdash; ' . __('Post Author','urstein');
-			        }
-				?>
-				</span>
-			</h4>
-									
-			<div class="comment-content post-content">
-			
-				<?php comment_text(); ?>
-				
-			</div><!-- /comment-content -->
-			
-			<div class="comment-actions">
-							
-				<?php 
-					comment_reply_link( array( 
-						'reply_text' 	=>  	__('Reply','urstein'),
-						'depth'			=> 		$depth, 
-						'max_depth' 	=> 		$args['max_depth'],
-						'before'		=>		'',
-						'after'			=>		''
-						) 
-					); 
-				?>
-				
-				<?php edit_comment_link( __( 'Edit', 'urstein' ), '', '' ); ?>
-				
-				<?php if ( '0' == $comment->comment_approved ) : ?>
-				
-					<p class="comment-awaiting-moderation fright"><?php _e( 'Your comment is awaiting moderation.', 'urstein' ); ?></p>
-					
-				<?php endif; ?>
-								
-			</div> <!-- /comment-actions -->
-										
-		</div><!-- /comment-## -->
-				
-	<?php
-		break;
-	endswitch;
-}
-endif;
-
-
+}
 // urstein theme options
 class urstein_Customize {
 
    public static function urstein_register ( $wp_customize ) {
-      //1. Define a new section (if desired) to the Theme Customizer
-      $wp_customize->add_section( 'urstein_logo_section' , array(
-		    'title'       => __( 'Kopfzeile', 'urstein' ),
-		    'priority'    => 40,
+      //1. Define a new section (if desired) to the Theme Customizer
+      $wp_customize->add_section( 'urstein_logo_section' , array(
+		    'title'       => __( 'Kopfzeile', 'urstein' ),
+		    'priority'    => 40,
 		    'description' => __('Wähle ein Bild das auf allen Seite als Titelzeile sichtbar ist.', 'urstein'),
 	  ) );
-      //2. Register new settings to the WP database...	  
+      //2. Register new settings to the WP database...
 	  $wp_customize->add_setting( 'urstein_logo', 
       	array( 
       		'sanitize_callback' => 'esc_url_raw'
       	) 
       );
-      //3. Finally, we define the control itself (which links a setting to a section and renders the HTML controls)...
-      $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'urstein_logo', array(
-		    'label'    => __( 'Bild Kopfzeile', 'urstein' ),
-		    'section'  => 'urstein_logo_section',
-		    'settings' => 'urstein_logo',
+      //3. Finally, we define the control itself (which links a setting to a section and renders the HTML controls)...
+      $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'urstein_logo', array(
+		    'label'    => __( 'Bild Kopfzeile', 'urstein' ),
+		    'section'  => 'urstein_logo_section',
+		    'settings' => 'urstein_logo',
 	  ) ) );
-      
-      //4. We can also change built-in settings by modifying properties. For instance, let's make some stuff use live preview JS...
-      $wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
-      $wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
+      //4. We can also change built-in settings by modifying properties. For instance, let's make some stuff use live preview JS...
+      $wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
+      $wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';	  // Custom default images for Events and News	  //1. Define a new section (if desired) to the Theme Customizer      $wp_customize->add_section( 'urstein_custom_img_section' , array(		    'title'       => __( 'Anzeigebilder', 'urstein' ),		    'priority'    => 40,		    'description' => __('Diese Bilder werden auf der Hauptseite angezeigt, falls kein anderes Bild verfügbar ist für einen Beitrag.', 'urstein'),	  ) );      //2. Register 2 new settings to the WP database...	  $wp_customize->add_setting( 'urstein_custom_img_event');	  $wp_customize->add_setting( 'urstein_custom_img_news');      //3. Finally, we define the control itself (which links a setting to a section and renders the HTML controls)...      $wp_customize->add_control( new WP_Customize_Cropped_Image_Control( $wp_customize, 'urstein_custom_img_event', array(		    'label'    => __( 'Übungen', 'urstein' ),		    'section'  => 'urstein_custom_img_section',		    'settings' => 'urstein_custom_img_event',	  ) ) );	  $wp_customize->add_control( new WP_Customize_Cropped_Image_Control( $wp_customize, 'urstein_custom_img_news', array(		    'label'    => __( 'News', 'urstein' ),		    'section'  => 'urstein_custom_img_section',		    'settings' => 'urstein_custom_img_news',	  ) ) );
    }
 
    public static function urstein_header_output() {
-      ?>
-      
+      ?>
 	      <!-- Customizer CSS --> 
-	      
 	      <style type="text/css">
 	           <?php self::urstein_generate_css('body a', 'color', 'accent_color'); ?>
 	           <?php self::urstein_generate_css('body a:hover', 'color', 'accent_color'); ?>
