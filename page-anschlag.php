@@ -21,16 +21,21 @@ get_header(); ?>
 								$place = $meta['place'][0];
 								$bring = $meta['bring'][0];
 								$datetime = date( 'j.n. G:i', strtotime($meta['start_time'][0]) );
-			 ?>								<a href="<?php echo get_permalink($event->ID); ?>">				<div id="wolfsstufe" class="stufen-img">					<div class="stufen-title"><?php echo $groupname;?></div>					<div class="next-activity-box">					   Nächste Aktivität:
-					   <p><?php echo $datetime . ' ' . $place?></p>					   <p><?php $title ?></p>
-					   <p>Mitnehmen: <?php echo $bring; ?></p>					</div>				</div> 				</a>
+			 ?>								<a href="<?php echo get_permalink($event->ID); ?>">				<div id="wolfsstufe" class="stufen-img">					<div class="stufen-title"><?php echo $groupname;?></div>					<div class="next-activity-box">					   <p> 
+						   Nächste Aktivität: <?php echo $title; ?><br>
+						   <?php echo $datetime . ' ' . $place?> <br>
+						   Mitnehmen: <?php echo $bring; ?> <br>
+						   >>>
+					   </p>					</div>				</div> 				</a>
 			<?php else:?>
 				<a href="<?php the_group_url($id); ?>">
 				<div id="wolfsstufe" class="stufen-img">
 					<div class="stufen-title"><?php echo $groupname;?></div>
 					<div class="next-activity-box">
-					   Nächste Aktivität:
-					   <p> Noch nicht verfügbar.</p>
+						
+							Nächste Aktivität: <br>
+							Noch nicht verfügbar.
+						
 					</div>
 				</div> 			<?php endif; endforeach;?>
 							</div>			</div> <!-- /post-inner -->			</div> <!-- /post-container -->

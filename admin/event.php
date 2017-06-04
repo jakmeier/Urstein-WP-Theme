@@ -31,7 +31,7 @@ if(!function_exists('create_event_post_type')):
 			'supports' => array(
 				'thumbnail'
 			),
-			'menu_position' => 5,
+			'menu_position' => 7,
 			'register_meta_box_cb' => 'add_event_post_type_metabox'
 		);
 		register_post_type('event', $args);
@@ -59,7 +59,7 @@ if(!function_exists('create_event_post_type')):
 		?>
 		
 		<div>
-			<p><label>Was?<br><input type="text" name="title" size="50"
+			<p><label>Was?<br><input type="text" name="post_title" size="50"
 				value="<?php echo $title?$title:'Übung';?>"></label>
 			</p>
 			<p> <div class="group-checkbox" >Wer?<br>
@@ -135,7 +135,7 @@ if(!function_exists('create_event_post_type')):
 		remove_action('save_post', 'event_post_save_meta', 1, 2);
 		wp_update_post(array(
 			'ID'         => $post_id,
-			'post_title' => $_POST['title']
+			'post_title' => $_POST['post_title']
 		));
 		add_action('save_post','event_post_save_meta',1,2);
   }
@@ -192,7 +192,7 @@ if(!function_exists('create_event_post_type')):
 	 */
 	function attendees_admin_menu() {
 		$title = 'Anmeldungen Übungen';
-		add_menu_page( $title, $title, 'edit_posts', 'event/attendees', 'attendees_content', 'dashicons-groups', 6  );
+		add_menu_page( $title, $title, 'edit_posts', 'event/attendees', 'attendees_content', 'dashicons-groups', 8  );
 	}
 	add_action( 'admin_menu', 'attendees_admin_menu' );
 

@@ -53,18 +53,21 @@
         text-align: left;
         vertical-align: top;
     }
-    .next-activity-box {
-        background: black;
-	color: white;
-   	width: 95%;
-	max-height: 150px;
-    	/*position: relative;
-    	top: 67%;*/
-    	margin-left: auto;
-   	margin-right: auto;
-	padding: 10px;
-	font-family: 'Montserrat', 'Helvetica Neue', 'Helvetica', sans-serif;
-    }
+    .next-activity-box {
+        background: black;
+	color: white;
+   	width: 95%;
+	max-height: 150px;
+    	/*position: relative;
+    	top: 67%;*/
+    	margin-left: auto;
+   	margin-right: auto;
+	padding: 10px;
+	font-family: 'Montserrat', 'Helvetica Neue', 'Helvetica', sans-serif;
+    }
+	.next-activity-box :hover {
+		text-decoration: underline;
+	}
 	.stufen-title
 	{
 		font-family: 'Montserrat', 'Helvetica Neue', 'Helvetica', sans-serif;
