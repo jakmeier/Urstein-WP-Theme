@@ -1,11 +1,10 @@
 <?php/*Remove standard posts */function remove_posts_menu() {    remove_menu_page('edit.php');}add_action('admin_init', 'remove_posts_menu');/* Setting up custom post types */
-require_once('admin/event.php');require_once('admin/news.php');/* Changinge admin view for home page to display quicklinks*/require_once('admin/home.php');
+require_once('admin/event.php');require_once('admin/news.php');/* Changinge admin view for home page to display quicklinks*/require_once('admin/home.php');/* Loading Webshop Admin view */require_once('admin/shop.php');
 remove_filter( 'the_content', 'wpautop' );
 remove_filter( 'the_excerpt', 'wpautop' );
-
+// Load custom capabilities whenever ?reload_caps=1function capabilites() {	if ( is_admin() && '1' == $_GET['reload_caps'] ) {		$administrator     = get_role('administrator');		$administrator->add_cap( 'edit_shop' );	}}add_action('admin_init', 'capabilites');
 // Theme setup
-add_action( 'after_setup_theme', 'urstein_setup' );
-
+add_action( 'after_setup_theme', 'urstein_setup' );
 function urstein_setup() {
 	// Automatic feed
 	add_theme_support( 'automatic-feed-links' );
@@ -50,12 +49,12 @@ function urstein_load_javascript_files() {
 		wp_enqueue_script( 'urstein_flexslider', get_template_directory_uri().'/js/flexslider.js', array('jquery'), '', true );
 		wp_enqueue_script( 'urstein_doubletaptogo', get_template_directory_uri().'/js/doubletaptogo.js', array('jquery'), '', true );
 		wp_enqueue_script( 'urstein_global', get_template_directory_uri().'/js/global.js', array('jquery'), '', true );		
-		if ( is_singular() ) { 
+		/*if ( is_singular() ) { 
 			wp_enqueue_script( "comment-reply" );
-		}
+		}*/
 	}
 }
-add_action( 'wp_enqueue_scripts', 'urstein_load_javascript_files' );
+add_action( 'wp_enqueue_scripts', 'urstein_load_javascript_files' );
 // Register and enqueue styles
 function urstein_load_style() {
 	if ( !is_admin() ) {
