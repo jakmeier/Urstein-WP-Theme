@@ -1,4 +1,24 @@
 ol.wrap-items li{
 	display: flex;
 }
+ol.wrap-items li label{
+	margin: 5px;
+}
+ol.wrap-items span.remove {
+	display: block;
+	margin: 22px 10px;
+}
 	
+img.item {
+	width: 100px;
+	height: 100px;
+}
+span.item-icon{
+	width: 100px;
+	height: 100px;
+	font-size: 90px;
+}
+
+.hidden{
+	display: None;
+}

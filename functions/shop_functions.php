@@ -1,8 +1,26 @@
 <?php
 // Safe insert into shop_items DB
-function add_shop_item($name, $description, $position, $price, $size_array = array(), $image_path = '') {
+function add_shop_item($name, $description, $position, $price, $image_path = '') {
+	return update_shop_item(null, $name, $description, $position, $price, $image_path);
+}
+// Safe insert/update into shop_items DB
+function update_shop_item($id, $name, $description, $position, $price, $image_path = '') {
+	/* Make sure user is allowed to edit shop items */
+	if(!current_user_can('edit_shop')){
+		return 'Nicht ausreichend Rechte um Warenartikel zu ändern.';
+	}
+	
 	/*Data validation*/	
-
+	
+	
+	// ID must be int
+	if(isset($id)){
+		$id = intval($id);
+		if($id <= 0){
+			return 'nonpositive id';
+		}
+	}
+	
 	//title is s VARCHAR(64)
 	$name = sanitize_text_field($name);
 	if ( strlen( $name ) > 64 ) {
@@ -18,50 +36,81 @@ function add_shop_item($name, $description, $position, $price, $size_array = arr
 	// position is a signed int
 	$position = intval($position);
 	if ( !$position &! $position === 0 ) {
-		return false;
+		return 'broken position';
 	}
 	
 	// price is a float
 	if ( !is_numeric($price) ){
-		return false;
+		return 'broken price';
 	}
 	$price = floatval($price);
-	
-	// sizes is a text value where as $size_array should be an array of at most 100 strings
-	if( !is_array($size_array) || count($size_array) > 100 ){
-		return false;
-	}
-	foreach($size_array as $size ){
-		if( !is_string($size) ) {
-			return false;
-		}
-	} 
-	$sizes = serialize($size_array);
-	
+
 	// image is a text value (a path to an attachment)
 	if( !is_string($image_path) ) {
-		return false;
+		return 'broken image';
 	}
 
 	global $wpdb;
-	$inserted = $wpdb->insert('shop_items', array(
-							'title' => $name,
-                            'description' => $description,
-                            'sizes' => $sizes,
-							'image' => $image_path, 
-                            'position' => $position,
-							'price' => $price
-					      ),
-						array ('%s', '%s', '%s','%s', '%d', '%f')
-    );
-
-	return $inserted > 0;
+	if(isset($id)){
+		$updated = $wpdb->update(
+							'shop_items', 
+							array(
+								'title' => $name,
+								'description' => $description,
+								'image' => $image_path, 
+								'position' => $position,
+								'price' => $price
+							  ),
+							array('id' => $id),  
+							array ('%s', '%s','%s', '%d', '%f'),
+							array ('%d')
+		);
+		if ($updated === false){
+			return 'update error';
+		}
+	}
+	else {
+		$inserted = $wpdb->insert(
+							'shop_items', 
+							array(
+								'title' => $name,
+								'description' => $description,
+								'image' => $image_path, 
+								'position' => $position,
+								'price' => $price
+							  ),
+							array ('%s', '%s','%s', '%d', '%f')
+		);
+		if ($inserted <= 0){
+			return 'insert error';
+		}
+	}
+	return 'ok';
 }
 
 // Get list of items sorted by position
 function get_shop_items(){
 	global $wpdb;
-	$result = $wpdb->get_results("SELECT * FROM shop_items ORDER_BY position;");
+	$result = $wpdb->get_results("SELECT * FROM shop_items ORDER BY position ASC;");
 	return $result;
 }
+
+// Delete shop item by id
+function db_delete_shop_item($id){
+	/* Make sure user is allowed to edit shop items */
+	if(!current_user_can('edit_shop')){
+		return false;
+	}
+	
+	global $wpdb;
+	$deleted = $wpdb->delete('shop_items', array('id' => $id), array('%d'));
+	if($deleted === false){
+		return 'delete error 1 on delete id' . $id;
+	}
+	if($deleted === 0){
+		return 'delete error 2 on delete id' . $id;
+	}
+	return 'ok';
+}
+
 ?>
