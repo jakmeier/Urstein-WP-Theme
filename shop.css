@@ -1,0 +1,57 @@
+/* General */
+h2 {
+	font-size: 150%;
+	font-weight: 600;
+	margin: 30px 0 10px 0;
+}
+div.item-row h3 {
+	font-size: 120%;
+	font-weight: 600;
+}
+
+/* Top section */
+section.general-shop-text{
+	padding-bottom: 20px;
+}
+
+/* Item rows section*/
+div.item-row{
+	display: flex;
+	margin: 20px 0;
+}
+img.item{
+	width: 200px;
+	height: 200px;
+}
+div.item-description{
+	margin: 0 20px;
+}
+div.item-description p {
+	margin: 10px 0;
+}
+div.item-description label {
+	color: white;
+	text-transform: none;
+	font-size: 100%;
+}
+div.item-description input {
+	width: 40px;
+}
+
+/* Ordering */
+
+section.order-info label {
+	display: block;
+	margin-top: 5px;
+}
+section.order-info input[type=text],
+section.order-info input[type=tel],
+section.order-info input[type=email],
+section.order-info textarea 
+{
+	margin-bottom: 10px;
+	width: 100%;
+}
+section.order-info input[type=submit] {
+	font-size: 110%;
+}
