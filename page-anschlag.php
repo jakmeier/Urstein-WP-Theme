@@ -1,5 +1,5 @@
 <?php
-require_once ("/functions/event_functions.php"); // groups_with_events
+require_once (get_template_directory() . "/functions/event_functions.php"); // groups_with_events
 get_header(); ?>
 <div class="content section-inner">		
 <link rel="stylesheet" type="text/css" href="../wp-content/themes/urstein/anschlag.css" media="screen" />
@@ -17,9 +17,9 @@ get_header(); ?>
 							$event = get_next_event($id);
 							if ($event):
 								$meta = get_post_meta($event->ID);
-								$title = $event->post_title;
-								$place = $meta['place'][0];
-								$bring = $meta['bring'][0];
+								$title = esc_html($event->post_title);
+								$place = esc_html($meta['place'][0]);
+								$bring = esc_html($meta['bring'][0]);
 								$datetime = date( 'j.n. G:i', strtotime($meta['start_time'][0]) );
 			 ?>								<a href="<?php echo get_permalink($event->ID); ?>">				<div id="wolfsstufe" class="stufen-img">					<div class="stufen-title"><?php echo $groupname;?></div>					<div class="next-activity-box">					   <p> 
 						   Nächste Aktivität: <?php echo $title; ?><br>

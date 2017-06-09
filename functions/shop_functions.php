@@ -102,6 +102,14 @@ function db_delete_shop_item($id){
 		return false;
 	}
 	
+	// ID must be positive int
+	if(isset($id)){
+		$id = intval($id);
+		if($id <= 0){
+			return 'non-positive id';
+		}
+	}
+	
 	global $wpdb;
 	$deleted = $wpdb->delete('shop_items', array('id' => $id), array('%d'));
 	if($deleted === false){

@@ -9,9 +9,9 @@
  * and should generally be easier to maintain.
  */
 
-require_once "/../functions/group_functions.php" ;
-require_once "/../functions/event_functions.php" ; // get_attendees (inside attendees.php)
-require_once "/attendees.php" ; // attendees_content
+require_once get_template_directory() . "/functions/group_functions.php" ;
+require_once get_template_directory() . "/functions/event_functions.php" ; // get_attendees (inside attendees.php)
+require_once get_template_directory() . "/admin/attendees.php" ; // attendees_content
  
 if(!function_exists('create_event_post_type')):
 	function create_event_post_type() {

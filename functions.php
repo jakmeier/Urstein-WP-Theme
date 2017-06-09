@@ -1,5 +1,5 @@
 <?php/*Remove standard posts */function remove_posts_menu() {    remove_menu_page('edit.php');}add_action('admin_init', 'remove_posts_menu');/* Setting up custom post types */
-require_once('admin/event.php');require_once('admin/news.php');/* Changinge admin view for home page to display quicklinks*/require_once('admin/home.php');/* Loading Webshop Admin view */require_once('admin/shop.php');
+require_once(get_template_directory() . '/admin/event.php');require_once(get_template_directory() . '/admin/news.php');/* Changinge admin view for home page to display quicklinks*/require_once(get_template_directory() . '/admin/home.php');/* Loading Webshop Admin view */require_once(get_template_directory() . '/admin/shop.php');
 remove_filter( 'the_content', 'wpautop' );
 remove_filter( 'the_excerpt', 'wpautop' );
 // Load custom capabilities whenever ?reload_caps=1function capabilites() {	if ( is_admin() && '1' == $_GET['reload_caps'] ) {		$administrator     = get_role('administrator');		$administrator->add_cap( 'edit_shop' );	}}add_action('admin_init', 'capabilites');

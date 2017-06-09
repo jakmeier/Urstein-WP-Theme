@@ -7,7 +7,7 @@
 	
 	<?php    
 		// Process from if necessary (In the LOOP so we can access the ID)
-		require_once ("/functions/event_functions.php");
+		require_once (get_template_directory() . "/functions/event_functions.php");
 		if(isset($_POST['signup_yes'])) {
 			add_signup_entry(get_the_ID(), true, $_POST['name'], $_POST['comment']);
 			$confirmation = "Danke, deine Anmeldung wurde erfolgreich gespeichert.";
@@ -73,11 +73,11 @@
 							</div>
 							<div class="info-tr">
 								<div class="info-label"> Mitnehmen: </div>
-								<div class="info"> <?php echo $meta['bring']['0']; ?> </div>
+								<div class="info"> <?php echo esc_html($meta['bring']['0']); ?> </div>
 							</div>
 							<div class="info-tr">
 								<div class="info-label"> Treffpunkt: </div>
-								<div class="info"> <?php echo $meta['place']['0']; ?> </div>
+								<div class="info"> <?php echo esc_html($meta['place']['0']); ?> </div>
 							</div>
 							<div class="info-tr">
 								<div class="map"> TODO: Karte vom Ort einblenden (falls verfügbar) </div>
@@ -85,7 +85,7 @@
 							<?php if ($meta['finish_place']['0']): ?>
 							<div class="info-tr">
 								<div class="info-label"> Abtreten: </div>
-								<div class="info"> <?php echo $meta['finish_place']['0']; ?> (<b>ACHTUNG:</b> Anderer Ort als Treffpunkt)</div>
+								<div class="info"> <?php echo esc_html($meta['finish_place']['0']); ?> (<b>ACHTUNG:</b> Anderer Ort als Treffpunkt)</div>
 							</div>
 							<div class="info-tr">
 								<div class="map"> TODO: Karte vom Ort einblenden (falls verfügbar) </div>
@@ -98,7 +98,7 @@
 								<div class="info-label"> Bemerkung der Leiter: </div>
 							</div>
 							<div class="info-tr">
-								<div class="info-long"> <?php echo $meta['description']['0']; ?> </div>
+								<div class="info-long"> <?php echo nl2br(esc_html($meta['description']['0'])); ?> </div>
 							</div>
 							<?php endif; ?>
 						</div> <!-- /info-table -->	
@@ -106,7 +106,7 @@
 						<!-- Signup form or confirmation message -->
 						<?php if ($confirmation) :?>
 							<div class="info-tr separate">
-								<div class="info-label"> <?php echo $confirmation; ?> </div>
+								<div class="info-label"> <?php echo esc_html($confirmation); ?> </div>
 							</div>
 						<?php else: ?>
 							<form method="post" action=""><div class="signup separate">

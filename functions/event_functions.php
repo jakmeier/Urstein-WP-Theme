@@ -32,7 +32,7 @@ function get_groups_of_event($postid){
 	$meta = get_post_meta($postid);
 	foreach($groups as $id => $name){
 		if( intval($meta['group' . $id][0]) === 1 ){
-			$result[$id] = $name;
+			$result[$id] = esc_html($name);
 		}
 	}
 	return $result;

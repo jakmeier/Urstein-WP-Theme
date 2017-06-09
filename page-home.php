@@ -60,9 +60,9 @@ get_header(); ?>
 						while ( $loop->have_posts() ) : $loop->the_post();
 							if($post->post_type == 'event') {
 								$meta = get_post_meta($post->ID);
-								$place = $meta['place'][0];
-								$bring = $meta['bring'][0];
-								$description = $meta['description'][0];
+								$place = esc_html($meta['place'][0]);
+								$bring = esc_html($meta['bring'][0]);
+								$description = nl2br(esc_html($meta['description'][0]));
 								$datetime = date( 'j.n. G:i', strtotime($meta['start_time'][0]) );
 								$groupnames = get_groups_of_event($post->ID);
 								

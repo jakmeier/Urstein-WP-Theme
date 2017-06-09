@@ -91,13 +91,13 @@ body {
 	padding: 0;
 	background: #1d1d1d;
 	border: none;
-	color: #1d1d1d;
+	color: white;
 	font-family: 'Montserrat', 'Helvetica Neue', 'Helvetica', sans-serif;
 	-webkit-text-size-adjust: 100%;
 }
 
 body a {
-	color: #1d1d1d;
+	color: grey;
 	text-decoration: none;
 }
 
@@ -1238,7 +1238,7 @@ input[type="button"],
 	padding: 16px 20px;
 	border: none;
 	margin: none;
-	background: #3bc492;
+	background: #5b5b5b;
 	border-radius: 3px;
 	font-size: 14px;
 	line-height: 1;

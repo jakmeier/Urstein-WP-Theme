@@ -1,5 +1,5 @@
 <?php
-	require_once('/../functions/shop_functions.php'); //get_shop_items, add_shop_item
+	require_once( get_template_directory() . '/functions/shop_functions.php'); //get_shop_items, add_shop_item
 	function shop_admin_menu() {
 		$title = 'Webshop verwalten';
 		$capability = 'edit_shop';
@@ -44,7 +44,7 @@
 					</label>
 					<input type="text" name="id<?php echo $i;?>" class="hidden" value="<?php echo $item->id;?>">
 					<label>Warenbezeichnung<br><input required type="text" name="title<?php echo $i;?>" value="<?php echo $item->title;?>"></label>
-					<label>Beschreibung<br><textarea rows="3" cols="50" name="description<?php echo $i;?>"><?php echo $item->description;?></textarea></label>
+					<label>Beschreibung<br><textarea rows="5" cols="50" name="description<?php echo $i;?>"><?php echo esc_html($item->description);?></textarea></label>
 					<label>Preis in CHF<br><input type="number" step="0.05" min="0" name="price<?php echo $i;?>" value="<?php echo $item->price;?>"></label>
 					<br><span class="button remove">Entferne Artikel</span>
 					

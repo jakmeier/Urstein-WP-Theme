@@ -46,8 +46,6 @@ div.signup textarea
 	margin: 5px 10px;
 }
 div.signup input[type=submit] {
-	/* Some sort of dark grey */
-	background-color: #5b5b5b;
 	margin: 10px 5px;
 }
 
