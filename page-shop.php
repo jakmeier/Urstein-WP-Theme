@@ -36,8 +36,8 @@ get_header(); ?>
 			 ?>					<div class="item-row">
 					<img class="item" src="<?php echo esc_url($item->image);?>">
 					<div class="item-description">
-						<h3><?php echo esc_html($item->title);?></h3>						<p class="item-description"> <?php echo nl2br(esc_html($item->description));?> </p>
-						<p class="item-price">Preis: <?php echo esc_html($item->price);?> CHF </p>
+						<h3><?php echo esc_html($item->title);?></h3>						<p class="item-description-p"> <?php echo nl2br(esc_html($item->description));?> </p>
+						<p class="item-price-p">Preis: <?php echo esc_html($item->price);?> CHF </p>
 						<label>Anzahl bestellen: <input autocomplete="off" type="number" min="0" max="99" name="item<?php echo intval($item->id); ?>" value="0"></label>
 					</div>				</div> 
 			<?php endforeach;?>

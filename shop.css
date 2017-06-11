@@ -22,9 +22,7 @@ div.item-row{
 img.item{
 	width: 200px;
 	height: 200px;
-}
-div.item-description{
-	margin: 0 20px;
+	margin: 0 20px 20px 0;
 }
 div.item-description p {
 	margin: 10px 0;
@@ -54,4 +52,34 @@ section.order-info textarea
 }
 section.order-info input[type=submit] {
 	font-size: 110%;
+}
+
+/* Responsiveness */
+@media ( max-width: 900px ){
+	img.item{
+		width: 150px;
+		height: 150px;
+	}
+}
+@media ( max-width: 600px ) {
+	img.item{
+		width: 100px;
+		height: 100px;
+		margin: 0 20px 10px 0;
+	}
+}
+@media ( max-width: 400px ) {
+	img.item{
+		width: 100px;
+		height: 100px;
+		margin: 0 15px 10px 0;
+	}
+	div.item-row{
+		flex-wrap: wrap;
+		justify-content: center;
+		margin: 10px 0;
+	}
+	div.item-description {
+		margin-bottom: 20px;
+	}
 }
