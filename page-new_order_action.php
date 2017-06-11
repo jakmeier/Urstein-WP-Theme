@@ -13,10 +13,12 @@ get_header();
 <div class="post-container">	
 <div class="post-content">
 <?php
+
+	$webmaster = "webmaster@pfadiherisau.ch";
 	if(isset($_POST["order"], $_POST["firstname"], $_POST["lastname"], $_POST["email"]) && filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
 		$fullName = esc_html($_POST["firstname"]) . " " . esc_html($_POST["lastname"]);
 		$email = esc_html($_POST["email"]);
-		$webmaster = "webmaster@pfadiherisau.ch";
+		
 
 		$items = get_shop_items();
 		$purchased =  array();

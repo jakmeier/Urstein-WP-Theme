@@ -163,7 +163,7 @@ function urstein_flexslider($size) {
 		</div><?php
 	}
 }
-// Related posts function
+// Related posts function /*
 function urstein_related_posts() { ?>
 <div class="related-posts posts section-inner">
 	<?php 
@@ -217,7 +217,7 @@ function urstein_related_posts() { ?>
 	<?php wp_reset_query(); ?>
 
 </div> <!-- /related-posts --> <?php
-}
+}*/
 // urstein theme options
 class urstein_Customize {
 

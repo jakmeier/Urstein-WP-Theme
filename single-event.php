@@ -23,15 +23,10 @@
 			<div class="post-container">
 	
 				<div class="post-header">
-					
-					<p class="post-date"><?php the_time(get_option('date_format')); ?></p>
-					
 					<h1 class="post-title"><?php the_title(); ?></h1>
-					
 				</div>
 				
 				<div class="post-inner">
-					    
 				    <div class="post-content">
 				    
 						<?php $post_format = get_post_format(); ?>	
@@ -131,12 +126,8 @@
 						
 					
 				    </div> <!-- /post-content -->
-				    
-					
-					
 				    <div class="clear"></div>
 				    
-					
 					<div class="post-meta">
 					<?php if (current_user_can( 'edit_post', $post->ID )): ?>
 						<p class="post-edit">
@@ -145,11 +136,8 @@
 						</p>
 					<?php endif;?>
 					</div> <!-- /post-meta -->
-					
 			
 				</div> <!-- /post-inner -->
-				
-			
 			</div> <!-- /post-container -->
 			
 		</div> <!-- /post -->
