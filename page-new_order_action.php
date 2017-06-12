@@ -45,14 +45,18 @@ get_header();
 		if(isset($_POST["tel"])){
 			$order .= "Telefon: " . $_POST["tel"] . "\r\n";
 		}
+		if(isset($_POST["address"]) || isset($_POST["place"])){
+			$order .= "Adresse: " . $_POST["address"] . "\r\n";
+			$order .= "Ort: " . $_POST["place"] . "\r\n";
+		}
 		//$to      = "bekleidung@pfadiherisau.ch";
 		$to      = "jakmeier@ethz.ch";
 		$subject = "Bestellung von " . $fullName;
 		$message = 
-			"Guten Tag,\r\n" .
+			"Guten Tag,\r\n\r\n" .
 			"Eine neue Bestellung von " . $fullName . " ist eingegangen. Hier die Bestellungsdetails:\r\n" .
 			$order . "\r\n" .
-			"Auf diese Nachricht kann direkt geantwortet werden um " . $email . " zu schreiben. Für technische Fragen und Probleme, wende dich bitte an " . $webmaster . ".\r\n" .
+			"Auf diese Nachricht kann direkt geantwortet werden um " . $email . " zu schreiben. Für technische Fragen und Probleme, wende dich bitte an " . $webmaster . ".\r\n\r\n" .
 			"Freundliche Grüsse\r\nDer Pfadi Urstein Webserver"
 			;
 		$headers = "From: " . $webmaster . "\r\n" .

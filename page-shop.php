@@ -49,6 +49,8 @@ get_header(); ?>
 				<label>Nachname<br><input required name="lastname" type="text"></label>
 				<label>E-Mail<br><input required name="email" type="email"></label>
 				<label>Telefon (optional)<br><input name="tel" type="tel"></label>
+				<label>Adresse (optional)<br><input name="address" type="text"></label>
+				<label>Postleitzahl und Ort (optional)<br><input name="place" type="text"></label>
 				<label>Kommentar (Eventuell Grösse angeben)<br><textarea name="comment" rows="8"></textarea></label>
 				<input type="submit" name="order" value="Bestellen">
 			</section>
