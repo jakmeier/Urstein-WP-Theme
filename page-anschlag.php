@@ -21,23 +21,33 @@ get_header(); ?>
 								$place = esc_html($meta['place'][0]);
 								$bring = esc_html($meta['bring'][0]);
 								$datetime = date( 'j.n. G:i', strtotime($meta['start_time'][0]) );
-			 ?>								<a href="<?php echo get_permalink($event->ID); ?>">				<div id="wolfsstufe" class="stufen-img">					<div class="stufen-title"><?php echo $groupname;?></div>					<div class="next-activity-box">					   <p> 
-						   Nächste Aktivität: <?php echo $title; ?><br>
-						   <?php echo $datetime . ' ' . $place?> <br>
-						   Mitnehmen: <?php echo $bring; ?> <br>
-						   >>>
-					   </p>					</div>				</div> 				</a>
-			<?php else:?>
-				<a href="<?php the_group_url($id); ?>">
-				<div id="wolfsstufe" class="stufen-img">
-					<div class="stufen-title"><?php echo $groupname;?></div>
-					<div class="next-activity-box">
-						
-							Nächste Aktivität: <br>
-							Noch nicht verfügbar.
-						
-					</div>
-				</div> 			<?php endif; endforeach;?>
+			 ?>												<div class="stufen-cell">
+					<div class="the-image">
+					<img src="<?php the_group_image_url($id);?>">
+						<div class="on-image">							<h3><a href="<?php echo get_permalink($event->ID); ?>"><?php echo $groupname;?></a></h3>							<div class="next-activity-box">							   <p> 
+								   Nächste Aktivität: <?php echo $title; ?><br>
+								   <?php echo $datetime . ' ' . $place?> <br>
+								   Mitnehmen: <?php echo $bring; ?> <br>
+								   <a href="<?php echo get_permalink($event->ID); ?>">>>> Zur Anmeldung</a>
+							   </p>
+							</div> <!--/next-activity-box-->						</div> <!--/on-image-->
+					</div> <!--/the-image-->				</div> <!--/stufen cell-->				
+						<?php else:?>
+				<div class="stufen-cell">
+					<div class="the-image">
+					<img src="<?php the_group_image_url($id);?>">
+						<div class="on-image">
+							<h3><a href="<?php the_group_url($id); ?>"><?php echo $groupname;?></a></h3>
+							<div class="next-activity-box">
+							   <p> 
+									Nächste Aktivität: <br>
+									Noch nicht verfügbar.
+							   </p>
+							</div> <!--/next-activity-box-->
+						</div> <!--/on-image-->
+					</div> <!--/the-image-->
+				</div> <!--/stufen cell-->
+									<?php endif; endforeach;?>
 							</div>			</div> <!-- /post-inner -->			</div> <!-- /post-container -->
 		
 		</div> <!-- /post -->

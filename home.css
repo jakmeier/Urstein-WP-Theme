@@ -47,6 +47,11 @@ section.headline{
 	display: block;
 	margin: 0 10px 0 0;
 	min-width: 150px;
+}
+.entry-image img{
+	height: auto;
+	max-height: 100%;
+	max-width: 100%;
 }.entry-text{
 	/*display: inline-flex;
 	-webkit-flex-direction: column;

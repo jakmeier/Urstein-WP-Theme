@@ -82,7 +82,7 @@ get_header(); ?>
 									//$thumb_url = $thumb['0']; 
 									the_post_thumbnail('thumbnail');
 								} elseif($post->post_type == 'event') {
-									echo wp_get_attachment_image( get_group_thumbnail(array_keys($groups)), 'thumbnail');
+									echo wp_get_attachment_image( get_group_thumbnail(array_keys($groupnames)), 'thumbnail');
 								}
 								elseif($post->post_type == 'news') {
 									echo wp_get_attachment_image( get_theme_mod('urstein_custom_img_news'), 'thumbnail');
