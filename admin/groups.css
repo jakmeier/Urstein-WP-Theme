@@ -1,0 +1,32 @@
+#has-events-list {
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
+}
+
+#group-pics-list{
+	display: flex;
+	flex-wrap: wrap;
+}
+label.group-pic-label {
+	height: 150px;
+	width: 150px;
+	font-weight: 600;
+	display: block;
+	margin: 5px;
+}
+label.group-pic-label img{
+	height: auto;
+	max-height: 100%;
+	max-width: 100%;
+}
+label.group-pic-label span {
+	display: block;
+	font-size: 130px;
+}
+
+@media ( min-width: 901px ){
+	#has-events-list {
+		width: 50%;
+	}
+}

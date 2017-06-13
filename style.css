@@ -7,8 +7,8 @@
     Version: 1.00
 	Author: Jakob Meier	Description: Urstein is a theme created for the website www.pfadiherisau.ch. It uses the theme Hitchkock as a basis and various changes have been made to it.			Information about Hitchkock theme:		Author: Anders Norén	
 	Author URI: http://www.andersnoren.se
-    Theme URI: http://www.andersnoren.se/teman/urstein-wordpress-theme/
-	Description: Urstein is a minimal portfolio theme for designers, photographers and other creatives. It features a beautiful responsive design, a social icon menu, Jetpack infinite scroll, custom accent color, custom header image, support for the gallery post format, editor styling and much more. 
+    Theme URI: http://www.andersnoren.se/teman/hitchcock-wordpress-theme/
+	Description: Hitchcock is a minimal portfolio theme for designers, photographers and other creatives. It features a beautiful responsive design, a social icon menu, Jetpack infinite scroll, custom accent color, custom header image, support for the gallery post format, editor styling and much more. 
 	License: GNU General Public License version 2.0
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -1279,7 +1279,7 @@ input[type="submit"]:active {
 
 
 /* Comments Container --------------------------------------- */
-
+/*
 
 .comments-container { 
 	background: #fafafa; 
@@ -1298,10 +1298,10 @@ input[type="submit"]:active {
 .comments-inner { padding-bottom: 100px; }
 
 .comments-inner + .comment-respond { border-top: 1px solid #ddd; }
-
+*/
 
 /* Comments Title --------------------------------------- */
-
+/*
 
 .comments-title,
 .comment-reply-title { 
@@ -1324,9 +1324,9 @@ input[type="submit"]:active {
 	position: relative;
 }
 
-
+*/
 /* Comment --------------------------------------- */
-
+/*
 
 .commentlist div.comment { 
 	margin-top: 40px;
@@ -1367,11 +1367,11 @@ input[type="submit"]:active {
 .comment-date-link:hover { color: #666; }
 
 .bypostauthor {}
-
+*/
 
 /* Comment Actions --------------------------------------- */
 
-
+/*
 .comment-actions { 
 	margin-top: 21px; 
 	font-size: 0.875em;
@@ -1389,10 +1389,10 @@ input[type="submit"]:active {
 
 .comment-awaiting-moderation { color: #999; }
 
-
+*/
 /* Pingbacks --------------------------------------- */
 
-
+/*
 .comments .pingbacks {
 	margin-top: 40px;
 	border-top: 1px solid #ddd;
@@ -1429,9 +1429,9 @@ input[type="submit"]:active {
 
 .comments .pingbacks li a:hover { color: #3bc492; }
 
-
+*/
 /* Comment navigation --------------------------------------- */
-
+/*
 
 .comments-nav {
 	padding-top: 40px;
@@ -1444,7 +1444,7 @@ input[type="submit"]:active {
 .comments-nav a { color: #999; }
 .comments-nav a:hover { color: #666; }
 
-
+*/
 /* -------------------------------------------------------------------------------- */
 /*	9. Respond
 /* -------------------------------------------------------------------------------- */
