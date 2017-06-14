@@ -106,6 +106,7 @@ body a:hover {
 	text-decoration: none;
 }
 
+
 * { 
 	box-sizing: border-box; 
 	-moz-box-sizing: border-box; 
@@ -871,7 +872,8 @@ input[type="button"],
 
 .post-content a { color: lightgrey; }
 .post-content a:hover { text-decoration: underline; }
-
+.post-content a.white-link { color: white; }
+.post-content a.white-link:hover { color: lightgrey; text-decoration: none; }
 
 .post-content p,
 .post-content blockquote,

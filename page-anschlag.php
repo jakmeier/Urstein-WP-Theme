@@ -13,6 +13,7 @@ get_header(); ?>
 			<div class="post-inner">				    			<div class="stufen-table">
 						 <?php
 				$groups = groups_with_events();
+				if($groups):
 				foreach($groups as $id=>$groupname):
 							$event = get_next_event($id);
 							if ($event):
@@ -47,7 +48,7 @@ get_header(); ?>
 						</div> <!--/on-image-->
 					</div> <!--/the-image-->
 				</div> <!--/stufen cell-->
-									<?php endif; endforeach;?>
+									<?php endif; endforeach; endif;?>
 							</div>			</div> <!-- /post-inner -->			</div> <!-- /post-container -->
 		
 		</div> <!-- /post -->

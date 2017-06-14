@@ -39,6 +39,26 @@ function the_group_image_url($groupid){
 function get_the_group_image_url($groupid){
 	return wp_get_attachment_url(get_group_thumbnail($groupid));
 }
+function the_group_content($groupid){
+	echo nl2br(esc_html(get_the_group_content($groupid)));
+}
+function get_the_group_content($groupid){
+	if(!is_numeric($groupid)){
+		return false;
+	}
+	$groupid = intval($groupid);
+	global $wpdb;
+	$result = $wpdb->get_results(
+		"SELECT `wp_posts`.`post_content` " . 
+		"FROM `wp_posts`, `groups` " .
+		"WHERE `wp_posts`.`id` = `groups`.`page` " .
+		"AND `groups`.`id` = $groupid;"
+	);
+	if(is_array($result) && isset($result[0]->post_content)) {
+		return $result[0]->post_content;
+	}
+	return false;
+}
 /* Looks up one fitting thumbnail for one or many groups */
 function get_group_thumbnail($groups){
 	//var_dump($groups);
@@ -54,7 +74,7 @@ function get_group_thumbnail($groups){
 	if(is_int($groups)){
 		// Lookup attached default thumbnail for group
 		global $wpdb;
-		$groups = mysql_real_escape_string($groups);
+		$groups = intval($groups);
 		$result = $wpdb->get_results("SELECT `image` FROM `groups` WHERE `id` = $groups;");
 		if(is_array($result) && isset($result[0]->image) && intval($result[0]->image) > 0) {
 			return $result[0]->image;

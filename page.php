@@ -14,11 +14,11 @@
 			</div>
 			<div class="post-inner">
 			    <div class="post-content">
-			    	<?php the_content(); ?>
+			    	<?php echo nl2br(esc_html(get_the_content())); ?>
 			    	<?php wp_link_pages('before=<div class="clear"></div><p class="page-links">' . __( 'Pages:', 'urstein' ) . ' &after=</p>&seperator= <span class="sep">/</span> '); ?>
 			    </div> <!-- /post-content -->
 			    <div class="clear"></div>
-			    <?php edit_post_link(__('Edit Page','urstein'), '<div class="post-meta"><p class="post-edit">', '</p></div>'); ?>
+			    <?php edit_post_link(__('Text bearbeiten','urstein'), '<div class="post-meta"><p class="post-edit">', '</p></div>'); ?>
 			</div> <!-- /post-inner -->
 			</div> <!-- /post-container -->
 		</div> <!-- /post -->

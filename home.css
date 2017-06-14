@@ -34,9 +34,6 @@ section.headline{
 	margin: 0px 0 10px;
 	font-size: 1.25em;
 }
-.post-content h3 a{
-	color: white;
-}
 
 /* Entries (<article>) */
 .post-content article{

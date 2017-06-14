@@ -45,11 +45,13 @@ get_header(); ?>
 						
 						$groups = groups_with_events();
 						$events = array();
+						if($groups){
 						foreach($groups as $id=>$groupname){
 							$event = get_next_event($id);
 							if($event) {
 								array_push($events, $event->ID);
 							}
+						}
 						}
 
 						$displayIDs = array_merge($news->posts, $events);
@@ -90,7 +92,7 @@ get_header(); ?>
 								?>
 							</div>
 							<div class ="entry-text">
-							<h3><a href="<?php echo get_permalink($post->ID); ?>"><?php the_title();?></a></h3>
+							<a href="<?php echo get_permalink($post->ID); ?>"><h3><?php the_title();?></h3></a>
 								<div class="entry-content">
 									<?php echo $content;?>
 									<?php edit_post_link(__('Beitrag bearbeiten','urstein'), '<p class="post-edit">', '</p>'); ?>
