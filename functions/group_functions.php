@@ -89,7 +89,7 @@ function db_save_group_image($postid, $img){
 	$postid = intval($postid);
 	$img = intval($img);
 	
-	if(!current_user_can('edit_posts')){ //TODO: More specific capability check
+	if(!current_user_can('edit_groups')){
 		return false;
 	}
 	if($img <= 0){
@@ -112,7 +112,7 @@ function db_save_group_image($postid, $img){
 
 // Save toggle for boolean has_event
 function db_toggle_group_has_event($postid){
-	if(!current_user_can('edit_posts')){ //TODO: More specific capability check
+	if(!current_user_can('edit_groups')){
 		return false;
 	}
 	$postid = intval($postid);

@@ -95,8 +95,7 @@ function display_quicklink()
 			$i++;
 		}
 		
-		// is the user allowed to edit the post or page?
-		if(!current_user_can('edit_post', $post->ID )){
+		if(!current_user_can('edit_quicklinks', $post->ID )){
 			return $post->ID;
 		}
 		

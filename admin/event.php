@@ -26,7 +26,16 @@ if(!function_exists('create_event_post_type')):
 			'show_ui' => true,
 			'query_var' => true,
 			'rewrite' => true,
-			'capability_type' => 'post',
+			'capabilities' => array(
+				'edit_post'          => 'edit_events', 
+				'read_post'          => 'edit_events', 
+				'delete_post'        => 'edit_events', 
+				'edit_posts'         => 'edit_events', 
+				'edit_others_posts'  => 'edit_events', 
+				'publish_posts'      => 'edit_events',       
+				'read_private_posts' => 'edit_events', 
+				'create_posts'       => 'edit_events', 
+			),
 			'hierarchical' => false,
 			'supports' => array(
 				'thumbnail'
@@ -98,8 +107,7 @@ if(!function_exists('create_event_post_type')):
 	}
 
 	function event_post_save_meta($post_id, $post){
-		// is the user allowed to edit the post or page?
-		if(!current_user_can('edit_post', $post->ID )){
+		if(!current_user_can('edit_events', $post->ID )){
 			return $post->ID;
 		}
 		
@@ -192,7 +200,7 @@ if(!function_exists('create_event_post_type')):
 	 */
 	function attendees_admin_menu() {
 		$title = 'Anmeldungen Übungen';
-		add_menu_page( $title, $title, 'edit_posts', 'event/attendees', 'attendees_content', 'dashicons-groups', 8  );
+		add_menu_page( $title, $title, 'read_attendees', 'event/attendees', 'attendees_content', 'dashicons-groups', 8  );
 	}
 	add_action( 'admin_menu', 'attendees_admin_menu' );
 
