@@ -1,0 +1,39 @@
+section.group-text {
+	display: flex;
+	flex-direction: row;
+}
+section.group-text img {
+	margin: 0 20px 20px 0 ;
+}
+
+section.group-media img {
+	margin: 20px auto;
+}
+
+section.leaders {
+	display: flex;
+	flex-direction: row;
+}
+
+div.leader {
+	display: inline-flex;
+	flex-direction: row;
+}
+div.leader img {
+	margin: 0 10px 0 0;
+	width: auto;
+	height: auto;
+	max-height: 96px;
+	max-width: 96px;
+}
+.info-box {
+	display: block;
+}
+
+.post-content .info-box h3 {
+	margin: 0 0 10px 0;
+}
+.post-content .info-box p {
+	margin: 0 0 10px 0;
+}
+

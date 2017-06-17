@@ -25,10 +25,31 @@ function groups_with_events() {
 	return $groups;
 }	
 
+/*
+ * Get a groupid by the postid it has been assigned to 
+ * Useful to find the group that corresponds to the displayed page
+ */
+function get_group_id_by_post($postid){
+	if(!is_numeric($postid)){
+		return false;
+	}
+	$postid = intval($postid);
+	global $wpdb;
+	$result = $wpdb->get_results("SELECT `id` FROM `groups` WHERE `page` = $postid;");
+	if($result){
+		return $result[0]->id;
+	}
+	return false;
+}
+
 function the_group_url($groupid){
 	echo get_the_group_url($groupid);
 }
 function get_the_group_url($groupid){
+	if(!is_numeric($groupid)){
+		return false;
+	}
+	$groupid = intval($groupid);
 	global $wpdb;
 	$result = $wpdb->get_results("SELECT page FROM groups WHERE id =" . $groupid .";");
 	return get_permalink(intval($result[0]->page));
@@ -138,4 +159,35 @@ function db_toggle_group_has_event($postid){
 	return true;
 }
 
+// Get leaders data to display associated with a group
+function get_leaders($group_id){
+	if(!is_numeric($group_id)){
+		return false;
+	}
+	$group_id = intval($group_id);
+	$users = get_users(
+		array(
+			'meta_key' => 'group', 
+			'meta_value' => $group_id,
+			'fields' => array( 'ID', 'display_name', 'user_email' )
+			));
+	if(is_array($users)){
+		foreach($users as $key => $user) {
+			$nickname = get_user_meta($user->ID, 'nickname', true);
+			if(is_string($nickname)){
+				$users[$key]->nickname = $nickname;
+			} else {
+				$users[$key]->nickname = 'Nicht verfügbar';
+			}
+			$avatar = get_user_meta($user->ID, 'basic_user_avatar', true);
+			if(is_string($nickname)){
+				$users[$key]->avatar = $avatar;
+			}
+		}
+		return $users;
+	}
+	else {
+		return false;
+	}
+}
 ?>		

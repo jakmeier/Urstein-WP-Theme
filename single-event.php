@@ -27,20 +27,11 @@
 				</div>
 				
 				<div class="post-inner">
-				    <div class="post-content">
-				    
-						<?php $post_format = get_post_format(); ?>	
-						<?php if ( $post_format == 'gallery' ) : ?>	
-							<div class="featured-media">			
-								<?php urstein_flexslider('medium'); ?>						
-								<div class="clear"></div>						
-							</div> <!-- /featured-media -->				
-						<?php elseif ( has_post_thumbnail() ) : ?>						
-							<div class="featured-media">		
-								<?php the_post_thumbnail('medium'); ?>					
-							</div> <!-- /featured-media -->						
-						<?php endif; ?>
-					
+				    <div class="post-content">			
+						<div class="featured-media">		
+							<?php the_post_thumbnail('medium'); ?>					
+						</div> <!-- /featured-media -->						
+						
 				    	<?php 
 							$meta = get_post_meta(get_the_ID()); /*print_r($meta);*/
 							$start_time = strtotime($meta['start_time']['0']);
