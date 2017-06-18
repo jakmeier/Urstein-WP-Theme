@@ -3,7 +3,7 @@
 
 	function groups_admin_menu() {
 		$title = 'Gruppen verwalten';
-		$menu = add_menu_page( $title, $title, 'edit_posts', 'groups', 'groups_content', 'dashicons-networking', 8  );
+		$menu = add_menu_page( $title, $title, 'edit_groups', 'groups', 'groups_content', 'dashicons-networking', 8  );
 		add_action( 'load-' . $menu, 'load_group_admin_js' );
 	}
 	add_action( 'admin_menu', 'groups_admin_menu' );
@@ -72,7 +72,7 @@
 				<li>
 					<label class="group-pic-label"> <?php echo $group->title; ?><br>
 					<input type="text" name="group<?php echo $group->id;?>" class="hidden">
-					<?php if(is_string($group->image) && strlen($group->image) > 0):?>
+					<?php if(is_numeric($group->image) && intval($group->image) > 0):?>
 						<img src="<?php echo wp_get_attachment_url($group->image);?>">
 					<?php else:?>
 						<span class="dashicons dashicons-format-image"></span>
