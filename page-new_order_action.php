@@ -49,8 +49,7 @@ get_header();
 			$order .= "Adresse: " . $_POST["address"] . "\r\n";
 			$order .= "Ort: " . $_POST["place"] . "\r\n";
 		}
-		//$to      = "bekleidung@pfadiherisau.ch";
-		$to      = "jakmeier@ethz.ch";
+		$to      = "bekleidung@pfadiherisau.ch";
 		$subject = "Bestellung von " . $fullName;
 		$message = 
 			"Guten Tag,\r\n\r\n" .
