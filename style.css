@@ -1273,7 +1273,28 @@ input[type="submit"]:focus,
 input[type="submit"]:active {
 	outline: none;
 }
+/* User avatars */
+div.user-avatar {
+	display: inline-flex;
+	flex-direction: row;
+}
+div.user-avatar img {
+	width: auto;
+	height: auto;
+	max-height: 96px;
+	max-width: 96px;
+}
+div .user-avatar .info-box {
+	display: block;
+	margin: 0 10px;
+}
 
+.post-content .info-box h3 {
+	margin: 0 0 10px 0;
+}
+.post-content .info-box p {
+	margin: 0 0 10px 0;
+}
 
 /* -------------------------------------------------------------------------------- */
 /*	8. Comments

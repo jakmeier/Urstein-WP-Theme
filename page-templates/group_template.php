@@ -39,24 +39,14 @@
 					<section class="leaders">
 						<?php 
 							$leaders = get_leaders($groupid);
-							if(is_array($leaders)):
-							foreach($leaders as $leader):
-							if(is_array($leader->avatar) && isset ($leader->avatar[96])){
-								$url = $leader->avatar[96];
-								$img = "<img src='$url'/>";
-							} else {
-								$img = get_avatar($leader->ID); // Use gravatar's default avatar
+							$leaders = array_merge($leaders, get_division_leader(stufe_by_group($groupid)));
+							if(is_array($leaders)) {
+								foreach($leaders as $leader) {
+									set_query_var( 'userid', $leader );
+									get_template_part( 'template-parts/user_avatar' );
+								}
 							}
 						?>
-							<div class="leader">
-								<?php echo $img;?>
-								<div class="info-box">
-									<h3><?php echo $leader->nickname;?></h3>
-									<p><?php echo $leader->display_name;?></p>
-									<p><a href="mailto:<?php echo $leader->email;?>">Schreibe eine E-Mail</a></p>
-								</div>
-							</div>
-						<?php endforeach; endif;?>
 					</section>
 			    </div> <!-- /post-content -->
 			    

@@ -13,27 +13,7 @@ section.group-media img {
 section.leaders {
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 }
 
-div.leader {
-	display: inline-flex;
-	flex-direction: row;
-}
-div.leader img {
-	margin: 0 10px 0 0;
-	width: auto;
-	height: auto;
-	max-height: 96px;
-	max-width: 96px;
-}
-.info-box {
-	display: block;
-}
-
-.post-content .info-box h3 {
-	margin: 0 0 10px 0;
-}
-.post-content .info-box p {
-	margin: 0 0 10px 0;
-}
 

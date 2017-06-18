@@ -26,6 +26,45 @@ function groups_with_events() {
 }	
 
 /*
+ * Find all groups that belong to a group
+ * At the moment, "Stufen" are not represented in the database,
+ * 0 means implicitly Biberstufe, 1 Wolfsstufe and so on
+ */
+function groups_by_stufe($stufe){
+	if(!is_numeric($stufe)) {
+		return false;
+	}
+	switch ($stufe){
+		case 0: 
+			return array(2);
+		case 1: 
+			return array(3,4);
+		case 2: 
+			return array(5);
+		case 3: 
+			return array(6);
+	}
+	return false;
+}
+function stufe_by_group($groupid){
+	if(!is_numeric($groupid)) {
+		return false;
+	}
+	switch ($groupid){
+		case 2: 
+			return 0;
+		case 3:
+		case 4: 
+			return 1;
+		case 5: 
+			return 2;
+		case 6: 
+			return 3;
+	}
+	return false;
+}
+
+/*
  * Get a groupid by the postid it has been assigned to 
  * Useful to find the group that corresponds to the displayed page
  */
@@ -159,32 +198,58 @@ function db_toggle_group_has_event($postid){
 	return true;
 }
 
-// Get leaders data to display associated with a group
+// Get leaders associated with a group
 function get_leaders($group_id){
 	if(!is_numeric($group_id)){
 		return false;
 	}
 	$group_id = intval($group_id);
+	
+	// Get users directly leading the group
 	$users = get_users(
 		array(
+			'role__not_in' => array('division_leader'),
 			'meta_key' => 'group', 
 			'meta_value' => $group_id,
-			'fields' => array( 'ID', 'display_name', 'user_email' )
+			'fields' => array( 'ID' )
 			));
+	$result = array();
 	if(is_array($users)){
 		foreach($users as $key => $user) {
-			$nickname = get_user_meta($user->ID, 'nickname', true);
-			if(is_string($nickname)){
-				$users[$key]->nickname = $nickname;
-			} else {
-				$users[$key]->nickname = 'Nicht verfügbar';
-			}
-			$avatar = get_user_meta($user->ID, 'basic_user_avatar', true);
-			if(is_string($nickname)){
-				$users[$key]->avatar = $avatar;
-			}
+			array_push($result, $user->ID);
 		}
-		return $users;
+		return $result;
+	}
+	else {
+		return false;
+	}
+}
+
+// Stufenleiter
+function get_division_leader($stufe) {
+	$users = array();
+	$groups = groups_by_stufe($stufe);
+	if(is_array($groups)){
+		foreach($groups as $group) {
+			$users = array_merge(
+				$users,
+				get_users(
+					array(
+						'role' => 'division_leader',
+						'meta_key' => 'group', 
+						'meta_value' => $group,
+						'fields' => array( 'ID' )
+					)
+				)
+			);
+		}
+	}		
+	$result = array();
+	if(is_array($users)){
+		foreach($users as $key => $user) {
+			array_push($result, $user->ID);
+		}
+		return $result;
 	}
 	else {
 		return false;
