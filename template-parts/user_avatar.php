@@ -25,7 +25,14 @@
 ?>
 
 <div class="user-avatar">
-	<?php echo $img;?>
+	<div class="image-and-rank">
+	<?php 
+		echo $img;
+		if(isset($display_rank)){
+			echo "<p class='rank'>$display_rank</p>";
+		}
+	?>
+	</div>
 	<div class="info-box">
 		<h3><?php echo $nickname;?></h3>
 		<p><?php echo $display_name;?></p>

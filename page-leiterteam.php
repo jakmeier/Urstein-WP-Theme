@@ -29,9 +29,12 @@
 					<h2> <?php echo $divisions[$i];?> </h2>
 					<section class="leaders">
 						<?php 
-							set_query_var( 'userid', get_division_leader($i)[0] );
-							get_template_part( 'template-parts/user_avatar' );
-						
+							$divlead = get_division_leader($i)[0];
+							if($divlead) {
+								set_query_var( 'userid',  $divlead);
+								set_query_var( 'display_rank',  'Stufenleitung');
+								get_template_part( 'template-parts/user_avatar' );
+							}
 							$groups = groups_by_stufe($i);
 							if(is_array($groups)){
 								foreach($groups as $group) {
@@ -39,6 +42,7 @@
 									if(is_array($leaders)) {
 										foreach($leaders as $leader) {
 											set_query_var( 'userid', $leader );
+											set_query_var( 'display_rank', null );
 											get_template_part( 'template-parts/user_avatar' );
 										}
 									}

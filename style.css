@@ -1288,12 +1288,17 @@ div .user-avatar .info-box {
 	display: block;
 	margin: 0 10px;
 }
-
 .post-content .info-box h3 {
 	margin: 0 0 10px 0;
 }
 .post-content .info-box p {
 	margin: 0 0 10px 0;
+}
+p.rank {
+	text-transform: uppercase;
+	font-family: 'Montserrat';
+	font-size: small;
+	color: black;
 }
 
 /* -------------------------------------------------------------------------------- */
