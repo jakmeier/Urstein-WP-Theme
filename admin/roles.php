@@ -1,6 +1,6 @@
 ﻿<?php
 function custom_roles() {
-	if ( is_admin() && '1' == $_GET['reload_caps'] ) {
+	if ( is_admin() && isset($_GET['reload_caps']) && '1' == $_GET['reload_caps'] ) {
 		
 		// Remove unused roles
 		if( get_role('editor') ){
@@ -20,6 +20,7 @@ function custom_roles() {
 		$administrator     = get_role('administrator');
 		$administrator->add_cap( 'edit_events' );
 		$administrator->add_cap( 'edit_news' );
+		$administrator->add_cap( 'edit_places' );
 		$administrator->add_cap( 'edit_shop' );
 		$administrator->add_cap( 'edit_quicklinks' );
 		$administrator->add_cap( 'edit_groups' );
@@ -50,6 +51,7 @@ function custom_roles() {
 				'delete_users' => false,
 				'edit_events' => true,
 				'edit_news' => true,
+				'edit_places' => true,
 				'edit_quicklinks' => true,
 				'edit_groups' => true,
 				'edit_shop' => false,
@@ -81,6 +83,7 @@ function custom_roles() {
 				'delete_users' => false,
 				'edit_events' => true,
 				'edit_news' => true,
+				'edit_places' => true,
 				'edit_quicklinks' => true,
 				'edit_groups' => true,
 				'edit_shop' => false,
@@ -112,6 +115,7 @@ function custom_roles() {
 				'delete_users' => false,
 				'edit_events' => true,
 				'edit_news' => true,
+				'edit_places' => true,
 				'edit_quicklinks' => true,
 				'edit_groups' => true,
 				'edit_shop' => true,
@@ -143,6 +147,7 @@ function custom_roles() {
 				'delete_users' => false,
 				'edit_events' => false,
 				'edit_news' => true, // News for the shop might be a thing
+				'edit_places' => false,
 				'edit_quicklinks' => false,
 				'edit_groups' => false,
 				'edit_shop' => true,
@@ -150,7 +155,7 @@ function custom_roles() {
 				'read_attendees' => true
 			)
 		);
-echo 'test';
+
 		// Elternratspräsident
 		if(get_role('parents_council_president')){
 			remove_role('parents_council_president');
@@ -174,6 +179,7 @@ echo 'test';
 				'delete_users' => false,
 				'edit_events' => false,
 				'edit_news' => true,
+				'edit_places' => false,
 				'edit_quicklinks' => true,
 				'edit_groups' => false,
 				'edit_shop' => true,
@@ -200,13 +206,14 @@ echo 'test';
 				'delete_users' => false,
 				'edit_events' => false,
 				'edit_news' => true, // News from the Elternrat might be a thing
+				'edit_places' => false,
 				'edit_quicklinks' => false,
 				'edit_groups' => false,
 				'edit_shop' => false,
 				'edit_gallery' => false,
 				'read_attendees' => true
 			);
-	echo ' test';		
+		
 		// Elternrat (Beisitz)
 		if(get_role('parents_council')){
 			remove_role('parents_council');
@@ -216,7 +223,7 @@ echo 'test';
 			__( 'Elternrat' ),
 			$parents_council_caps
 		);
-	echo ' test';	
+
 		// Elternrat: Vizepräsident
 		if(get_role('parents_council_vice_president')){
 			remove_role('parents_council_vice_president');
@@ -266,7 +273,6 @@ echo 'test';
 			__( 'Verwaltung Heim (Elternrat)' ),
 			$parents_council_caps
 		);
-	echo ' test4';
 	}
 }
 add_action('admin_init', 'custom_roles');

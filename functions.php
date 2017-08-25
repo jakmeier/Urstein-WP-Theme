@@ -1,5 +1,5 @@
 <?php/*Remove some standard admin menus*/function remove_posts_menu() {    remove_menu_page('edit.php');	remove_menu_page('edit-comments.php');	if(!current_user_can('administrator')){		  remove_menu_page('index.php');//Dashboard		  remove_menu_page('tools.php');	}}add_action('admin_init', 'remove_posts_menu');/* Setting up custom post types */
-require_once(get_template_directory() . '/admin/event.php');require_once(get_template_directory() . '/admin/news.php');/* Changinge admin view for home page to display quicklinks*/require_once(get_template_directory() . '/admin/home.php');/* Loading Webshop Admin view */require_once(get_template_directory() . '/admin/shop.php');require_once(get_template_directory() . '/admin/groups.php');/* Modify user's personal information to have a mapping to groups */require_once(get_template_directory() . '/admin/users.php');
+require_once(get_template_directory() . '/admin/event.php');require_once(get_template_directory() . '/admin/news.php');require_once(get_template_directory() . '/admin/place.php');/* Changinge admin view for home page to display quicklinks*/require_once(get_template_directory() . '/admin/home.php');/* Loading Webshop Admin view */require_once(get_template_directory() . '/admin/shop.php');require_once(get_template_directory() . '/admin/groups.php');/* Modify user's personal information to have a mapping to groups */require_once(get_template_directory() . '/admin/users.php');
 remove_filter( 'the_content', 'wpautop' );
 remove_filter( 'the_excerpt', 'wpautop' );// Load custom roles system whenever ?reload_caps=1require_once(get_template_directory() . '/admin/roles.php');
 // Theme setup
@@ -41,7 +41,7 @@ function urstein_setup() {
 	
 	// Add nav menu
 	register_nav_menu( 'primary', __('Primary Menu','urstein') );
-}
+}// Display line breaks in all contentsfunction keep_breaks_in_content( $content ){	$content = nl2br($content);    return $content;}add_filter( 'the_content', 'keep_breaks_in_content', 0 );
 // Register and enqueue Javascript files
 function urstein_load_javascript_files() {
 	if ( !is_admin() ) {		
@@ -319,6 +319,6 @@ add_action( 'customize_register' , array( 'urstein_Customize' , 'urstein_registe
 add_action( 'wp_head' , array( 'urstein_Customize' , 'urstein_header_output' ) );
 
 // Enqueue live preview javascript in Theme Customizer admin screen
-add_action( 'customize_preview_init' , array( 'urstein_Customize' , 'urstein_live_preview' ) );
-
+add_action( 'customize_preview_init' , array( 'urstein_Customize' , 'urstein_live_preview' ) );// Some utility functions
+function get_auto_increment(){	static $counter = 0;	return $counter++;}
 ?>

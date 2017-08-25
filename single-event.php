@@ -36,6 +36,12 @@
 							$meta = get_post_meta(get_the_ID()); /*print_r($meta);*/
 							$start_time = strtotime($meta['start_time']['0']);
 							$end_time = strtotime($meta['end_time']['0']);
+							if (isset($meta['place'], $meta['place']['0'])) {
+								$mapid = $meta['place']['0'];
+							}
+							if (isset($meta['finish_place'], $meta['finish_place']['0'])) {
+								$endmapid = $meta['finish_place']['0'];
+							}
 						?>
 						<div class="info-table">
 							<div class="info-tr">
@@ -63,18 +69,27 @@
 							</div>
 							<div class="info-tr">
 								<div class="info-label"> Treffpunkt: </div>
-								<div class="info"> <?php echo esc_html($meta['place']['0']); ?> </div>
+								<div class="info"> <?php echo esc_html(get_the_title($mapid)); ?> </div>
 							</div>
+							<?php if(isset($mapid)): ?>
 							<div class="info-tr">
-								<div class="map"> TODO: Karte vom Ort einblenden (falls verfügbar) </div>
+								<!--<div class="info-label"> Karte: </div> -->
+								<?php
+									set_query_var( 'mapid', $mapid );
+									get_template_part( 'template-parts/map' );
+								?>
 							</div>
-							<?php if ($meta['finish_place']['0']): ?>
+							<?php endif; if (isset($endmapid)): ?>
 							<div class="info-tr">
 								<div class="info-label"> Abtreten: </div>
-								<div class="info"> <?php echo esc_html($meta['finish_place']['0']); ?> (<b>ACHTUNG:</b> Anderer Ort als Treffpunkt)</div>
+								<div class="info"> <?php echo esc_html(get_the_title($endmapid)); ?> (<b>ACHTUNG:</b> Anderer Ort als Treffpunkt)</div>
 							</div>
 							<div class="info-tr">
-								<div class="map"> TODO: Karte vom Ort einblenden (falls verfügbar) </div>
+								<!-- <div class="info-label"> Karte: </div> -->
+								<?php
+									set_query_var( 'mapid', $endmapid );
+									get_template_part( 'template-parts/map' );
+								?>
 							</div>
 							<?php endif; ?>
 							
@@ -90,7 +105,7 @@
 						</div> <!-- /info-table -->	
 						
 						<!-- Signup form or confirmation message -->
-						<?php if ($confirmation) :?>
+						<?php if (isset($confirmation)) :?>
 							<div class="info-tr separate">
 								<div class="info-label"> <?php echo esc_html($confirmation); ?> </div>
 							</div>

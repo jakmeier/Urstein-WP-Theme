@@ -59,12 +59,26 @@ if(!function_exists('create_event_post_type')):
 		$start = $current_event['start_time'][0];
 		$end = $current_event['end_time'][0];
 		$description = $current_event['description'][0];
-		$place = $current_event['place'][0];
-		$finish_place = $current_event['finish_place'][0];
+		$selectedStartPlace = intval($current_event['place'][0]);
+		
+		if( isset($current_event['finish_place']) ){
+			$selectedEndPlace = intval($current_event['finish_place'][0]);
+		}
 		$bring = $current_event['bring'][0];
 		
 		$groups = groups_with_events();
 		//print_r($groups); 
+		
+		$places = get_posts( 
+			array(
+				'posts_per_page'	=> -1,
+				'orderby'	 		=> 'date',
+				'order'				=> 'DESC',
+				'post_type'			=> 'place'
+			)
+		);
+		//print_r($places);
+		
 		?>
 		
 		<div>
@@ -77,7 +91,7 @@ if(!function_exists('create_event_post_type')):
 					//foreach($groups as $id => $groupname){
 					foreach($groups as $id=>$groupname){
 						echo '<li><label>';
-						echo '<input type="checkbox" name="group' . $id . '"' . ($current_event['group' . $id][0] ? 'checked' : '') . '>';
+						echo '<input type="checkbox" name="group' . $id . '"' . (isset($current_event['group' . $id]) && $current_event['group' . $id][0] ? 'checked' : '') . '>';
 						echo $groupname . '</label></li>';
 					}
 				?>
@@ -90,12 +104,32 @@ if(!function_exists('create_event_post_type')):
 			<p> <label>Ende<br><input type="datetime-local" name="end_time" size="50"
 				value="<?php echo $end;?>"></label>
 			</p>
-			<p><label>Besammlung:<br><input type="text" name="place" size="50"
-				value="<?php echo $place;?>"></label>
-			</p>
-			<p><label>Abtreten:<br><input type="text" name="finish_place" placeholder="Leer lassen falls gleich wie Besammlungsort" size="50"
-				value="<?php echo $finish_place;?>"></label>
-			</p>
+			<p><label>Besammlung:<br><select name="place">
+				<option value="0">Kein Ort angegeben</option>
+				<?php
+					if($places){
+						foreach($places as $place_post){
+							$id = $place_post->ID;
+							$name = $place_post->post_title;
+							$selected = $selectedStartPlace === intval($id) ? ' selected' : '';
+							echo "<option value='$id'$selected>$name</option>";
+						}
+					}
+				?>
+			</select></p>
+			<p><label>Abtreten:<br><select name="finish_place">
+				<option value="0">Gleicher Ort wie Antreten</option>
+				<?php
+					if($places){
+						foreach($places as $place_post){
+							$id = $place_post->ID;
+							$name = $place_post->post_title;
+							$selected = $selectedEndPlace === intval($id) ? ' selected' : '';
+							echo "<option value='$id'$selected>$name</option>";
+						}
+					}
+				?>
+			</select></p>
 			<p><label>Mitnehmen:<br><input type="text" name="bring" size="50"
 				value="<?php echo $bring;?>"></label>
 			</p>
@@ -107,6 +141,7 @@ if(!function_exists('create_event_post_type')):
 	}
 
 	function event_post_save_meta($post_id, $post){
+	if(get_post_type($post) === 'event'){
 		if(!current_user_can('edit_events', $post->ID )){
 			return $post->ID;
 		}
@@ -146,7 +181,7 @@ if(!function_exists('create_event_post_type')):
 			'post_title' => $_POST['post_title']
 		));
 		add_action('save_post','event_post_save_meta',1,2);
-  }
+	}}
 	add_action('save_post','event_post_save_meta',1,2);
 
   // Add start and end as columns to list of events

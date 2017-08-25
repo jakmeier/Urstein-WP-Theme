@@ -12,8 +12,8 @@
 			    <div class="post-content">
 					<section class="council">
 						<?php 
-							$displayed_ranks = array('Präsident', 'Vizepräsident', 'Kassier', 'Aktuar', 'Revisor', 'Heim', 'Bekleidung');
-							$ranks = array('parents_council_president', 'parents_council_vice_president', 'parents_council_cashier', 'parents_council_actuary', 'parents_council_auditor', 'parents_council_club_house', 'shop_admin');
+							$displayed_ranks = array('Präsident', 'Vizepräsident', 'Kassier', 'Aktuar', 'Heim', 'Revisor', 'Bekleidung');
+							$ranks = array('parents_council_president', 'parents_council_vice_president', 'parents_council_cashier', 'parents_council_actuary', 'parents_council_club_house', 'parents_council_auditor', 'shop_admin');
 							for($i=0; $i<count($ranks); $i++) {
 								$users = get_users(
 									array(
