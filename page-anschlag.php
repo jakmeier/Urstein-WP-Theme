@@ -19,9 +19,10 @@ get_header(); ?>
 							if ($event):
 								$meta = get_post_meta($event->ID);
 								$title = esc_html($event->post_title);
-								$place = esc_html($meta['place'][0]);
 								$bring = esc_html($meta['bring'][0]);
 								$datetime = date( 'j.n. G:i', strtotime($meta['start_time'][0]) );
+								$place = isset($meta['place']) ? get_the_title($meta['place'][0]) : false;
+								$place = $place ? esc_html($place) : 'Ort nicht verfügbar';
 			 ?>												<div class="stufen-cell">
 					<div class="the-image">
 					<img src="<?php the_group_image_url($id);?>">
@@ -35,7 +36,7 @@ get_header(); ?>
 					</div> <!--/the-image-->				</div> <!--/stufen cell-->				
 						<?php else:?>
 				<div class="stufen-cell">
-					<div class="the-image">
+					
 					<img src="<?php the_group_image_url($id);?>">
 						<div class="on-image">
 							<h3><a href="<?php the_group_url($id); ?>"><?php echo $groupname;?></a></h3>
@@ -46,7 +47,7 @@ get_header(); ?>
 							   </p>
 							</div> <!--/next-activity-box-->
 						</div> <!--/on-image-->
-					</div> <!--/the-image-->
+					
 				</div> <!--/stufen cell-->
 									<?php endif; endforeach; endif;?>
 							</div>			</div> <!-- /post-inner -->			</div> <!-- /post-container -->

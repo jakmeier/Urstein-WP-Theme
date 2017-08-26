@@ -94,7 +94,7 @@
 							<?php endif; ?>
 							
 							
-							<?php if ($meta['description']['0']): ?>
+							<?php if (isset($meta['description']) && $meta['description']['0']): ?>
 							<div class="info-tr separate">
 								<div class="info-label"> Bemerkung der Leiter: </div>
 							</div>
