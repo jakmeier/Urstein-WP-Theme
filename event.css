@@ -19,12 +19,11 @@ div.info-label{
 div.info {
 	padding-left: 10px;
 }
-/* TODO: Integrated map */
-div.map {
-	opacity: 0.4;
-	padding: 5px;
-	margin: 5px;
-	border: solid white;
+/* Integrated JS SearchCH map */
+div.map-container {
+	width: 100%;
+	height: 45vh;
+	border:1px solid #888;
 }
 
 
@@ -52,5 +51,25 @@ div.signup input[type=submit] {
 /* Admin links */
 a.post-edit-link {
 	margin-right: 10px;
+}
+
+/* Responsiveness */
+@media ( max-width: 900px ){
+
+}
+
+@media ( max-width: 600px ) {
+	/* Integrated JS SearchCH map */
+	div.map-container {
+		height: 60vh;
+	}
+}
+
+@media ( max-width: 400px ) {
+	/* Integrated JS SearchCH map */
+	div.map-container {
+		height: 80vh;
+		max-height: 100vw;
+	}
 }
 

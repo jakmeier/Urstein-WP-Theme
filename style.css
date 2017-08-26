@@ -2040,7 +2040,10 @@ img#wpstats { display: none; }
 	
 	.post-title { font-size: 2em; }
 	
-	.post-inner { padding: 40px 0 50px; }
+	.post-inner { 
+		padding: 40px 0 50px; 
+		max-width: 85%;
+	}
 	
 	/* Related Posts */
 	
@@ -2149,6 +2152,9 @@ img#wpstats { display: none; }
 	
 	.post-navigation a .hide { display: none; }
 	
+	.post-inner { 
+		max-width: 90%;
+	}
 	
 	/* Post Content --------------------------------------- */	
 	

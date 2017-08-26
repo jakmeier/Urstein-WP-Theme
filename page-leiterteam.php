@@ -29,9 +29,9 @@
 					<h2> <?php echo $divisions[$i];?> </h2>
 					<section class="leaders">
 						<?php 
-							$divlead = get_division_leader($i)[0];
+							$divlead = get_division_leader($i);
 							if($divlead) {
-								set_query_var( 'userid',  $divlead);
+								set_query_var( 'userid',  $divlead[0]);
 								set_query_var( 'display_rank',  'Stufenleitung');
 								get_template_part( 'template-parts/user_avatar' );
 							}

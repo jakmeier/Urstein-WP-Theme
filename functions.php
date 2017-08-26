@@ -44,14 +44,14 @@ function urstein_setup() {
 }// Display line breaks in all contentsfunction keep_breaks_in_content( $content ){	$content = nl2br($content);    return $content;}add_filter( 'the_content', 'keep_breaks_in_content', 0 );
 // Register and enqueue Javascript files
 function urstein_load_javascript_files() {
-	if ( !is_admin() ) {		
+	if ( !is_admin() ) { // scripts used on non-admin area only
 		wp_enqueue_script( 'urstein_flexslider', get_template_directory_uri().'/js/flexslider.js', array('jquery'), '', true );
 		wp_enqueue_script( 'urstein_doubletaptogo', get_template_directory_uri().'/js/doubletaptogo.js', array('jquery'), '', true );
 		wp_enqueue_script( 'urstein_global', get_template_directory_uri().'/js/global.js', array('jquery'), '', true );		
 		/*if ( is_singular() ) { 
 			wp_enqueue_script( "comment-reply" );
 		}*/
-	}
+	}	if (is_singular('event')){		wp_enqueue_script('search_ch_map', '//map.search.ch/api/map.js');	}
 }
 add_action( 'wp_enqueue_scripts', 'urstein_load_javascript_files' );
 // Register and enqueue styles
@@ -161,62 +161,7 @@ function urstein_flexslider($size) {
 			</ul>
 		</div><?php
 	}
-}
-// Related posts function /*
-function urstein_related_posts() { ?>
-<div class="related-posts posts section-inner">
-	<?php 
-		global $post;
-		$cat_ID = array();
-		$categories = get_the_category();
-		foreach($categories as $category) {
-			array_push($cat_ID,$category->cat_ID);
-		}
-		$related_posts = new WP_Query( apply_filters(
-		'rowling_related_posts_args', array(
-		        'posts_per_page'		=>	3,
-		        'post_status'			=>	'publish',
-		        'category__in'			=>	$cat_ID,
-		        'post__not_in'			=>	array($post->ID),
-		        'ignore_sticky_posts'	=>	true
-		) ) );
-		if ($related_posts->have_posts()) :
-			while ( $related_posts->have_posts() ) : $related_posts->the_post(); ?>
-			<?php global $post; ?>
-			<?php get_template_part( 'content', get_post_format() ); ?>
-		<?php endwhile; ?>	
-	<?php else: // If there are no other posts in the post categories, get random posts ?>
-		<?php
-				
-			$related_posts = new WP_Query( apply_filters(
-			'rowling_related_posts_args', array(
-			        'posts_per_page'		=>	3,
-			        'post_status'			=>	'publish',
-			        'orderby'				=>	'rand',
-			        'post__not_in'			=>	array($post->ID),
-			        'ignore_sticky_posts'	=>	true
-			) ) );
-			
-			if ($related_posts->have_posts()) :
-				
-				while ( $related_posts->have_posts() ) : $related_posts->the_post(); ?>
-				
-				<?php global $post; ?>
-			
-				<?php get_template_part( 'content', get_post_format() ); ?>
-				
-			<?php endwhile; ?>
-			
-		<?php endif; ?>
-
-	<?php endif; ?>
-			
-	<div class="clear"></div>
-	
-	<?php wp_reset_query(); ?>
-
-</div> <!-- /related-posts --> <?php
-}*/
+}
 // urstein theme options
 class urstein_Customize {
 
