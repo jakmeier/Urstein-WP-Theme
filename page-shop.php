@@ -54,7 +54,25 @@ get_header(); ?>
 				<label>Kommentar (Eventuell Grösse angeben)<br><textarea name="comment" rows="8"></textarea></label>
 				<input type="submit" name="order" value="Bestellen">
 			</section>
-			</form>			</div> <!-- /post-inner -->			</div> <!-- /post-container -->
+			</form>
+			
+			<h2>Verantwortlich</h2>
+			<?php
+				$users = get_users(
+					array(
+						'role' => 'shop_admin',
+						'meta_key' => 'group', 
+						'meta_value' => 102,
+						'fields' => array( 'ID' )
+					));
+				if(is_array($users)){
+					foreach($users as $user){
+						set_query_var( 'userid', $user->ID );
+						get_template_part( 'template-parts/user_avatar' );
+					}
+				}
+			?>
+						</div> <!-- /post-inner -->			</div> <!-- /post-container -->
 		</div> <!-- /post -->
 	<?php endwhile; ?>
 	<div class="clear"></div>	
