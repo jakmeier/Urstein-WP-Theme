@@ -39,69 +39,35 @@ get_header(); ?>
 					</div>
 				</section> <!-- /Headline -->
 				
-				<section> <!-- News Feed -->					<?php
+				<section> <!-- News Feed -->
+					<h1> Aktuelles </h1>					<?php
 						$news_args = array('fields' => 'ids', 'post_type' => array('news'), 'orderby' => array('date' => 'DESC'), 'posts_per_page' => 10 );
 						$news = new WP_Query( $news_args );
+						
+						$camp_args = array('fields' => 'ids', 'post_type' => array('camp'), 'orderby' => array('date' => 'DESC'), 'posts_per_page' => 4 );
+						$camps = new WP_Query( $camp_args );
 						
 						$groups = groups_with_events();
 						$events = array();
 						if($groups){
-						foreach($groups as $id=>$groupname){
-							$event = get_next_event($id);
-							if($event) {
-								array_push($events, $event->ID);
+							foreach($groups as $id=>$groupname){
+								$event = get_next_event($id);
+								if($event) {
+									array_push($events, $event->ID);
+								}
 							}
 						}
-						}
 
-						$displayIDs = array_merge($news->posts, $events);
+						$displayIDs = array_merge($news->posts, $camps->posts, $events);
 
-						$args = array('post__in' => $displayIDs, 'post_type' => array('news', 'event'), 'orderby' => array('date' => 'DESC'));
+						$args = array('post__in' => $displayIDs, 'post_type' => array('news', 'event', 'camp'), 'orderby' => array('date' => 'DESC'));
 						$loop = new WP_Query($args);
 						
-						while ( $loop->have_posts() ) : $loop->the_post();
-							if($post->post_type == 'event') {
-								$meta = get_post_meta($post->ID);
-								$place = isset($meta['place']) ? esc_html($meta['place'][0]) : '-';
-								$bring = isset($meta['bring']) ? esc_html($meta['bring'][0]) : '-';
-								$description = isset($meta['description']) ? nl2br(esc_html($meta['description'][0])) : '-';
-								$datetime = date( 'j.n. G:i', strtotime($meta['start_time'][0]) );
-								$groupnames = get_groups_of_event($post->ID);
-								
-								$content =  'Gruppen: ' . implode(', ', $groupnames). 
-											'<br>' . $datetime . ' Uhr, ' . $place .
-											'<br>Mitnehmen: ' . $bring .
-											'<br>Weitere Infos: ' . $description .
-											'<p><a href="' . get_permalink($post->ID) .'">Zur Anmeldung</a></p>';
-							} else {
-								$content = get_the_content();
-							}
-						?>
-						<article>
-							<div class="entry-image">
-								<?php if ( has_post_thumbnail() ){
-									//$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'thumbnail_size' ); 
-									//$thumb_url = $thumb['0']; 
-									the_post_thumbnail('thumbnail');
-								} elseif($post->post_type == 'event') {
-									echo wp_get_attachment_image( get_group_thumbnail(array_keys($groupnames)), 'thumbnail');
-								}
-								elseif($post->post_type == 'news') {
-									echo wp_get_attachment_image( get_theme_mod('urstein_custom_img_news'), 'thumbnail');
-								}								
-								?>
-							</div>
-							<div class ="entry-text">
-							<a href="<?php echo get_permalink($post->ID); ?>"><h3><?php the_title();?></h3></a>
-								<div class="entry-content">
-									<?php echo $content;?>
-									<?php edit_post_link(__('Beitrag bearbeiten','urstein'), '<p class="post-edit">', '</p>'); ?>
-								</div>
-							</div>
-						</article>
-						
-						<?php
-						endwhile;
+						while ( $loop->have_posts() ) {
+							$loop->the_post();
+							set_query_var('element_post', $post);
+							get_template_part( 'template-parts/feed_element' );
+						}
 					?>
 				</section> <!-- /News Feed -->
 			    </div> <!-- /post-content -->

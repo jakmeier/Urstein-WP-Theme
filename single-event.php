@@ -69,7 +69,7 @@
 							</div>
 							<div class="info-tr">
 								<div class="info-label"> Treffpunkt: </div>
-								<div class="info"> <?php echo esc_html(get_the_title($mapid)); ?> </div>
+								<div class="info"> <?php echo isset($mapid) ? esc_html(get_the_title($mapid)) : ''; ?> </div>
 							</div>
 							<?php if(isset($mapid)): ?>
 							<div class="info-tr">

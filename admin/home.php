@@ -87,30 +87,32 @@ function display_quicklink()
 
 	function save_quicklinks($post_id, $post){
 		//$quicklinks = array();
-		$i = 0;
-		while(isset($_POST['text'.$i])) {
-			if($_POST['text'.$i] != '') {
-				$quicklinks[$i] = array($_POST['text'.$i], $_POST['link'.$i]);	
+		if($post->post_name == 'home') {
+			$i = 0;
+			while(isset($_POST['text'.$i])) {
+				if($_POST['text'.$i] != '') {
+					$quicklinks[$i] = array($_POST['text'.$i], $_POST['link'.$i]);	
+				}
+				$i++;
 			}
-			$i++;
-		}
-		
-		if(!current_user_can('edit_quicklinks', $post->ID )){
-			return $post->ID;
-		}
-		
-		// add quicklink array as custom fields
-		$key = 'quicklinks';
-		if(get_post_meta($post->ID, $key, false)){
-			// if the custom field already has a value
-			update_post_meta($post->ID, $key, $quicklinks);
-		}else{
-			// if the custom field doesn't have a value
-			add_post_meta($post->ID, $key, $quicklinks);
-		}
-		if(count($quicklinks) === 0){
-			// delete if blank
-			delete_post_meta($post->ID, $key);
+			
+			if(!current_user_can('edit_quicklinks', $post->ID )){
+				return $post->ID;
+			}
+			
+			// add quicklink array as custom fields
+			$key = 'quicklinks';
+			if(get_post_meta($post->ID, $key, false)){
+				// if the custom field already has a value
+				update_post_meta($post->ID, $key, $quicklinks);
+			}else{
+				// if the custom field doesn't have a value
+				add_post_meta($post->ID, $key, $quicklinks);
+			}
+			if(count($quicklinks) === 0){
+				// delete if blank
+				delete_post_meta($post->ID, $key);
+			}
 		}
   }
 	add_action('save_post','save_quicklinks',1,2);

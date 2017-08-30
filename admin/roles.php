@@ -19,6 +19,7 @@ function custom_roles() {
 		// Add some custom capabilities to admin
 		$administrator     = get_role('administrator');
 		$administrator->add_cap( 'edit_events' );
+		$administrator->add_cap( 'edit_camps' );
 		$administrator->add_cap( 'edit_news' );
 		$administrator->add_cap( 'edit_places' );
 		$administrator->add_cap( 'edit_shop' );
@@ -50,6 +51,7 @@ function custom_roles() {
 				'remove_users' => false,
 				'delete_users' => false,
 				'edit_events' => true,
+				'edit_camps' => true,
 				'edit_news' => true,
 				'edit_places' => true,
 				'edit_quicklinks' => true,
@@ -82,6 +84,7 @@ function custom_roles() {
 				'remove_users' => false,
 				'delete_users' => false,
 				'edit_events' => true,
+				'edit_camps' => true,
 				'edit_news' => true,
 				'edit_places' => true,
 				'edit_quicklinks' => true,
@@ -114,6 +117,7 @@ function custom_roles() {
 				'remove_users' => true,
 				'delete_users' => false,
 				'edit_events' => true,
+				'edit_camps' => true,
 				'edit_news' => true,
 				'edit_places' => true,
 				'edit_quicklinks' => true,
@@ -146,6 +150,7 @@ function custom_roles() {
 				'remove_users' => false,
 				'delete_users' => false,
 				'edit_events' => false,
+				'edit_camps' => false,
 				'edit_news' => true, // News for the shop might be a thing
 				'edit_places' => false,
 				'edit_quicklinks' => false,
@@ -178,6 +183,7 @@ function custom_roles() {
 				'remove_users' => true,
 				'delete_users' => false,
 				'edit_events' => false,
+				'edit_camps' => false,
 				'edit_news' => true,
 				'edit_places' => false,
 				'edit_quicklinks' => true,
@@ -205,6 +211,7 @@ function custom_roles() {
 				'remove_users' => false,
 				'delete_users' => false,
 				'edit_events' => false,
+				'edit_camps' => false,
 				'edit_news' => true, // News from the Elternrat might be a thing
 				'edit_places' => false,
 				'edit_quicklinks' => false,

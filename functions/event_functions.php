@@ -25,7 +25,7 @@ function get_next_event($groupid) {
 	return $event;
 }
 
-// Get all group ids and names that belong to an event
+// Get all group ids and names that belong to an event (or camp)
 function get_groups_of_event($postid){
 	$groups = all_groups();
 	$result = array();

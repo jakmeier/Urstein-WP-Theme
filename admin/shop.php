@@ -31,7 +31,7 @@
 		<h1>Webshop Administration</h1>
 		<form id="items-form">
 			<ol class="wrap-items">
-			<?php foreach ($items as $i => $item): //Note: Sadly, changes to the rows here must be applied to the new_item_row function in admin/shpo.js?>
+			<?php foreach ($items as $i => $item): //Note: Sadly, changes to the rows here must be applied to the new_item_row function in admin/shop.js?>
 				<li>
 					<label id="item-img<?php echo $i;?>">Bild<br>
 					<?php if(is_string($item->image) && strlen($item->image) > 0):?>

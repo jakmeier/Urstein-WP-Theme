@@ -33,30 +33,7 @@ section.headline{
 .post-content h3{
 	margin: 0px 0 10px;
 	font-size: 1.25em;
-}
-
-/* Entries (<article>) */
-.post-content article{
-	display: flex;
-	margin: 20px 0;
-}
-.entry-image{
-	display: block;
-	margin: 0 10px 0 0;
-	min-width: 150px;
-}
-.entry-image img{
-	height: auto;
-	max-height: 100%;
-	max-width: 100%;
-}.entry-text{
-	/*display: inline-flex;
-	-webkit-flex-direction: column;
-   flex-direction: column;
-   -webkit-justify-content: flex-start;
-   justify-content: flex-start;*/
-}
-
+}
 
 /* Responsiveness */
 @media ( max-width: 900px ){
@@ -98,17 +75,5 @@ section.headline{
 @media ( max-width: 400px ) {
 	.quick-links-list span{
 		width: 50%;
-	}
-	.post-content article{
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-	}
-	.entry-image{
-		margin: 0 0 15px 0;
-		min-width: 150px;
-	}
-	.entry-text{
-		width: 100%;
 	}
 }

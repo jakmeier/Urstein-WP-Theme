@@ -31,7 +31,8 @@
 	11.	Page & Page Templates
 	12.	Credits
 	13.	No JS Fixes
-	14. Responsive
+	14. Template parts
+	15. Responsive
 
 ----------------------------------------------------------------------------------- */
 
@@ -1273,33 +1274,6 @@ input[type="submit"]:focus,
 input[type="submit"]:active {
 	outline: none;
 }
-/* User avatars */
-div.user-avatar {
-	display: inline-flex;
-	flex-direction: row;
-}
-div.user-avatar img {
-	width: auto;
-	height: auto;
-	max-height: 96px;
-	max-width: 96px;
-}
-div .user-avatar .info-box {
-	display: block;
-	margin: 0 10px;
-}
-.post-content .info-box h3 {
-	margin: 0 0 10px 0;
-}
-.post-content .info-box p {
-	margin: 0 0 10px 0;
-}
-p.rank {
-	text-transform: uppercase;
-	font-family: 'Montserrat';
-	font-size: small;
-	color: black;
-}
 
 /* -------------------------------------------------------------------------------- */
 /*	8. Comments
@@ -1787,9 +1761,96 @@ img#wpstats { display: none; }
 
 .no-js .archive-nav { display: block; }
 
+/* -------------------------------------------------------------------------------- */
+/*	14. Template parts   */
+/* -------------------------------------------------------------------------------- */
+
+/* Feed elements / entries */
+article.feed-entry{
+	display: flex;
+	margin: 20px 0;
+}
+article.feed-entry .entry-image{
+	display: block;
+	margin: 0 10px 0 0;
+	min-width: 150px;
+}
+article.feed-entry .entry-image img{
+	height: auto;
+	max-height: 100%;
+	max-width: 100%;
+}
+article.feed-entry .entry-text{
+	/*display: inline-flex;
+	-webkit-flex-direction: column;
+   flex-direction: column;
+   -webkit-justify-content: flex-start;
+   justify-content: flex-start;*/
+}
+@media ( max-width: 400px ) {
+	article.feed-entry {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	article.feed-entry .entry-image{
+		margin: 0 0 15px 0;
+		min-width: 150px;
+	}
+	article.feed-entry .entry-text{
+		width: 100%;
+	}
+}
+
+/* User avatars */
+div.user-avatar {
+	display: inline-flex;
+	flex-direction: row;
+}
+div.user-avatar img {
+	width: auto;
+	height: auto;
+	max-height: 96px;
+	max-width: 96px;
+}
+div .user-avatar .info-box {
+	display: block;
+	margin: 0 10px;
+}
+.post-content .info-box h3 {
+	margin: 0 0 10px 0;
+}
+.post-content .info-box p {
+	margin: 0 0 10px 0;
+}
+p.rank {
+	text-transform: uppercase;
+	font-family: 'Montserrat';
+	font-size: small;
+	color: black;
+}
+
+/* Download buttons */
+.download a {
+	font-size: 0.9em;
+	padding: 5px 7px;
+	border: none;
+	margin: none;
+	background: #5b5b5b;
+	border-radius: 3px;
+	/*line-height: 1;*/
+	text-transform: uppercase;
+	color: #efefef;
+	text-shadow: 0 1px 0 rgba(0,0,0,0.25);
+}
+.download a .dashicons {
+	width: 16px;
+	height: 16px;
+	font-size: 16px;
+}
 
 /* -------------------------------------------------------------------------------- */
-/*	14. Responsive
+/*	15. Responsive
 /* -------------------------------------------------------------------------------- */
 
 
