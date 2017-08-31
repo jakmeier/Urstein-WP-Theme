@@ -1818,10 +1818,10 @@ div .user-avatar .info-box {
 	margin: 0 10px;
 }
 .post-content .info-box h3 {
-	margin: 0 0 10px 0;
+	margin: 0 0 5px 0;
 }
 .post-content .info-box p {
-	margin: 0 0 10px 0;
+	margin: 0;
 }
 p.rank {
 	text-transform: uppercase;

@@ -23,10 +23,12 @@ if(!function_exists('create_place_post_type')):
 				'publish_posts'      => 'edit_places',       
 				'read_private_posts' => 'edit_places', 
 				'create_posts'       => 'edit_places', 
+				'delete_posts'       => 'edit_places', 
 			),
 			'hierarchical' => false,
 			'supports' => array(''),
 			'menu_position' => 7,
+			'menu_icon' => 'dashicons-location-alt',
 			'register_meta_box_cb' => 'add_place_post_type_metabox'
 		);
 		register_post_type('place', $args);
@@ -100,5 +102,42 @@ if(!function_exists('create_place_post_type')):
 		}
   }
 	add_action('save_post','place_post_save_meta',1,2);
+	
+	// Add coordinates as columns to list view
+	function place_custom_columns($columns) {
+		unset($columns['date']);
+		$columns['x'] = 'X';
+		$columns['y'] = 'Y';
+		return $columns;
+	}
+	add_filter('manage_edit-place_columns', 'place_custom_columns');
+	add_filter('manage_edit-place_sortable_columns', 'place_custom_columns');
+
+	function place_column( $colname, $cptid ) {
+		if ( $colname == 'x') {
+		  echo get_post_meta( $cptid, 'x', true);
+		} elseif ($colname == 'y') {
+			echo get_post_meta($cptid, 'y', true);
+		} else {
+			echo 'Nicht gefunden';	
+		}
+	}
+	add_action('manage_place_posts_custom_column', 'place_column', 10, 2);
+	function sort_places( $vars ) {
+		if (isset($vars['post_type']) && $vars['post_type'] == 'place'){ 
+			if( array_key_exists('orderby', $vars )) {
+				if('X' == $vars['orderby']) {
+					$vars['orderby'] = 'x';
+					$vars['meta_key'] = 'x';
+				} elseif ('Y' == $vars['orderby']) {
+					$vars['orderby'] = 'y';
+					$vars['meta_key'] = 'y';
+				}
+			}
+		}
+		return $vars;
+	}
+	add_filter('request', 'sort_places');
+	
 endif;
 ?>

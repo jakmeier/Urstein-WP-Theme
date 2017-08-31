@@ -23,6 +23,7 @@ if(!function_exists('create_news_post_type')):
 				'publish_posts'      => 'edit_news',       
 				'read_private_posts' => 'edit_news', 
 				'create_posts'       => 'edit_news', 
+				'delete_posts'       => 'edit_news',
 			),
 			'hierarchical' => false,
 			'supports' => array(
@@ -31,6 +32,7 @@ if(!function_exists('create_news_post_type')):
 				'thumbnail'
 			),
 			'menu_position' => 5,
+			'menu_icon' => 'dashicons-email-alt',
 		);
 		register_post_type('news', $args);
 	}

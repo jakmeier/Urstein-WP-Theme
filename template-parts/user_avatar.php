@@ -9,6 +9,11 @@
 			$nickname = 'Nicht verfügbar';
 		}*/
 		
+		$tel = get_user_meta($userid, 'tel', true);
+		$address = esc_html(get_user_meta($userid, 'address', true ));
+		$address2 = esc_html(get_user_meta($userid, 'address2', true ));
+		$place = esc_html(get_user_meta($userid, 'place', true ));
+		
 		$avatar = get_user_meta($userid, 'basic_user_avatar', true);
 		if(is_array($avatar) ){
 			if(wp_is_mobile() && isset ($avatar[96])){
@@ -36,6 +41,18 @@
 	<div class="info-box">
 		<h3><?php echo $nickname;?></h3>
 		<p><?php echo $display_name;?></p>
+		<?php if($address):
+			echo '<p>' . $address . '</p>';
+		endif; ?>
+		<?php if($tel):
+			echo '<p>' . $address2 . '</p>';
+		endif; ?>
+		<?php if($tel):
+			echo '<p>' . $place . '</p>';
+		endif; ?>
+		<?php if($tel):
+			echo '<p>Telefon: ' . $tel . '</p>';
+		endif; ?>
 		<p><a href="mailto:<?php echo $email;?>">Schreibe eine E-Mail</a></p>
 	</div>
 </div>

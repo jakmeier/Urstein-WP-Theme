@@ -35,6 +35,7 @@ if(!function_exists('create_event_post_type')):
 				'publish_posts'      => 'edit_events',       
 				'read_private_posts' => 'edit_events', 
 				'create_posts'       => 'edit_events', 
+				'delete_posts'       => 'edit_events',
 			),
 			'hierarchical' => false,
 			'supports' => array(
@@ -186,6 +187,8 @@ if(!function_exists('create_event_post_type')):
 
   // Add start and end as columns to list of events
 	function event_custom_columns($columns) {
+		unset($columns['date']);
+		$columns['place'] = 'Ort';
 		$columns['start_time'] = 'Anfang';
 		$columns['end_time'] = 'Ende';
 		return $columns;
@@ -195,38 +198,43 @@ if(!function_exists('create_event_post_type')):
 
 	function event_column( $colname, $cptid ) {
 		if ( $colname == 'start_time') {
-		  echo get_post_meta( $cptid, 'start_time', true );
+		  echo get_post_meta( $cptid, 'start_time', true);
 		} elseif ($colname == 'end_time') {
 			echo get_post_meta($cptid, 'end_time', true);
+		} elseif ($colname == 'place') {
+			echo get_the_title(get_post_meta($cptid, 'place', true));
 		} else {
 			echo 'Nicht gefunden';	
 		}
 	}
 	add_action('manage_event_posts_custom_column', 'event_column', 10, 2);
-	function sort_date( $vars ) {
-		if( array_key_exists('orderby', $vars )) {
-			if('Anfang' == $vars['orderby']) {
-				$vars['orderby'] = 'start_time';
-				$vars['meta_key'] = 'start_time';
-			} elseif ('Ende' == $vars['orderby']) {
-				$vars['orderby'] = 'end_time';
-				$vars['meta_key'] = 'end_time';
+	function sort_events( $vars ) {
+		if (isset($vars['post_type']) && $vars['post_type'] == 'event'){ 
+			if( array_key_exists('orderby', $vars )) {
+				if('Anfang' == $vars['orderby']) {
+					$vars['orderby'] = 'start_time';
+					$vars['meta_key'] = 'start_time';
+				} elseif ('Ende' == $vars['orderby']) {
+					$vars['orderby'] = 'end_time';
+					$vars['meta_key'] = 'end_time';
+				}elseif ('Ort' == $vars['orderby']) {
+					$vars['orderby'] = 'place';
+					$vars['meta_key'] = 'place';
+				}
 			}
 		}
 		return $vars;
 	}
-	add_filter('request', 'sort_date');
+	add_filter('request', 'sort_events');
 	
-	function change_commands( $actions = array(), $post = null ) {
-		// Remove Quick edit Link
-		if ( isset( $actions['inline hide-if-no-js'] ) ) {
-			unset( $actions['inline hide-if-no-js'] );
+	function attendees_link( $actions = array(), $post = null ) {
+		if($post->post_type == 'event') {
+			// Add link to attendees
+			$actions['attendees'] = '<a href=\''.admin_url('admin.php?page=event%2Fattendees&eventid='.$post->ID).'\'>Wer kommt?</a>';
 		}
-		// Add link to attendees
-		$actions['attendees'] = '<a href=\''.admin_url('admin.php?page=event%2Fattendees&eventid='.$post->ID).'\'>Wer kommt?</a>';
 		return $actions;
 	}
-	add_filter( 'post_row_actions', 'change_commands', 10, 2 );	
+	add_filter( 'post_row_actions', 'attendees_link', 10, 2 );	
 	
 	
 	/* Add the page to show a list of attendees for a specific event set

@@ -28,6 +28,7 @@ if(!function_exists('create_camp_post_type')):
 				'publish_posts'      => 'edit_camps',       
 				'read_private_posts' => 'edit_camps', 
 				'create_posts'       => 'edit_camps', 
+				'delete_posts'       => 'edit_camps',
 			),
 			'hierarchical' => false,
 			'supports' => array(
@@ -245,6 +246,7 @@ if(!function_exists('create_camp_post_type')):
 
   // Add start and end as columns to list of camps
 	function camp_custom_columns($columns) {
+		unset($columns['date']);
 		$columns['start_date'] = 'Anfang';
 		$columns['end_date'] = 'Ende';
 		return $columns;
@@ -263,26 +265,20 @@ if(!function_exists('create_camp_post_type')):
 	}
 	add_action('manage_camp_posts_custom_column', 'camp_column', 10, 2);
 	function sort_date_camp( $vars ) {
-		if( array_key_exists('orderby', $vars )) {
-			if('Anfang' == $vars['orderby']) {
-				$vars['orderby'] = 'start_date';
-				$vars['meta_key'] = 'start_date';
-			} elseif ('Ende' == $vars['orderby']) {
-				$vars['orderby'] = 'end_date';
-				$vars['meta_key'] = 'end_date';
+		if (isset($vars['post_type']) && $vars['post_type'] == 'camp'){ 
+			if( array_key_exists('orderby', $vars )) {
+				if('Anfang' == $vars['orderby']) {
+					$vars['orderby'] = 'start_date';
+					$vars['meta_key'] = 'start_date';
+				} elseif ('Ende' == $vars['orderby']) {
+					$vars['orderby'] = 'end_date';
+					$vars['meta_key'] = 'end_date';
+				}
 			}
 		}
 		return $vars;
 	}
-	add_filter('request', 'sort_date_camp');
-	
-	function remove_quicklink( $actions = array(), $post = null ) {
-		// Remove Quick edit Link
-		if ( isset( $actions['inline hide-if-no-js'] ) ) {
-			unset( $actions['inline hide-if-no-js'] );
-		}
-	}
-	add_filter( 'post_row_actions', 'remove_quicklink', 10, 2 );	
+	add_filter('request', 'sort_date_camp');	
 
 endif;
 ?>

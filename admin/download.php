@@ -26,10 +26,12 @@ if(!function_exists('create_download_post_type')):
 				'publish_posts'      => 'edit_downloads',       
 				'read_private_posts' => 'edit_downloads', 
 				'create_posts'       => 'edit_downloads', 
+				'delete_posts'       => 'edit_downloads',
 			),
 			'supports' => array('thumbnail' => false),
 			'hierarchical' => false,
 			'menu_position' => 8,
+			'menu_icon' => 'dashicons-media-default',
 			'register_meta_box_cb' => 'add_download_post_type_metabox'
 		);
 		register_post_type('download', $args);
