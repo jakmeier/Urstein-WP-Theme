@@ -26,6 +26,7 @@ function custom_roles() {
 		$administrator->add_cap( 'edit_quicklinks' );
 		$administrator->add_cap( 'edit_groups' );
 		$administrator->add_cap( 'edit_gallery' );
+		$administrator->add_cap( 'edit_downloads' );
 		$administrator->add_cap( 'read_attendees' );
 		
 		// Create custom roles
@@ -58,6 +59,7 @@ function custom_roles() {
 				'edit_groups' => true,
 				'edit_shop' => false,
 				'edit_gallery' => true, // editing albums (not used yet since albums are not implemented yet)
+				'edit_downloads' => true,
 				'read_attendees' => true
 			)
 		);
@@ -91,6 +93,7 @@ function custom_roles() {
 				'edit_groups' => true,
 				'edit_shop' => false,
 				'edit_gallery' => true, // editing albums (not used yet since albums are not implemented yet)
+				'edit_downloads' => true,
 				'read_attendees' => true
 			)
 		);
@@ -124,6 +127,7 @@ function custom_roles() {
 				'edit_groups' => true,
 				'edit_shop' => true,
 				'edit_gallery' => true, // editing albums (not used yet since albums are not implemented yet)
+				'edit_downloads' => true,
 				'read_attendees' => true
 			)
 		);
@@ -157,6 +161,7 @@ function custom_roles() {
 				'edit_groups' => false,
 				'edit_shop' => true,
 				'edit_gallery' => false,
+				'edit_downloads' => true,
 				'read_attendees' => true
 			)
 		);
@@ -190,6 +195,7 @@ function custom_roles() {
 				'edit_groups' => false,
 				'edit_shop' => true,
 				'edit_gallery' => true,
+				'edit_downloads' => true,
 				'read_attendees' => true
 			)
 		);
@@ -218,6 +224,7 @@ function custom_roles() {
 				'edit_groups' => false,
 				'edit_shop' => false,
 				'edit_gallery' => false,
+				'edit_downloads' => true,
 				'read_attendees' => true
 			);
 		
