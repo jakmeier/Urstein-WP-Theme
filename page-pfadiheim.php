@@ -1,4 +1,5 @@
 <?php get_header(); ?>
+<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/event.css" media="screen" />
 <div class="content section-inner">		
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>				
 		<div <?php post_class('post single'); ?>>
@@ -21,7 +22,7 @@
 					
 					<h3>Karte</h3>
 					<?php
-						set_query_var( 'mapid', 458 ); //hard coded Pfadheim mapid
+						set_query_var( 'mapid', 533 ); //hard coded Pfadheim mapid (local: 458, online: 533)
 						get_template_part( 'template-parts/map' );
 					?>
 					

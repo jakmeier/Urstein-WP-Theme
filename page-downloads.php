@@ -28,8 +28,8 @@
 					<div class="downlaod-list">
 						<?php 
 							foreach ($downloads as $download){
-								$file = get_post_meta($download, 'download');
-								set_query_var('file', unserialize($file));
+								$file = get_post_meta($download->ID, 'download', true);
+								set_query_var('file', $file);
 								get_template_part( 'template-parts/download_link' );
 								echo '<div class="download-title">' . esc_html($download->post_title) . '</div>';
 						 } ?>

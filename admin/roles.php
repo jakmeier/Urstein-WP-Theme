@@ -1,5 +1,5 @@
 ﻿<?php
-function custom_roles() {
+function my_custom_roles() {
 	if ( is_admin() && isset($_GET['reload_caps']) && '1' == $_GET['reload_caps'] ) {
 		
 		// Remove unused roles
@@ -296,6 +296,6 @@ function custom_roles() {
 		);
 	}
 }
-add_action('admin_init', 'custom_roles');
+add_action('admin_init', 'my_custom_roles');
 
 ?>
