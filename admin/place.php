@@ -10,7 +10,7 @@ if(!function_exists('create_place_post_type')):
 		$args=array(
 			'labels' => $labels,
 			'public' => true,
-			'publicly_queryable' => true,
+			'publicly_queryable' => false,
 			'exclude_from_search' => true, 
 			'show_ui' => true,
 			'query_var' => true,
@@ -139,6 +139,5 @@ if(!function_exists('create_place_post_type')):
 		return $vars;
 	}
 	add_filter('request', 'sort_places');
-	
 endif;
 ?>

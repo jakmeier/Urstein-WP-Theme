@@ -140,5 +140,16 @@ if(!function_exists('create_download_post_type')):
 	}
 	add_action('post_edit_form_tag', 'update_download_edit_form');
 
+	// Instead of showing a single page, download file directly
+	function redirect_single_download() {
+	  $queried_post_type = get_query_var('post_type');
+	  if ( is_single() && 'download' ==  $queried_post_type ) {
+		$file = get_post_meta(get_the_id(), 'download', true);
+		wp_redirect( $file['url'], 301 );
+		exit;
+	  }
+	}
+	add_action( 'template_redirect', 'redirect_single_download' );
+	
 endif;
 ?>
