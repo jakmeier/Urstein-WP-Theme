@@ -1,5 +1,9 @@
-section.council {
+/*section.council {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
+}*/
+section.council {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
