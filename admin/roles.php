@@ -297,28 +297,4 @@ function my_custom_roles() {
 	}
 }
 add_action('admin_init', 'my_custom_roles');
-
-
-// Adjust capabilities of albums and galleries
-function change_capabilities_of_plugin_post_types( $args, $post_type ){
-
- if ( 'foogallery' === $post_type || 'foogallery-album' === $post_type ) {
-	$args['map_meta_cap'] = null;
-	$args['capabilities'] = array(
-				'edit_post'          => 'edit_gallery', 
-				'read_post'          => 'edit_gallery', 
-				'delete_post'        => 'edit_gallery', 
-				'edit_posts'         => 'edit_gallery', 
-				'edit_others_posts'  => 'edit_gallery', 
-				'publish_posts'      => 'edit_gallery',       
-				'read_private_posts' => 'edit_gallery', 
-				'create_posts'       => 'edit_gallery', 
-				'delete_posts'       => 'edit_gallery', 
-			);
- }
-
-  return $args;
-
-}
-add_filter( 'register_post_type_args', 'change_capabilities_of_plugin_post_types' , 10, 2 );
 ?>

@@ -518,6 +518,7 @@ input[type="button"],
 	width: 30.7%;
 	margin-top: 3.95%;
 	padding-bottom: 30.7%;
+    border-radius: 15px;
 	float: left;
 	position: relative;
 	background-size: cover;
@@ -529,6 +530,7 @@ input[type="button"],
 
 .post-overlay {
 	background: #dd0d0d;
+	border-radius: 15px;
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -1282,6 +1284,12 @@ input[type="button"]:hover,
 input[type="submit"]:focus,
 input[type="submit"]:active {
 	outline: none;
+}
+
+/* Calendar */
+li span.simcal-event-title {
+	color: black;
+    font-size: medium;
 }
 
 /* -------------------------------------------------------------------------------- */
