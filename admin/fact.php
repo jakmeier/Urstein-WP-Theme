@@ -80,5 +80,14 @@ if(!function_exists('create_fact_post_type')):
 	}
 	add_action('manage_fact_posts_custom_column', 'fact_column', 10, 2);
 	
+	// Finally, avoid showing the single view of a fact and redirect
+	function redirect_single_fact() {
+	  $queried_post_type = get_query_var('post_type');
+	  if ( is_single() && 'fact' ==  $queried_post_type ) {
+		wp_redirect( 'wiki', 301 );
+		exit;
+	  }
+	}
+	add_action( 'template_redirect', 'redirect_single_fact' );
 endif;
 ?>
