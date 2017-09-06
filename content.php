@@ -17,6 +17,20 @@
 		    <?php if ( get_the_title() != '' ) : ?>
 		    	<h2 class="archive-post-title"><?php the_title(); ?></h2>
 		    <?php endif; ?>
+			
+			
+			<?php 
+				$description = get_the_content();
+				if(strlen($description) > 0){
+					echo '<p class="archive-post-content">';
+					if(strlen($description) > 200){
+						$description = substr($description, 0,180) . "...\r\n> Mehr lesen";
+					}
+					echo nl2br(esc_html($description));
+					echo '</p>';
+				}
+			?>
+		
 	    
 		</div>
 

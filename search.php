@@ -6,7 +6,7 @@
 	
 		<div class="page-title">
 		
-			<p><?php _e( 'Search Results', 'urstein'); ?></p>
+			<p>Suchresultate</p>
 			
 			<h4><?php echo ' "' . get_search_query() . '"'; ?></h4>
 			
@@ -32,7 +32,7 @@
 					
 		<div class="page-title">
 	
-			<p><?php _e( 'Search Results', 'urstein'); ?></p>
+			<p>Suchresultate</p>
 			<h4><?php echo ' "' . get_search_query() . '"'; ?></h4>
 			
 		</div> <!-- /page-title -->
@@ -45,7 +45,7 @@
 			
 					<div class="post-content">
 					
-						<p><?php _e('No results. Try again, would you kindly?', 'urstein'); ?></p>
+						<p>Leider wurde nichts gefunden.</p>
 						
 						<?php get_search_form(); ?>
 					

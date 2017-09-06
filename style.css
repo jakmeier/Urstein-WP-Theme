@@ -171,6 +171,7 @@ body a {
 .main-menu .page_item_has_children > a:before,
 .main-menu ul .page_item_has_children > a:after,
 .archive-post-title,
+.archive-post-content,
 .flex-control-nav,
 .flex-direction-nav a,
 .post-navigation a,
@@ -527,7 +528,7 @@ input[type="button"],
 .posts .post:nth-child(3n+1) { margin-left: 0; }
 
 .post-overlay {
-	background: #fff;
+	background: #dd0d0d;
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -575,8 +576,11 @@ input[type="button"],
 	text-transform: uppercase;
 }
 
+.post-overlay p.archive-post-content { color: #520000; }
+
 .post:hover .post-overlay { opacity: 1; }
-.post:hover .archive-post-title { color: #3bc492; }
+.post:hover .archive-post-title { color: #f1f1f1; }
+.post:hover .post-overlay p.archive-post-content { color: #a0a5aa; }
 
 /* With Background Image */
 
@@ -591,6 +595,11 @@ input[type="button"],
 .has-post-thumbnail .archive-post-title,
 .post.has-post-thumbnail:hover .archive-post-title { color: #fff; }
 
+.search-results .content .page-title,
+.search-no-results .content .page-title {
+	background-color: #dd0d0d;
+	padding: 20px 0;
+}
 
 /* -------------------------------------------------------------------------------- */
 /*	6. Single Post
@@ -679,7 +688,7 @@ input[type="button"],
 }
 
 .page-links a:hover { 
-	background: #3bc492;
+	background: #f1f1f1;
 	color: #fff;
 }
 
@@ -949,7 +958,7 @@ input[type="button"],
 	line-height: 120%;
 	font-weight: 300;
 	text-transform: uppercase;
-	color: #3bc492;
+	color: #f1f1f1;
 }
 
 .post-content p.pull.left {
@@ -1356,7 +1365,7 @@ input[type="submit"]:active {
 
 .comment-title .url { color: #333; }
 
-.comment-title .url:hover { color: #3bc492; }
+.comment-title .url:hover { color: #f1f1f1; }
 
 .comment-title span {
 	margin-left: 10px;
@@ -1380,12 +1389,12 @@ input[type="submit"]:active {
 	text-transform: uppercase;
 }
 
-.comment-actions a { color: #3bc492; }
+.comment-actions a { color: #f1f1f1; }
 
 .comment-actions a + a { margin-left: 10px; }
 
 .comment-actions a:hover { 
-	color: #3bc492;
+	color: #f1f1f1;
 	text-decoration: underline; 
 }
 
@@ -1429,7 +1438,7 @@ input[type="submit"]:active {
 	color: #999;
 }
 
-.comments .pingbacks li a:hover { color: #3bc492; }
+.comments .pingbacks li a:hover { color: #f1f1f1; }
 
 */
 /* Comment navigation --------------------------------------- */
@@ -1571,7 +1580,7 @@ p.comment-form-author { margin-right: 5%; }
 	color: #fff; 
 }
 
-.archive-nav a:hover { color: #3bc492; }
+.archive-nav a:hover { color: #f1f1f1; }
 
 .archive-nav .sep {
 	margin: 0 20px;
@@ -1639,7 +1648,7 @@ p.comment-form-author { margin-right: 5%; }
 
 #infinite-handle:hover {
 	cursor: pointer;
-	background: #3bc492;
+	background: #f1f1f1;
 }
 
 #infinite-handle:hover span { border-color: #fff; }
@@ -1689,7 +1698,7 @@ p.comment-form-author { margin-right: 5%; }
 }
 
 .search-field:focus { 
-	border-color: #3bc492;
+	border-color: #f1f1f1;
 	outline: none; 
 }
 
@@ -1735,7 +1744,7 @@ p.comment-form-author { margin-right: 5%; }
 }
 
 .credits p:first-child a { color: #fff; }
-.credits p:first-child a:hover { color: #3bc492; }
+.credits p:first-child a:hover { color: #f1f1f1; }
 
 .credits p + p {
 	margin-top: 12px;
@@ -1897,7 +1906,7 @@ p.rank {
 	.nav-toggle:hover { cursor: pointer; }
 	
 	.nav-toggle.active .bar { 
-		background: #3bc492;
+		background: #f1f1f1;
 		-webkit-transition: opacity 0.2s linear 0s, top 0.2s linear 0s, -webkit-transform 0.2s linear 0.2s;
 		-moz-transition: opacity 0.2s linear 0s, top 0.2s linear 0s, -moz-transform 0.2s linear 0.2s;
 		-o-transition: opacity 0.2s linear 0s, top 0.2s linear 0s, -o-transform 0.2s linear 0.2s;
@@ -2201,7 +2210,6 @@ p.rank {
 	
 	.has-post-thumbnail .archive-post-header { bottom: 25px; }
 	.has-post-thumbnail:hover .archive-post-header { bottom: 20px; }
-	
 	
 	/* Single Post --------------------------------------- */
 	

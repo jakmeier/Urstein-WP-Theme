@@ -11,6 +11,7 @@ if(!function_exists('create_place_post_type')):
 			'labels' => $labels,
 			'public' => true,
 			'publicly_queryable' => true,
+			'exclude_from_search' => true, 
 			'show_ui' => true,
 			'query_var' => true,
 			'rewrite' => true,
