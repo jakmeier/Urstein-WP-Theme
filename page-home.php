@@ -14,7 +14,15 @@ get_header(); ?>
 						<?php the_content(); ?>
 						<?php edit_post_link(__('Text bearbeiten','urstein'), '<p class="post-edit">', '</p>'); ?>
 					</div>
-					<?php if ( has_post_thumbnail() ) : ?>
+					<?php
+						$slider_id = get_post_meta(get_the_id(), 'slider', true);
+						if($slider_id):?>
+						<div class="main-image">
+						<?php 
+							echo do_shortcode("[metaslider id=" . intval($slider_id) . "]"); 
+						?>
+						</div> 
+					<?php elseif ( has_post_thumbnail() ) : ?>
 					<?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'thumbnail_size' ); $thumb_url = $thumb['0']; ?>
 						<div class="main-image">
 							<?php the_post_thumbnail('post-image'); ?>

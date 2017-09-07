@@ -1,12 +1,12 @@
 <?php// Load custom roles system whenever ?reload_caps=1require_once(get_template_directory() . '/admin/roles.php');// Remove some standard admin menusfunction remove_posts_menu() {    remove_menu_page('edit.php');	remove_menu_page('edit-comments.php');	if(!current_user_can('administrator')){		  remove_menu_page('index.php');//Dashboard		  remove_menu_page('tools.php');	}}add_action('admin_init', 'remove_posts_menu');// Setting up custom post typesfunction change_commands( $actions = array(), $post = null ) {	// Remove Quick edit Link	if ( isset( $actions['inline hide-if-no-js'] ) ) {		unset( $actions['inline hide-if-no-js'] );	}	return $actions;}add_filter( 'post_row_actions', 'change_commands', 10, 2 );	
-require_once(get_template_directory() . '/admin/event.php');require_once(get_template_directory() . '/admin/camp.php');require_once(get_template_directory() . '/admin/news.php');require_once(get_template_directory() . '/admin/place.php');require_once(get_template_directory() . '/admin/download.php');require_once(get_template_directory() . '/admin/fact.php');// Adjust custom post types which are registered from pluginsfunction change_post_types_of_plugins( $args, $post_type ){	// Adjust capabilities of albums and galleries	if ( 'foogallery' === $post_type || 'foogallery-album' === $post_type ) {	$args['map_meta_cap'] = null;	$args['capabilities'] = array(				'edit_post'          => 'edit_gallery', 				'read_post'          => 'edit_gallery', 				'delete_post'        => 'edit_gallery', 				'edit_posts'         => 'edit_gallery', 				'edit_others_posts'  => 'edit_gallery', 				'publish_posts'      => 'edit_gallery',       				'read_private_posts' => 'edit_gallery', 				'create_posts'       => 'edit_gallery', 				'delete_posts'       => 'edit_gallery', 			);	}	// Remove visibilty from calendars	if ( 'calendar' === $post_type) {		$args['exclude_from_search'] = true;	}		return $args;}add_filter( 'register_post_type_args', 'change_post_types_of_plugins' , 10, 2 );/* Changinge admin view for home page to display quicklinks*/require_once(get_template_directory() . '/admin/home.php');/* Loading Webshop Admin view */require_once(get_template_directory() . '/admin/shop.php');require_once(get_template_directory() . '/admin/groups.php');/* Modify user's personal information to have a mapping to groups */require_once(get_template_directory() . '/admin/users.php');
+require_once(get_template_directory() . '/admin/event.php');require_once(get_template_directory() . '/admin/camp.php');require_once(get_template_directory() . '/admin/news.php');require_once(get_template_directory() . '/admin/place.php');require_once(get_template_directory() . '/admin/download.php');require_once(get_template_directory() . '/admin/fact.php');// Adjust custom post types which are registered from pluginsfunction change_post_types_of_plugins( $args, $post_type ){	// Adjust capabilities of albums and galleries	if ( 'foogallery' === $post_type || 'foogallery-album' === $post_type ) {	$args['map_meta_cap'] = null;	$args['capabilities'] = array(				'edit_post'          => 'edit_gallery', 				'read_post'          => 'edit_gallery', 				'delete_post'        => 'edit_gallery', 				'edit_posts'         => 'edit_gallery', 				'edit_others_posts'  => 'edit_gallery', 				'publish_posts'      => 'edit_gallery',       				'read_private_posts' => 'edit_gallery', 				'create_posts'       => 'edit_gallery', 				'delete_posts'       => 'edit_gallery', 			);	}	// Remove visibilty from calendars	if ( 'calendar' === $post_type) {		$args['exclude_from_search'] = true;	}	return $args;}add_filter( 'register_post_type_args', 'change_post_types_of_plugins' , 10, 2 );/* Changinge admin view for home page to display quicklinks*/require_once(get_template_directory() . '/admin/home.php');/* Loading Webshop Admin view */require_once(get_template_directory() . '/admin/shop.php');require_once(get_template_directory() . '/admin/groups.php');/* Modify user's personal information to have a mapping to groups */require_once(get_template_directory() . '/admin/users.php');
 remove_filter( 'the_content', 'wpautop' );
 remove_filter( 'the_excerpt', 'wpautop' );
 // Theme setup
 add_action( 'after_setup_theme', 'urstein_setup' );
 function urstein_setup() {
 	// Automatic feed
-	add_theme_support( 'automatic-feed-links' );
+	//add_theme_support( 'automatic-feed-links' );
 	// Set content-width
 	global $content_width;
 	if ( ! isset( $content_width ) ) $content_width = 600;
@@ -29,7 +29,7 @@ function urstein_setup() {
 	add_theme_support( 'custom-header', $args );*/
 	
 	// Post formats
-	add_theme_support( 'post-formats', array( 'gallery' ) );
+	//add_theme_support( 'post-formats', array( 'gallery' ) );
 		
 	// Jetpack infinite scroll
 	/*add_theme_support( 'infinite-scroll', array(
@@ -165,28 +165,24 @@ function urstein_flexslider($size) {
 // urstein theme options
 class urstein_Customize {
 
-   public static function urstein_register ( $wp_customize ) {
-      // 1. Define a new section (if desired) to the Theme Customizer
+   public static function urstein_register ( $wp_customize ) {		// Background image and header
+      // 1. Define a new section to the Theme Customizer
       $wp_customize->add_section( 'urstein_logo_section' , array(
-		    'title'       => __( 'Kopfzeile', 'urstein' ),
+		    'title'       => __( 'Kopfzeile und Hintergrund', 'urstein' ),
 		    'priority'    => 40,
-		    'description' => __('Wähle ein Bild das auf allen Seite als Titelzeile sichtbar ist.', 'urstein'),
+		    'description' => __('Wähle Bilder für die Titelzeile und den Hintergrund.', 'urstein'),
 	  ) );
       // 2. Register new settings to the WP database...
-	  $wp_customize->add_setting( 'urstein_logo', 
-      	array( 
-      		'sanitize_callback' => 'esc_url_raw'
-      	) 
-      );
+	  $wp_customize->add_setting( 'urstein_logo', array( 'sanitize_callback' => 'esc_url_raw') );	  $wp_customize->add_setting( 'urstein_background', array( 'sanitize_callback' => 'esc_url_raw') );	 
       // 3. Finally, we define the control itself (which links a setting to a section and renders the HTML controls)...
       $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'urstein_logo', array(
 		    'label'    => __( 'Bild Kopfzeile', 'urstein' ),
 		    'section'  => 'urstein_logo_section',
 		    'settings' => 'urstein_logo',
-	  ) ) );
+	  ) ) );	 $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'urstein_background', array(		    'label'    => __( 'Hintergrundbild', 'urstein' ),		    'section'  => 'urstein_logo_section',		    'settings' => 'urstein_background',	  ) ) );	 	  
       // 4. We can also change built-in settings by modifying properties. For instance, let's make some stuff use live preview JS...
       $wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
-      $wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';	  /* Custom default images for Events and News */	  // 1. Define a new section (if desired) to the Theme Customizer      $wp_customize->add_section( 'urstein_custom_img_section' , array(		    'title'       => __( 'Anzeigebilder', 'urstein' ),		    'priority'    => 40,		    'description' => __('Diese Bilder werden auf der Hauptseite angezeigt, falls kein anderes Bild verfügbar ist für einen Beitrag.', 'urstein'),	  ) );      // 2. Register 3 new settings to the WP database...	  $wp_customize->add_setting( 'urstein_custom_img_event');	  $wp_customize->add_setting( 'urstein_custom_img_camp');	  $wp_customize->add_setting( 'urstein_custom_img_news');      // 3. Finally, we define the control itself (which links a setting to a section and renders the HTML controls)...      $wp_customize->add_control( new WP_Customize_Cropped_Image_Control( $wp_customize, 'urstein_custom_img_event', array(		    'label'    => __( 'Übungen', 'urstein' ),		    'section'  => 'urstein_custom_img_section',		    'settings' => 'urstein_custom_img_event'	  ) ) );	  $wp_customize->add_control( new WP_Customize_Cropped_Image_Control( $wp_customize, 'urstein_custom_img_camp', array(		    'label'    => __( 'Lager', 'urstein' ),		    'section'  => 'urstein_custom_img_section',		    'settings' => 'urstein_custom_img_camp'	  ) ) );	  $wp_customize->add_control( new WP_Customize_Cropped_Image_Control( $wp_customize, 'urstein_custom_img_news', array(		    'label'    => __( 'News', 'urstein' ),		    'section'  => 'urstein_custom_img_section',		    'settings' => 'urstein_custom_img_news'	  ) ) );
+      $wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';	  /* Custom default images for Events, News, and Camps */	  // 1. Define a new section to the Theme Customizer      $wp_customize->add_section( 'urstein_custom_img_section' , array(		    'title'       => __( 'Anzeigebilder', 'urstein' ),		    'priority'    => 40,		    'description' => __('Diese Bilder werden auf der Hauptseite angezeigt, falls kein anderes Bild verfügbar ist für einen Beitrag.', 'urstein'),	  ) );      // 2. Register 3 new settings to the WP database...	  $wp_customize->add_setting( 'urstein_custom_img_event');	  $wp_customize->add_setting( 'urstein_custom_img_camp');	  $wp_customize->add_setting( 'urstein_custom_img_news');      // 3. Finally, we define the control itself (which links a setting to a section and renders the HTML controls)...      $wp_customize->add_control( new WP_Customize_Cropped_Image_Control( $wp_customize, 'urstein_custom_img_event', array(		    'label'    => __( 'Übungen', 'urstein' ),		    'section'  => 'urstein_custom_img_section',		    'settings' => 'urstein_custom_img_event'	  ) ) );	  $wp_customize->add_control( new WP_Customize_Cropped_Image_Control( $wp_customize, 'urstein_custom_img_camp', array(		    'label'    => __( 'Lager', 'urstein' ),		    'section'  => 'urstein_custom_img_section',		    'settings' => 'urstein_custom_img_camp'	  ) ) );	  $wp_customize->add_control( new WP_Customize_Cropped_Image_Control( $wp_customize, 'urstein_custom_img_news', array(		    'label'    => __( 'News', 'urstein' ),		    'section'  => 'urstein_custom_img_section',		    'settings' => 'urstein_custom_img_news'	  ) ) );
    }
 
    public static function urstein_header_output() {

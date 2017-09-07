@@ -39,7 +39,10 @@
 	?>
 	</div>
 	<div class="info-box">
-		<h3><?php echo $nickname;?></h3>
+	
+		<?php if(strpos($display_name, $nickname) === false):
+			echo '<p>' . $nickname . '</p>';
+		endif; ?>
 		<p><?php echo $display_name;?></p>
 		<?php if($address):
 			echo '<p>' . $address . '</p>';
