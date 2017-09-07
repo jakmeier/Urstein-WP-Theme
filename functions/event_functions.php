@@ -21,8 +21,86 @@ function get_next_event($groupid) {
 		'meta_type' => 'DATETIME'
 
 	);
-	$event = get_posts($args)[0];
-	return $event;
+	$event = get_posts($args);
+	return $event ? $event[0] : false;
+}
+
+// Get the next event in the past (if any)
+function get_previous_event($groupid) {
+	$args = array(
+		'post_type' => 'event',
+		'posts_per_page' => 1,
+		'meta_query' => array(
+			array(
+				'key' => 'group' . $groupid,
+				'value' => 1
+			),
+			array(
+				'key' => 'end_time',
+				'value' => date('c'),
+				'compare' => '<'
+			)
+		),
+		'order'     => 'DESC',
+		'meta_key' => 'start_time',
+		'orderby'   => 'meta_value',
+		'meta_type' => 'DATETIME'
+
+	);
+	$event = get_posts($args);
+	return $event ? $event[0] : false;
+}
+
+// Get the next camp in the future (if any)
+function get_next_camp($groupid) {
+	$args = array(
+		'post_type' => 'camp',
+		'posts_per_page' => 1,
+		'meta_query' => array(
+			array(
+				'key' => 'group' . $groupid,
+				'value' => 1
+			),
+			array(
+				'key' => 'end_date',
+				'value' => date('c'),
+				'compare' => '>'
+			)
+		),
+		'order'     => 'ASC',
+		'meta_key' => 'start_date',
+		'orderby'   => 'meta_value',
+		'meta_type' => 'DATETIME'
+
+	);
+	$camp = get_posts($args);
+	return $camp ? $camp[0] : false;
+}
+
+// Get the next camp in the past (if any)
+function get_previous_camp($groupid) {
+	$args = array(
+		'post_type' => 'camp',
+		'posts_per_page' => 1,
+		'meta_query' => array(
+			array(
+				'key' => 'group' . $groupid,
+				'value' => 1
+			),
+			array(
+				'key' => 'end_date',
+				'value' => date('c'),
+				'compare' => '<'
+			)
+		),
+		'order'     => 'DESC',
+		'meta_key' => 'start_date',
+		'orderby'   => 'meta_value',
+		'meta_type' => 'DATETIME'
+
+	);
+	$camp = get_posts($args);
+	return $camp ? $camp[0] : false;
 }
 
 // Get all group ids and names that belong to an event (or camp)

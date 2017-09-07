@@ -16,4 +16,25 @@ section.leaders {
 	flex-wrap: wrap;
 }
 
+section.group-events {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+section.group-events h3 {
+	margin: 25px 0 5px 0;
+}
+section.group-events .feed-entry h4 {
+	margin: 5px 0;
+}
+section.group-events .feed-entry {
+	margin: 0;
+}
+
+@media ( max-width: 900px ) {
+	section.group-events {
+		grid-template-columns: 1fr;
+	}
+}
+
 

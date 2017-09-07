@@ -1,6 +1,7 @@
 <?php /* Template Name: Gruppenseite */ ?>
 <?php
 	require_once get_template_directory() . "/functions/group_functions.php" ;
+	require_once get_template_directory() . "/functions/event_functions.php" ;
 
 	// load CSS
 	function group_template_styles() {
@@ -29,11 +30,56 @@
 					</section>
 					<?php edit_post_link(__('Text bearbeiten','urstein'), '<div class="post-meta"><p class="post-edit">', '</p></div>'); ?>
 					
-					<?php if ( has_post_thumbnail() ):?>
-						<section class="group-media">
-							<?php the_post_thumbnail('large'); ?>
-						</section>
-					<?php endif; ?>
+					<section class="group-events">
+						<?php 
+							$prev = get_previous_event($groupid);
+							$next = get_next_event($groupid);
+							$prevCamp = get_previous_camp($groupid);
+							$nextCamp = get_next_camp($groupid);
+							
+						?>
+						<?php if($prev || $next): ?>
+						<div>
+							<?php 
+								if($prev) {
+									echo '<h3>Letzte Aktivität</h3>';
+									set_query_var('element_post', $prev);
+									get_template_part( 'template-parts/feed_element_simple' );
+								}
+							?>
+						</div>
+						<div>
+							<?php 
+								if($next) {
+									echo '<h3>Nächste Aktivität</h3>';							
+									set_query_var('element_post', $next);
+									get_template_part( 'template-parts/feed_element_simple' );
+								}
+							?>
+						</div>
+						<?php endif; ?>
+						
+						<?php if($prevCamp || $nextCamp): ?>
+						<div>
+							<?php 
+								if($prevCamp) {
+									echo '<h3>Letztes Lager</h3>';
+									set_query_var('element_post', $prevCamp);
+									get_template_part( 'template-parts/feed_element_simple' );
+								}
+							?>
+						</div>
+						<div>
+							<?php 
+								if($nextCamp) {
+									echo '<h3>Nächstes Lager</h3>';							
+									set_query_var('element_post', $nextCamp);
+									get_template_part( 'template-parts/feed_element_simple' );
+								}
+							?>
+						</div>
+						<?php endif; ?>
+					</section>
 					
 					<h2>Gruppenleiter</h2>
 					<section class="leaders">
@@ -48,6 +94,16 @@
 							}
 						?>
 					</section>
+					
+					<?php 
+						$album = get_group_album($groupid);
+						if ( $album ):
+					?>
+						<section class="group-media">
+							<?php echo do_shortcode('[foogallery-album id="' . intval($album) .'"]'); ?>
+						</section>
+					<?php endif; ?>
+					
 			    </div> <!-- /post-content -->
 			    
 			</div> <!-- /post-inner -->

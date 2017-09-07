@@ -255,4 +255,22 @@ function get_division_leader($stufe) {
 		return false;
 	}
 }
+
+/* Looks up the album associated with the group, if exists */
+function get_group_album($group){
+	if(is_numeric($group)){
+		$group = intval($group);
+	}
+	if(is_int($group)){
+		// Lookup attached default thumbnail for group
+		global $wpdb;
+		$group = intval($group);
+		$result = $wpdb->get_results("SELECT `album` FROM `groups` WHERE `id` = $group;");
+		if(is_array($result) && isset($result[0]->album) && intval($result[0]->album) > 0) {
+			return $result[0]->album;
+		}
+	}
+	// Default picture:
+	return false;
+}
 ?>		
