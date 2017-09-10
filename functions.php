@@ -70,7 +70,7 @@ function urstein_add_editor_styles() {
     add_editor_style( str_replace( ',', '%2C', $font_url ) );
 }
 add_action( 'init', 'urstein_add_editor_styles' );
-// Add admin stylesfunction load_admin_styles() {	wp_enqueue_style( 'admin_event', get_template_directory_uri() . '/admin/event.css');	wp_enqueue_style( 'admin_attendee', get_template_directory_uri() . '/admin/attendees.css');}  
+// Add admin stylesfunction load_admin_styles() {	if ( is_admin() ) {		wp_enqueue_style( 'admin_style', get_template_directory_uri() . '/admin/admin-style.css');		wp_enqueue_style( 'admin_event', get_template_directory_uri() . '/admin/event.css');		wp_enqueue_style( 'admin_attendee', get_template_directory_uri() . '/admin/attendees.css');	}}  
 add_action( 'admin_enqueue_scripts', 'load_admin_styles' );
 // Check whether the browser supports javascript
 function html_js_class () {

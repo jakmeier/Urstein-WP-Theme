@@ -4,7 +4,8 @@ ol.wrap-items li{
 ol.wrap-items li label{
 	margin: 5px;
 }
-ol.wrap-items span.remove {
+ol.wrap-items span.remove,
+ol.wrap-items span.sort{
 	display: block;
 	margin: 22px 10px;
 }

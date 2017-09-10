@@ -1794,6 +1794,7 @@ article.feed-entry .entry-image{
 }
 article.feed-entry .entry-image img{
 	height: auto;
+    border-radius: 15px;
 	max-height: 100%;
 	max-width: 100%;
 }

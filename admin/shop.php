@@ -17,7 +17,7 @@
 		wp_enqueue_media();
 
 		// Custom js to load used for shop admin
-		wp_enqueue_script( 'shop-admin-js', get_template_directory_uri().'/admin/shop.js', array('jquery'));
+		wp_enqueue_script( 'shop-admin-js', get_template_directory_uri().'/admin/shop.js', array('jquery', 'jquery-ui-dialog'));
 		// And also the Stylesheet
 		wp_enqueue_style( 'shop-admin-css', get_stylesheet_directory_uri() . '/admin/shop.css' );
 	}
@@ -42,11 +42,14 @@
 						<span class="item-icon dashicons dashicons-format-image"></span>
 					<?php endif;?>
 					</label>
+					<input type="number" name="position<?php echo $i;?>" class="hidden" value="<?php echo $item->position;?>">
 					<input type="text" name="id<?php echo $i;?>" class="hidden" value="<?php echo $item->id;?>">
 					<label>Warenbezeichnung<br><input required type="text" name="title<?php echo $i;?>" value="<?php echo $item->title;?>"></label>
 					<label>Beschreibung<br><textarea rows="5" cols="50" name="description<?php echo $i;?>"><?php echo esc_html($item->description);?></textarea></label>
 					<label>Preis in CHF<br><input type="number" step="0.05" min="0" name="price<?php echo $i;?>" value="<?php echo $item->price;?>"></label>
-					<br><span class="button remove">Entferne Artikel</span>
+					<span class="button remove">Entferne Artikel</span>
+					<span class="sort up dashicons dashicons-arrow-up-alt2"></span>
+					<span class="sort down dashicons dashicons-arrow-down-alt2"></span>
 					
 				</li>
 			<?php endforeach;?>
@@ -70,7 +73,7 @@
 				$id, // if null, will perform insert
 				$_POST['title' . $i],
 				$_POST['description' . $i],
-				$i, //position
+				$_POST['position' . $i], //position
 				$price,
 				$_POST['img' . $i]
 			);

@@ -1,0 +1,10 @@
+/* Some general admin styles */
+
+/* Remove Show Preview button from all posts because they don't work properly with meta data */
+#preview-action {
+	display: none;
+}
+/* Remove Save draft button */
+#save-action {
+	display: none;
+}
