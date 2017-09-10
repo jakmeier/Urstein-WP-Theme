@@ -94,11 +94,13 @@ if(!function_exists('create_place_post_type')):
 					update_post_meta($post_id, $key, $_POST[$key]);
 				}
 			}
-			wp_update_post(array(
-				'ID'         => $post_id,
-				'post_title' => $_POST['post_title'],
-				'post_content' => $_POST['map']
-			));
+			if(isset($_POST['post_title']) || isset($_POST['map'])) {
+				wp_update_post(array(
+					'ID'         => $post_id,
+					'post_title' => $_POST['post_title'],
+					'post_content' => $_POST['map']
+				));
+			}
 			add_action('save_post','place_post_save_meta',1,2);
 		}
   }

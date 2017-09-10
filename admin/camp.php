@@ -145,10 +145,10 @@ if(!function_exists('create_camp_post_type')):
 		if(!current_user_can('edit_camps', $post->ID )){
 			return $post->ID;
 		}
-		if(!wp_verify_nonce($_POST['signup_sheet_nonce'], plugin_basename(__FILE__))){
+		if(!isset($_POST['signup_sheet_nonce']) || !wp_verify_nonce($_POST['signup_sheet_nonce'], plugin_basename(__FILE__))){
 			return $post->ID;
 		}
-		if(!wp_verify_nonce($_POST['last_info_sheet_nonce'], plugin_basename(__FILE__))){
+		if(!isset($_POST['last_info_sheet_nonce']) || !wp_verify_nonce($_POST['last_info_sheet_nonce'], plugin_basename(__FILE__))){
 			return $post->ID;
 		}
 		

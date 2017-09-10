@@ -57,15 +57,15 @@ if(!function_exists('create_event_post_type')):
 		
 		$current_event = get_post_custom($post->ID);
 		$title = $post->post_title;
-		$start = $current_event['start_time'][0];
-		$end = $current_event['end_time'][0];
-		$description = $current_event['description'][0];
-		$selectedStartPlace = intval($current_event['place'][0]);
+		$start = isset($current_event['start_time']) ? $current_event['start_time'][0] : false;
+		$end = isset($current_event['end_time']) ? $current_event['end_time'][0] : false;
+		$description = isset($current_event['description']) ? $current_event['description'][0] : false;
+		$selectedStartPlace = isset($current_event['place']) ? intval($current_event['place'][0]) : false;
 		
 		if( isset($current_event['finish_place']) ){
 			$selectedEndPlace = intval($current_event['finish_place'][0]);
 		}
-		$bring = $current_event['bring'][0];
+		$bring = isset($current_event['bring']) ? $current_event['bring'][0] : false;
 		
 		$groups = groups_with_events();
 		//print_r($groups); 
@@ -147,12 +147,12 @@ if(!function_exists('create_event_post_type')):
 			return $post->ID;
 		}
 		
-		$event_post_meta['start_time'] = $_POST['start_time'];
-		$event_post_meta['end_time'] = $_POST['end_time'];
-		$event_post_meta['description'] = $_POST['description'];
-		$event_post_meta['place'] = $_POST['place'];
-		$event_post_meta['finish_place'] = $_POST['finish_place'];
-		$event_post_meta['bring'] = $_POST['bring'];
+		$event_post_meta['start_time'] = isset($_POST['start_time']) ? $_POST['start_time'] : false;
+		$event_post_meta['end_time'] = isset($_POST['end_time']) ? $_POST['end_time'] : false;
+		$event_post_meta['description'] = isset($_POST['description']) ? $_POST['description'] : false;
+		$event_post_meta['place'] = isset($_POST['place']) ? $_POST['place'] : false;
+		$event_post_meta['finish_place'] = isset($_POST['finish_place']) ? $_POST['finish_place'] : false;
+		$event_post_meta['bring'] = isset($_POST['bring']) ? $_POST['bring'] : false;
 		
 		// read each checkbox value and save each assigned group as own meta field
 		$groups = groups_with_events();
@@ -176,12 +176,14 @@ if(!function_exists('create_event_post_type')):
 		}
 		// Remove the save_post action for the call to wp_update_post, to avoid
 		// looping on it.
-		remove_action('save_post', 'event_post_save_meta', 1, 2);
-		wp_update_post(array(
-			'ID'         => $post_id,
-			'post_title' => $_POST['post_title']
-		));
-		add_action('save_post','event_post_save_meta',1,2);
+		if(isset($_POST['post_title'])){
+			remove_action('save_post', 'event_post_save_meta', 1, 2);
+			wp_update_post(array(
+				'ID'         => $post_id,
+				'post_title' => $_POST['post_title']
+			));
+			add_action('save_post','event_post_save_meta',1,2);
+		}
 	}}
 	add_action('save_post','event_post_save_meta',1,2);
 
