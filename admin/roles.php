@@ -249,10 +249,12 @@ function my_custom_roles() {
 		if(get_role('parents_council_vice_president')){
 			remove_role('parents_council_vice_president');
 		}
+		$vice_p_caps = $parents_council_caps;
+		$vice_p_caps['edit_shop'] = true; // This is just because of the current situation where the vice president is also shop admin
 		add_role(
 			'parents_council_vice_president',
 			__( 'Vizepräsident (Elternrat)' ),
-			$parents_council_caps
+			$vice_p_caps
 		);
 	
 		// Elternrat: Revisor
