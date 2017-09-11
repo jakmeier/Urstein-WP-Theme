@@ -28,11 +28,17 @@
 					
 					<h3>Verantwortlich</h3>
 					<?php 
-							$users = get_users(
-								array(
-									'role' => 'parents_council_club_house',
-									'fields' => array( 'ID' )
-								));
+							$responsible_person = get_post_meta(get_the_ID(), 'responsible_person', true);
+							if($responsible_person){
+								$users = array(get_user_by('ID', $responsible_person));
+							}
+							else {
+								$users = get_users(
+									array(
+										'role' => 'parents_council_club_house',
+										'fields' => array( 'ID' )
+									));
+							}
 							if(is_array($users)){
 								foreach($users as $user){
 									set_query_var( 'userid', $user->ID );
