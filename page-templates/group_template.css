@@ -1,13 +1,18 @@
 section.group-text {
-	display: flex;
-	flex-direction: row;
+	display: grid;
+	grid-template-columns: 3fr 5fr;
 }
 section.group-text img {
 	margin: 0 20px 20px 0 ;
 }
-
-section.group-media img {
-	margin: 20px auto;
+section.group-media .topbar {
+	margin-top: 15px;
+}
+section.group-media a,
+section.group-media li
+{
+	/* Clear some styles */
+	line-height: 0;
 }
 
 section.leaders {
@@ -32,9 +37,18 @@ section.group-events .feed-entry {
 }
 
 @media ( max-width: 900px ) {
+	section.group-text {
+		grid-template-columns: 1fr;
+	}
+	section.group-text img {
+		margin: auto ;
+	}
 	section.group-events {
 		grid-template-columns: 1fr;
 	}
 }
+
+
+
 
 

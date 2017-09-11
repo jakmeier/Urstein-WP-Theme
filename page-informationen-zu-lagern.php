@@ -11,7 +11,7 @@
 
 ?>
 <div class="content section-inner">		
-<link rel="stylesheet" type="text/css" href="wp-content/themes/urstein/camp.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/camp.css" media="screen" />
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>				
 		<div <?php post_class('post single'); ?>>
 			<div class="post-container">

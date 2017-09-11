@@ -56,7 +56,7 @@ function urstein_load_javascript_files() {
 add_action( 'wp_enqueue_scripts', 'urstein_load_javascript_files' );
 // Register and enqueue styles
 function urstein_load_style() {
-	if ( !is_admin() ) {
+	if ( !is_admin() ) {		wp_enqueue_style( 'dashicons' );
 	    wp_enqueue_style( 'urstein_googleFonts', '//fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Droid+Serif:400,400italic,700,700italic' );
 	    wp_enqueue_style( 'urstein_fontawesome', get_stylesheet_directory_uri() . '/fa/css/font-awesome.css' );
 	    wp_enqueue_style( 'urstein_style', get_stylesheet_uri() );

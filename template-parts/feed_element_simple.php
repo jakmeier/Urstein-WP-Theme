@@ -28,8 +28,8 @@
 			$place = esc_html(get_the_title($placeid));
 		}
 		$description = isset($meta['description']) ? nl2br(esc_html($meta['description'][0])) : '-';
-		$start_date = date( 'j.n.', strtotime($meta['start_date'][0]) );
-		$end_date = date( 'j.n.', strtotime($meta['end_date'][0]) );
+		$start_date = isset($meta['start_date']) ? date( 'j.n.', strtotime($meta['start_date'][0]) ) : '?';
+		$end_date = isset($meta['end_date']) ? date( 'j.n.', strtotime($meta['end_date'][0]) ) : '?';
 		$groupnames = get_groups_of_event($element_post->ID);
 		
 		$content =  'Gruppen: ' . implode(', ', $groupnames). 
