@@ -12,6 +12,12 @@ section.headline{
 	width: 42%;
 	margin: 0 0 20px 0;
 }
+section.headline .fb {
+	margin-bottom: 10px;
+}
+section.headline .fb a{
+	color: white;
+}
 .quick-links{
 	display:block;
 	width: 16%;
