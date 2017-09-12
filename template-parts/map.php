@@ -2,7 +2,7 @@
 	$map_displayed = false;
 	if(isset($mapid) && $map = get_post($mapid)):
 		$mapname =esc_html($map->post_title);
-		$mapurl = esc_html($map->post_content);
+		$mapurl = esc_url($map->post_content);
 		$x = get_post_meta($mapid, 'x', true);
 		$y = get_post_meta($mapid, 'y', true);
 		//parse data

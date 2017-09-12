@@ -4,7 +4,7 @@
 	if (isset($file)):
 ?>
 <div class="download">
-	<a href="<?php echo esc_html($file['url']); ?>">
+	<a href="<?php echo esc_url($file['url']); ?>">
 		<span class="dashicons dashicons-media-default"></span> 
 		Herunterladen 
 	</a>

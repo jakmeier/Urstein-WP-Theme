@@ -99,7 +99,7 @@
 								<div class="info-label"> Bemerkung der Leiter: </div>
 							</div>
 							<div class="info-tr">
-								<div class="info-long"> <?php echo nl2br(esc_html($meta['description']['0'])); ?> </div>
+								<div class="info-long"> <?php echo nl2br($meta['description']['0']); ?> </div>
 							</div>
 							<?php endif; ?>
 						</div> <!-- /info-table -->	

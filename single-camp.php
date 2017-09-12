@@ -42,7 +42,7 @@
 								<div class="info-label"> Beschreibung: </div>
 							</div>
 							<div class="info-tr">
-								<div class="info-long"> <?php echo nl2br(esc_html($meta['description']['0'])); ?> </div>
+								<div class="info-long"> <?php echo nl2br($meta['description']['0']); ?> </div>
 							</div>
 							<?php endif; ?>
 							<?php if (isset($meta['signup_sheet']) && $meta['signup_sheet']['0']):

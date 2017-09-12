@@ -16,7 +16,6 @@
 						</div> <!-- /featured-media -->
 					<?php endif; ?>
 				
-			    	<?php /*echo nl2br(esc_html(get_the_content())); */?>
 			    	<?php the_content(); ?>
 					<?php edit_post_link(__('Text bearbeiten','urstein'), '<div class="post-meta"><p class="post-edit">', '</p></div>'); ?>
 					

@@ -26,7 +26,9 @@
 			    <div class="post-content">
 					<section class="group-text">
 						<?php echo wp_get_attachment_image( get_group_thumbnail($groupid), 'medium');	?>
-						<?php echo nl2br(esc_html(get_the_content())); ?>
+						<p>
+							<?php echo nl2br(get_the_content()); ?>
+						</p>
 					</section>
 					<?php edit_post_link(__('Text bearbeiten','urstein'), '<div class="post-meta"><p class="post-edit">', '</p></div>'); ?>
 					

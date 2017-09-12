@@ -26,7 +26,7 @@
 					if(strlen($description) > 200){
 						$description = substr($description, 0,180) . "...\r\n> Mehr lesen";
 					}
-					echo nl2br(esc_html($description));
+					echo nl2br($description);
 					echo '</p>';
 				}
 			?>
