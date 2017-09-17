@@ -53,7 +53,6 @@
 					<?php endfor; ?>
 			    </div> <!-- /post-content -->
 			    <div class="clear"></div>
-			    <?php edit_post_link(__('Text bearbeiten','urstein'), '<div class="post-meta"><p class="post-edit">', '</p></div>'); ?>
 			</div> <!-- /post-inner -->
 			</div> <!-- /post-container -->
 		</div> <!-- /post -->

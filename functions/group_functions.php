@@ -80,7 +80,18 @@ function get_group_id_by_post($postid){
 	}
 	return false;
 }
-
+function get_the_group_name($groupid){
+	if(!is_numeric($groupid)){
+		return false;
+	}
+	$groupid = intval($groupid);
+	global $wpdb;
+	$result = $wpdb->get_results("SELECT title FROM groups WHERE id =" . $groupid .";");
+	return $result[0]->title;
+}
+function the_group_name($groupid){
+	echo get_the_group_name($groupid);
+}
 function the_group_url($groupid){
 	echo get_the_group_url($groupid);
 }

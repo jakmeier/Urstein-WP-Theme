@@ -10,6 +10,10 @@
 			</div>
 			<div class="post-inner">
 			    <div class="post-content">
+					<section class="description">
+						<?php echo nl2br(get_the_content()); ?>
+						<?php edit_post_link(__('Text bearbeiten','urstein'), '<p class="post-edit">', '</p>'); ?>
+					</section>
 					<section class="council">
 						<?php 
 							$displayed_ranks = array('Präsident', 'Vizepräsident', 'Kassier', 'Aktuar', 'Heim', 'Revisor', 'Bekleidung');
@@ -53,7 +57,6 @@
 		
 			    </div> <!-- /post-content -->
 			    <div class="clear"></div>
-			    <?php edit_post_link(__('Text bearbeiten','urstein'), '<div class="post-meta"><p class="post-edit">', '</p></div>'); ?>
 			</div> <!-- /post-inner -->
 			</div> <!-- /post-container -->
 		</div> <!-- /post -->

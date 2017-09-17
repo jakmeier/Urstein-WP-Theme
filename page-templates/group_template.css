@@ -16,9 +16,9 @@ section.group-media li
 }
 
 section.leaders {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 10px;
 }
 
 section.group-events {
@@ -46,8 +46,15 @@ section.group-events .feed-entry {
 	section.group-events {
 		grid-template-columns: 1fr;
 	}
+	section.leaders {
+		grid-template-columns: 1fr 1fr;
+	}
 }
-
+@media ( max-width: 600px ) {
+	section.leaders {
+		grid-template-columns: 1fr;
+	}
+}
 
 
 

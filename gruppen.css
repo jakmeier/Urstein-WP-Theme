@@ -2,17 +2,11 @@ section.groups-text {
 	margin-bottom: 25px;
 }
 section.group-list {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: flex-start;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 5px;
 }
 article.group {
-	display: block;
-	flex-grow: 1;
-	flex-basis: 0;
-	min-width: 33.33%;
-	max-width: 33.33%;
 	padding: 5px;
 	overflow-wrap: break-word;
 }
@@ -32,12 +26,13 @@ article.group p {
 
 /* Responsiveness */
 @media ( max-width: 900px ){
-
+	section.group-list {
+		grid-template-columns: 1fr 1fr;
+	}
 }
 @media ( max-width: 600px ){
-	article.group {
-		min-width: 100%;
-		max-width: 100%;
+	section.group-list {
+		grid-template-columns: 1fr;
 	}	
 	article.group h3 {
 		text-align: center;

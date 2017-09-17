@@ -87,9 +87,13 @@
 					<section class="leaders">
 						<?php 
 							$leaders = get_leaders($groupid);
-							$leaders = array_merge($leaders, get_division_leader(stufe_by_group($groupid)));
+							$div_leader = get_division_leader(stufe_by_group($groupid));
+							$leaders = array_merge($leaders, $div_leader);
 							if(is_array($leaders)) {
 								foreach($leaders as $leader) {
+									if(is_array($div_leader) && in_array($leader, $div_leader)){
+										set_query_var( 'display_rank', 'Stufenleitung' );
+									}
 									set_query_var( 'userid', $leader );
 									get_template_part( 'template-parts/user_avatar' );
 								}

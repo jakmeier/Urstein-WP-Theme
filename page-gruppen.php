@@ -37,11 +37,11 @@ get_header();
 								</a>
 								<a class="white-link" href="<?php the_group_url($id); ?>">
 									<p><?php 
-										$description = get_the_group_content($id);
+										$description = wp_strip_all_tags(get_the_group_content($id));
 										if(strlen($description) > 200){
-											$description = substr($description, 0,180) . "...\r\n> Mehr lesen";
+											$description = substr($description, 0,180) . "...\r\n&gt Mehr lesen";
 										}
-										echo nl2br($description);
+										echo $description;
 									?></p>
 								</a>
 							</article>

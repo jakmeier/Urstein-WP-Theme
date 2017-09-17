@@ -54,6 +54,7 @@ function additional_user_fields( $user ) {
 }
 add_action( 'show_user_profile', 'additional_user_fields' );
 add_action( 'edit_user_profile', 'additional_user_fields' );
+add_action( 'user_new_form', 'additional_user_fields' );
 
 // Save form content
 function save_group_mapping( $user_id ) {
@@ -68,6 +69,25 @@ function save_group_mapping( $user_id ) {
 }
 add_action( 'personal_options_update', 'save_group_mapping' );
 add_action( 'edit_user_profile_update', 'save_group_mapping' );
+
+// Display group in list view
+function new_modify_user_table( $column ) {
+    $column['group'] = 'Gruppe';
+    return $column;
+}
+add_filter( 'manage_users_columns', 'new_modify_user_table' );
+
+function new_modify_user_table_row( $val, $column_name, $user_id ) {
+    switch ($column_name) {
+        case 'group' :
+            return get_the_group_name(get_the_author_meta( 'group', $user_id ));
+            break;
+        default:
+    }
+    return $val;
+}
+add_filter( 'manage_users_custom_column', 'new_modify_user_table_row', 10, 3 );
+
 ?>
 
 
