@@ -284,4 +284,14 @@ function get_group_album($group){
 	// Default picture:
 	return false;
 }
+
+/* Get list of ids and names for groups that have an associated album */
+function groups_with_album(){
+	global $wpdb;
+	$result = $wpdb->get_results("SELECT `id`, `title` FROM `groups` WHERE `album` > 0;");
+	foreach ($result as $key=>$group){
+		$groups[$group->id] = $group->title;
+	}
+	return $groups;
+}
 ?>		

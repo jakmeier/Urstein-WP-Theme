@@ -8,3 +8,13 @@
 #save-action {
 	display: none;
 }
+
+/* Gallery UI simplification */
+#foogallery_settings.postbox , 
+#foogallery_customcss.postbox,
+#foogallery_pages.postbox,
+#foogallery_help.postbox,
+#foogallery_retina.postbox,
+#foogallery_sorting.postbox {
+	display: none;
+}
