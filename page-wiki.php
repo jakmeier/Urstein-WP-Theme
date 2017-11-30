@@ -9,13 +9,6 @@
 
 ?>
 <div class="content section-inner">		
-	<style>
-		.fact-list{
-			display: grid;
-			grid-template-columns: max-content auto;
-			grid-gap: 20px;
-		}
-	</style>
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>				
 		<div <?php post_class('post single'); ?>>
 			<div class="post-container">
@@ -25,10 +18,16 @@
 			</div>
 			<div class="post-inner">
 			    <div class="post-content">
+					<div class="fact-overview">
+						<?php 
+							foreach ($facts as $fact){
+								echo '<a class="listed-link" href="#fact' . $fact->ID . '">&gt; ' . esc_html($fact->post_title) . '</a>';
+						 } ?>
+					</div>
 					<div class="fact-list">
 						<?php 
 							foreach ($facts as $fact){
-								echo '<div class="fact-title">' . esc_html($fact->post_title) . '</div>';
+								echo '<div class="fact-title" id="fact' . $fact->ID . '">' . esc_html($fact->post_title) . '</div>';
 								echo '<div class="fact-content">' . nl2br(esc_html($fact->post_content)) . '<br>';
 								if ( has_post_thumbnail($fact->ID) ){
 									echo get_the_post_thumbnail($fact->ID, 'medium');

@@ -14,6 +14,9 @@
 	width: 100%;
 	height: auto;
 }
+div.the-image {
+	height: 100%;
+}
 .on-image{
 	position: absolute;
 	top: 0;

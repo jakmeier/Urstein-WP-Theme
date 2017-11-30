@@ -58,8 +58,23 @@ jQuery(document).ready(function($) {
 		resizeVideo(vidSelector);
 	});
 	
+	// Hide user information
+	$('.user-avatar .info-box').each(function(){
+		var el = $(this);
+		if(el.children().length > 3) {
+			var anker = el.children().first().next();
+			anker.nextAll().hide();
+			anker.after($('<a class="buttton">Mehr anzeigen<a/>'));
+			anker.next().click(displaySiblingAfter.bind(anker.next()));
+		}
+	});
+	
 });
-
+function displaySiblingAfter(){
+	var el = jQuery(this);
+	el.nextAll().show();
+	el.hide();
+}
 ( function( $ ) {
     $( document.body ).on( 'post-load', function () {
         $('.infinite-loader').remove();

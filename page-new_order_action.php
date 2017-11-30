@@ -60,12 +60,12 @@ get_header();
 			;
 		$headers = "From: " . $webmaster . "\r\n" .
 			"Reply-To: " . $email . "\r\n" .
+			"MIME-Version: 1.0" . "\r\n" .
 			"Content-Type: text/plain; charset=UTF-8\r\n" .
-			"Content-Transfer-Encoding: 8bit" .
 			"X-Mailer: PHP/" . phpversion() . "\r\n" ;
 			
 
-		$succes = mail($to, $subject, $message, $headers);
+		$succes = mail($to, '=?UTF-8?B?'.base64_encode($subject).'?=', $message, $headers);
 		if($succes) {
 			?>
 				<div class="post-header">

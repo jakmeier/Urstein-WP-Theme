@@ -56,7 +56,7 @@
 		<?php if($tel):
 			echo '<p>Telefon: ' . $tel . '</p>';
 		endif; ?>
-		<p><a href="mailto:<?php echo $email;?>">Schreibe eine E-Mail</a></p>
+		<p><a href="mailto:<?php echo $email;?>">E-Mail schreiben</a></p>
 	</div>
 </div>
 

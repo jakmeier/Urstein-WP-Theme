@@ -9,13 +9,6 @@
 
 ?>
 <div class="content section-inner">		
-	<style>
-		.downlaod-list{
-			display: grid;
-			grid-template-columns: max-content max-content;
-			grid-gap: 10px;
-		}
-	</style>
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>				
 		<div <?php post_class('post single'); ?>>
 			<div class="post-container">
@@ -28,10 +21,13 @@
 					<div class="downlaod-list">
 						<?php 
 							foreach ($downloads as $download){
+								echo '<div class="download-box">';
+								echo '<div class="download-title">' . esc_html($download->post_title) . '</div>';
 								$file = get_post_meta($download->ID, 'download', true);
 								set_query_var('file', $file);
 								get_template_part( 'template-parts/download_link' );
-								echo '<div class="download-title">' . esc_html($download->post_title) . '</div>';
+								echo '</div>';
+								
 						 } ?>
 					</div> <!-- camp-list --> 
 				</div> <!-- /post-content -->

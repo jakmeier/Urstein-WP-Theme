@@ -20,7 +20,7 @@
 			
 			
 			<?php 
-				$description = get_the_content();
+				$description = strip_shortcodes(strip_tags(get_the_content()));
 				if(strlen($description) > 0){
 					echo '<p class="archive-post-content">';
 					if(strlen($description) > 200){

@@ -4,7 +4,7 @@
 
 	Theme Name: Urstein
     Text Domain: urstein
-    Version: 1.04
+    Version: 2.00
 	Author: Jakob Meier	Description: Urstein is a theme created for the website www.pfadiherisau.ch. It uses the theme Hitchkock as a basis and various changes have been made to it. It is not just a theme in the traditional sense but more like a complete web app. In other words, it includes many features that typically belong in a seperate plugin. Furthermore, some addiontal tables in the database are necessary for the theme to work properly.			Information about Hitchkock theme:		Author: Anders Norén	
 	Author URI: http://www.andersnoren.se
     Theme URI: http://www.andersnoren.se/teman/hitchcock-wordpress-theme/
@@ -1291,6 +1291,40 @@ li span.simcal-event-title {
 	color: black;
     font-size: medium;
 }
+.qtip {
+	color: black;
+}
+
+/* Wiki */
+div.post-content .fact-overview {
+	display: grid;
+	grid-gap: 5px;
+    grid-template-columns: repeat(4, max-content);
+    justify-content: space-between;
+	margin-bottom: 20px;
+}
+
+div.post-content .fact-list{
+	display: grid;
+	grid-template-columns: max-content auto;
+	grid-gap: 20px;
+}
+div.post-content .fact-list > div {
+	margin-bottom: 10px;
+	margin-right: 10px;
+}
+div.post-content .fact-list .fact-title {
+	font-weight: 600;
+}
+.listed-link {
+	/*
+	display: list-item;
+    list-style-type: disc;
+    list-style-position: inside;
+	*/
+}
+
+
 
 /* -------------------------------------------------------------------------------- */
 /*	8. Comments
@@ -1849,6 +1883,24 @@ p.rank {
 }
 
 /* Download buttons */
+.downlaod-list{
+	display: grid;
+    justify-content: space-between;
+	grid-template-columns: 200px 200px 200px;
+	grid-auto-rows: 200px;
+	grid-gap: 10px;
+}
+
+.download-box {
+	padding: 15px;
+    background-color: black;
+    border-radius: 10px;
+    height: 100%;
+	text-align: center;
+}
+.download-box > div {
+	margin-bottom: 30px;
+}
 .download a {
 	font-size: 0.9em;
 	padding: 5px 7px;
@@ -2061,7 +2113,15 @@ p.rank {
 	.post-content p.pull.right,	
 	.post-content .alignright { margin-right: 0; }
 	
+	/* Wiki */
+	div.post-content .fact-overview {
+		grid-template-columns: repeat(3, max-content);
+	}
 	
+	/* Download buttons */
+	.downlaod-list{
+		grid-template-columns: 200px 200px;
+	}
 }
 
 
@@ -2177,6 +2237,32 @@ p.rank {
 	#infinite-handle,
 	.infinite-loader { margin-top: 5%; }
 	
+	/* Wiki */
+	div.post-content .fact-list{
+		grid-template-columns: 100%;
+	}
+	div.post-content .fact-overview {
+		display: block;
+		text-align: center;
+	}
+	div.post-content .fact-overview > a {
+		display: block;
+		margin: auto;
+	}
+	
+	/* Download buttons */
+	.downlaod-list{
+		display: block;
+	}
+	.download-box {
+		margin: auto;
+		margin-bottom: 30px;
+		padding: 15px;
+		background-color: black;
+		border-radius: 10px;
+		height: 200px;
+		width: 200px;
+	}
 }
 
 

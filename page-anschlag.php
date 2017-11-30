@@ -24,8 +24,7 @@ get_header(); ?>
 								$place = isset($meta['place']) ? get_the_title($meta['place'][0]) : false;
 								$place = $place ? esc_html($place) : 'Ort nicht verfügbar';
 			 ?>												<div class="stufen-cell">
-					<div class="the-image">
-					<img src="<?php the_group_image_url($id);?>">
+					<div class="the-image" style="background-color: <?php echo the_group_color($id); ?>;">
 						<div class="on-image">							<h3><a href="<?php echo get_permalink($event->ID); ?>"><?php echo $groupname;?></a></h3>							<div class="next-activity-box">							   <p> 
 								   Nächste Aktivität: <?php echo $title; ?><br>
 								   <?php echo $datetime . ' ' . $place?> <br>
@@ -36,8 +35,7 @@ get_header(); ?>
 					</div> <!--/the-image-->				</div> <!--/stufen cell-->				
 						<?php else:?>
 				<div class="stufen-cell">
-					
-					<img src="<?php the_group_image_url($id);?>">
+					<div class="the-image" style="background-color: <?php echo the_group_color($id); ?>;">
 						<div class="on-image">
 							<h3><a href="<?php the_group_url($id); ?>"><?php echo $groupname;?></a></h3>
 							<div class="next-activity-box">
@@ -47,7 +45,7 @@ get_header(); ?>
 							   </p>
 							</div> <!--/next-activity-box-->
 						</div> <!--/on-image-->
-					
+					</div> <!--/the-image-->
 				</div> <!--/stufen cell-->
 									<?php endif; endforeach; endif;?>
 							</div>			</div> <!-- /post-inner -->			</div> <!-- /post-container -->

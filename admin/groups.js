@@ -1,4 +1,14 @@
 jQuery(document).ready(function(){
+	
+	jQuery(function() {
+        jQuery('.color-field').wpColorPicker();
+		jQuery('.wp-picker-clear').css('display', 'none');
+		jQuery('.save-col-btn').click(function(e){
+			document.getElementById('group-pic-form').submit();
+		});
+		}
+	);
+	
 	// Images
 	jQuery('#group-pics-list label').click(function(e){
 		e.preventDefault();
@@ -14,7 +24,7 @@ jQuery(document).ready(function(){
 		var jqLabel = jQuery(this);
 		mediaUploader.on('select', function() {
 			var attachment = mediaUploader.state().get('selection').first().toJSON(); 
-			jqLabel.find('input[type=text]').first().val(attachment.id);
+			jqLabel.find('input[type=text].hidden').first().val(attachment.id);
 			 document.getElementById('group-pic-form').submit();
 		});
 		mediaUploader.open();

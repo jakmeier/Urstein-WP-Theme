@@ -26,8 +26,19 @@ function groups_with_events() {
 }	
 
 /*
+ * Stufen that have a own image for events
+ */
+function stufen_with_event_image() {
+	global $wpdb;
+	$result = $wpdb->get_results("SELECT `id`, `title` FROM `groups` WHERE `id` = 201;");
+	foreach ($result as $key=>$group){
+		$groups[$group->id] = $group->title;
+	}
+	return $groups;
+}	
+/*
  * Find all groups that belong to a group
- * At the moment, "Stufen" are not represented in the database,
+ * At the moment, "Stufen" are not completely represented in the database,
  * 0 means implicitly Biberstufe, 1 Wolfsstufe and so on
  */
 function groups_by_stufe($stufe){
@@ -110,6 +121,19 @@ function the_group_image_url($groupid){
 function get_the_group_image_url($groupid){
 	return wp_get_attachment_url(get_group_thumbnail($groupid));
 }
+function the_group_color($groupid){
+	echo get_the_group_color($groupid);
+}
+function get_the_group_color($groupid){
+	if(is_numeric($groupid)){
+		global $wpdb;
+		$result = $wpdb->get_results("SELECT `color` FROM `groups` WHERE `id` = $groupid;");
+		if(is_array($result) && isset($result[0]->color) && check_color($result[0]->color)){
+			return $result[0]->color;
+		}
+	}
+	return '#000000';
+}
 function the_group_content($groupid){
 	echo nl2br(esc_html(get_the_group_content($groupid)));
 }
@@ -134,9 +158,16 @@ function get_the_group_content($groupid){
 function get_group_thumbnail($groups){
 	//var_dump($groups);
 	if(is_array($groups)){
-		//TODO: Filter for special combinations (Puma + Cobra)
 		if(count($groups) == 1){
 			$groups = $groups[0];
+		}
+		// 1. Stufe
+		else if(groups_by_stufe(1) == $groups) {
+			global $wpdb;
+			$result = $wpdb->get_results("SELECT `image` FROM `groups` WHERE `id` = 201;");
+			if(is_array($result) && isset($result[0]->image) && intval($result[0]->image) > 0) {
+				return $result[0]->image;
+			}
 		}
 	}
 	if(is_numeric($groups)){
@@ -177,8 +208,43 @@ function db_save_group_image($postid, $img){
 	if($updated === false){
 		return false;
 	}
-	echo 'test';
 	return true;
+}
+
+// Save update for color
+function db_save_group_color($postid, $col){
+	$postid = intval($postid);
+	
+	if(!current_user_can('edit_groups')){
+		return false;
+	}
+	if(!check_color($col)){
+		return false;
+	}
+	global $wpdb;
+	$updated = $wpdb->update(
+			'groups', 
+			array( 'color' => strval($col) ),
+			array('id' => $postid),  
+			array ('%s'),
+			array ('%d')
+		);
+	if($updated === false){
+		return false;
+	}
+	return true;
+}
+
+/**
+ * Function that will check if value is a valid HEX color.
+ */
+function check_color( $value ) { 
+     
+    if ( preg_match( '/^#[a-f0-9]{6}$/i', $value ) ) { // if user insert a HEX color with #     
+        return true;
+    }
+     
+    return false;
 }
 
 // Save toggle for boolean has_event
@@ -294,4 +360,4 @@ function groups_with_album(){
 	}
 	return $groups;
 }
-?>		
+?>
