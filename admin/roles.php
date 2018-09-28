@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 function my_custom_roles() {
 	if ( is_admin() && isset($_GET['reload_caps']) && '1' == $_GET['reload_caps'] ) {
 		

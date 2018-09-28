@@ -44,13 +44,9 @@ function urstein_setup() {
 }// Display line breaks in all contentsfunction keep_breaks_in_content( $content ){	$content = nl2br($content);    return $content;}add_filter( 'the_content', 'keep_breaks_in_content', 0 );
 // Register and enqueue Javascript files
 function urstein_load_javascript_files() {
-	if ( !is_admin() ) { // scripts used on non-admin area only
-		wp_enqueue_script( 'urstein_flexslider', get_template_directory_uri().'/js/flexslider.js', array('jquery'), '', true );
+	if ( !is_admin() ) { // scripts used on non-admin area only		wp_enqueue_script( 'urstein_flexslider', get_template_directory_uri().'/js/flexslider.js', array('jquery'), '', true );
 		wp_enqueue_script( 'urstein_doubletaptogo', get_template_directory_uri().'/js/doubletaptogo.js', array('jquery'), '', true );
-		wp_enqueue_script( 'urstein_global', get_template_directory_uri().'/js/global.js', array('jquery'), '', true );		
-		/*if ( is_singular() ) { 
-			wp_enqueue_script( "comment-reply" );
-		}*/
+		wp_enqueue_script( 'urstein_global', get_template_directory_uri().'/js/global.js', array('jquery'), '', true );
 	}	if (is_singular('event') || is_singular('camp') || is_page('pfadiheim')){		wp_enqueue_script('search_ch_map', '//map.search.ch/api/map.js');	}
 }
 add_action( 'wp_enqueue_scripts', 'urstein_load_javascript_files' );
@@ -70,7 +66,7 @@ function urstein_add_editor_styles() {
     add_editor_style( str_replace( ',', '%2C', $font_url ) );
 }
 add_action( 'init', 'urstein_add_editor_styles' );
-// Add admin stylesfunction load_admin_styles() {	if ( is_admin() ) {		wp_enqueue_style( 'admin_style', get_template_directory_uri() . '/admin/admin-style.css');		wp_enqueue_style( 'admin_event', get_template_directory_uri() . '/admin/event.css');		wp_enqueue_style( 'admin_attendee', get_template_directory_uri() . '/admin/attendees.css');	}}  
+// Add admin stylesfunction load_admin_styles() {	if ( is_admin() ) {		wp_enqueue_style( 'admin_style', get_template_directory_uri() . '/admin/admin-style.css');		wp_enqueue_style( 'admin_event', get_template_directory_uri() . '/admin/event.css');		wp_enqueue_style( 'admin_attendee', get_template_directory_uri() . '/admin/attendees.css');				wp_enqueue_script('jquery_UI', '//ajax.aspnetcdn.com/ajax/jquery.ui/1.8.16/jquery-ui.min.js', array('jquery'), '', true );				wp_enqueue_script('timepicker_addon', get_template_directory_uri().'/js/jquery-ui-timepicker-addon.js', array('jquery', 'jquery_UI' ), '', true );		wp_enqueue_script('date_time_helper', get_template_directory_uri().'/js/datetime.js', array('jquery', 'jquery_UI' ), '', true );	}}  
 add_action( 'admin_enqueue_scripts', 'load_admin_styles' );
 // Check whether the browser supports javascript
 function html_js_class () {

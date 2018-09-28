@@ -12,7 +12,7 @@ function get_next_event($groupid) {
 			array(
 				'key' => 'end_time',
 				'value' => date('c'),
-				'compare' => '>'
+				'compare' => '>='
 			)
 		),
 		'order'     => 'ASC',
@@ -51,6 +51,33 @@ function get_previous_event($groupid) {
 	return $event ? $event[0] : false;
 }
 
+// Get the next event in the future (if any)
+function get_next_x_events($groupid, $number=1) {
+	$number = intval($number);
+	$args = array(
+		'post_type' => 'event',
+		'posts_per_page' => $number,
+		'meta_query' => array(
+			array(
+				'key' => 'group' . $groupid,
+				'value' => 1
+			),
+			array(
+				'key' => 'end_time',
+				'value' => date('c'),
+				'compare' => '>='
+			)
+		),
+		'order'     => 'ASC',
+		'meta_key' => 'start_time',
+		'orderby'   => 'meta_value',
+		'meta_type' => 'DATETIME'
+
+	);
+	$event = get_posts($args);
+	return $event ? array_slice($event, 0, $number) : false;
+}
+
 // Get the next camp in the future (if any)
 function get_next_camp($groupid) {
 	$args = array(
@@ -64,7 +91,7 @@ function get_next_camp($groupid) {
 			array(
 				'key' => 'end_date',
 				'value' => date('c'),
-				'compare' => '>'
+				'compare' => '>='
 			)
 		),
 		'order'     => 'ASC',

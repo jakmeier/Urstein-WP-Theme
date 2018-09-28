@@ -40,6 +40,12 @@ section.headline .fb a{
 	margin: 0px 0 10px;
 	font-size: 1.25em;
 }
+/* Jubiläum */
+section.anniversary {
+    background-color: #780000;
+    padding: 10px;
+    margin: 30px 0;
+}
 
 /* Responsiveness */
 @media ( max-width: 900px ){

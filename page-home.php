@@ -47,7 +47,13 @@ get_header(); ?>
 						</div>
 					</div>
 				</section> <!-- /Headline -->
-				
+				        
+        <section class="anniversary"> <!-- Jubiläum -->
+          <a href="jubilaeum">
+            <img src="<?php echo get_template_directory_uri() ?>/images/Logo_weiss1.png"/>
+          </a>
+        </section> <!-- Jubiläum -->
+        
 				<section> <!-- News Feed -->
 					<h1> Aktuelles </h1>					<?php
 						$news_args = array('fields' => 'ids', 'post_type' => array('news'), 'orderby' => array('date' => 'DESC'), 'posts_per_page' => 10 );
@@ -60,9 +66,12 @@ get_header(); ?>
 						$events = array();
 						if($groups){
 							foreach($groups as $id=>$groupname){
-								$event = get_next_event($id);
-								if($event) {
-									array_push($events, $event->ID);
+								$group_events = get_next_x_events($id, 1);
+								if($group_events) {
+									foreach($group_events as $event )
+										if($event->ID){
+											array_push($events, $event->ID);
+										}
 								}
 							}
 						}

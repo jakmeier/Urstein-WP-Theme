@@ -4,7 +4,7 @@
 
 	Theme Name: Urstein
     Text Domain: urstein
-    Version: 2.00
+    Version: 2.02
 	Author: Jakob Meier	Description: Urstein is a theme created for the website www.pfadiherisau.ch. It uses the theme Hitchkock as a basis and various changes have been made to it. It is not just a theme in the traditional sense but more like a complete web app. In other words, it includes many features that typically belong in a seperate plugin. Furthermore, some addiontal tables in the database are necessary for the theme to work properly.			Information about Hitchkock theme:		Author: Anders Norén	
 	Author URI: http://www.andersnoren.se
     Theme URI: http://www.andersnoren.se/teman/hitchcock-wordpress-theme/
@@ -98,7 +98,7 @@ body {
 }
 
 body a {
-	color: grey;
+	color: lightgrey;
 	text-decoration: none;
 }
 
@@ -220,16 +220,6 @@ input[type="button"],
 
 .main-menu > li + li { margin-left: 20px; }
 
-/*.main-menu > li + li:before {
-	content: "/";
-	font-size: 28px;
-	color: #fff;	opacity: 0.4;
-	position: absolute;
-	top: 40%;
-	margin-top: -7px;
-	left: -25px;
-}*/
-
 .main-menu a { 
 	display: block;
 	padding: 16px 0;
@@ -245,35 +235,6 @@ input[type="button"],
 .main-menu > li.menu-item-has-children > a,
 .main-menu > li.page_item_has_children > a { padding-right: 5px; }
 .main-menu .menu-item-has-children > a:after,
-/*.main-menu .page_item_has_children > a:after {
-	content: "";
-	display: block;
-	border: 4px solid transparent;
-	border-top-color: #999;
-	position: absolute;
-	top: 40%;
-	margin-top: -2px;
-	right: 0;
-}*/
-
-/*.main-menu > .menu-item-has-children > a:before,
-.main-menu > .page_item_has_children > a:before {
-	content: "";
-	display: block;
-	border: 6px solid transparent;
-	border-top-color: #1d1d1d;
-	position: absolute;
-	z-index: 10001;
-	left: 50%;
-	margin-left: -6px;
-	bottom: 0;
-}*//*
-
-.main-menu > .menu-item-has-children:hover > a:before,
-.main-menu > .page_item_has_children:hover > a:before { bottom: -12px; }
-.main-menu > .menu-item-has-children:hover > a:after,
-.main-menu > .page_item_has_children:hover > a:after { border-top-color: #fff; }*/
-
 
 /* Sub Menus --------------------------------------- */
 
@@ -574,7 +535,7 @@ input[type="button"],
 .archive-post-date {
 	margin-bottom: 5px;
 	font-size: 0.875em;
-	color: #999;
+	color: black;
 	text-transform: uppercase;
 }
 
@@ -636,7 +597,7 @@ input[type="button"],
 	font-size: 0.875em;
 	text-align: center;
 	text-transform: uppercase;
-	color: #999;
+	color: black;
 }
 
 .post-title {
@@ -673,7 +634,6 @@ input[type="button"],
 	overflow: hidden;
 	font-size: 0.9em;
 	text-transform: uppercase;
-	color: #999;
 }
 
 .page-links a,
@@ -706,12 +666,12 @@ input[type="button"],
 .post-meta { 
 	margin-top: 40px;
 	font-size: 14px;
-	color: #999;
+	color: lightgrey;
 }
 
 .post-meta p { line-height: 150%; }
 
-.post-meta a { color: #999; }
+.post-meta a { color: lightgrey; }
 .post-meta a:hover { 
 	color: #999;
 	text-decoration: underline; 
@@ -877,7 +837,6 @@ input[type="button"],
 
 
 .post-content { 
-	font-family: 'Droid Serif', Georgia, serif; 
 	color: #fff;
 	position: relative;
 }
@@ -1316,188 +1275,7 @@ div.post-content .fact-list > div {
 div.post-content .fact-list .fact-title {
 	font-weight: 600;
 }
-.listed-link {
-	/*
-	display: list-item;
-    list-style-type: disc;
-    list-style-position: inside;
-	*/
-}
 
-
-
-/* -------------------------------------------------------------------------------- */
-/*	8. Comments
-/* -------------------------------------------------------------------------------- */
-
-
-/* Comments Container --------------------------------------- */
-/*
-
-.comments-container { 
-	background: #fafafa; 
-	border-top: 1px solid #ddd;
-	margin-top: 20px;
-}
-
-.comments-inner,
-.comment-respond form {
-	width: 520px;
-	max-width: 85%;
-	padding-bottom: 80px;
-	margin: 0 auto;
-}
-
-.comments-inner { padding-bottom: 100px; }
-
-.comments-inner + .comment-respond { border-top: 1px solid #ddd; }
-*/
-
-/* Comments Title --------------------------------------- */
-/*
-
-.comments-title,
-.comment-reply-title { 
-	display: block;
-	margin: 0 auto 54px auto;
-	text-align: center;
-	position: relative;
-	top: -24px;
-}
-
-.comments-title .inner,
-.comment-reply-title .inner {
-	display: inline-block;
-	padding: 15px;
-	background: #ddd;
-	font-size: 15px;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	color: #666;
-	position: relative;
-}
-
-*/
-/* Comment --------------------------------------- */
-/*
-
-.commentlist div.comment { 
-	margin-top: 40px;
-	border-top: 1px solid #ddd;
-	padding-top: 40px;
-	position: relative;
-}
-
-.commentlist > li.comment:first-child > div.comment:first-child {  
-	margin-top: 0; 
-	border-top: none;
-	padding-top: 0;
-}
-
-.commentlist .children { padding-left: 7.7%; }
-
-.comment-title { 
-	margin-bottom: 21px; 
-	position: relative;
-	font-size: 1.125em;
-	font-weight: 700;
-	color: #333;
-	text-transform: uppercase;
-}
-
-.comment-title .url { color: #333; }
-
-.comment-title .url:hover { color: #f1f1f1; }
-
-.comment-title span {
-	margin-left: 10px;
-	font-size: 0.875rem;
-	font-weight: 400;
-	color: #999;
-}
-
-.comment-date-link { color: #999; }
-.comment-date-link:hover { color: #666; }
-
-.bypostauthor {}
-*/
-
-/* Comment Actions --------------------------------------- */
-
-/*
-.comment-actions { 
-	margin-top: 21px; 
-	font-size: 0.875em;
-	text-transform: uppercase;
-}
-
-.comment-actions a { color: #f1f1f1; }
-
-.comment-actions a + a { margin-left: 10px; }
-
-.comment-actions a:hover { 
-	color: #f1f1f1;
-	text-decoration: underline; 
-}
-
-.comment-awaiting-moderation { color: #999; }
-
-*/
-/* Pingbacks --------------------------------------- */
-
-/*
-.comments .pingbacks {
-	margin-top: 40px;
-	border-top: 1px solid #ddd;
-	padding-top: 40px;
-}
-
-.pingbacks-title {
-	margin-bottom: 15px;
-	font-size: 0.875em;
-	font-weight: 700;
-	color: #333;
-	text-transform: uppercase;
-}
-
-.comments .pingbacks li {
-	padding: 12px 0;
-	border-bottom: 1px dotted #ddd;
-}
-
-.comments .pingbacks li:first-child { border-top: 1px dotted #ddd; }
-
-.comments .pingbacks li .url {
-	line-height: 140%;
-	color: #666;
-}
-
-.comments .pingbacks li .comment-edit-link {
-	margin-left: 4px;
-	font-size: 0.7em;
-	font-weight: 700;
-	text-transform: uppercase;
-	color: #999;
-}
-
-.comments .pingbacks li a:hover { color: #f1f1f1; }
-
-*/
-/* Comment navigation --------------------------------------- */
-/*
-
-.comments-nav {
-	padding-top: 40px;
-	border-top: 1px solid #ddd;
-	margin-top: 40px;
-	font-size: 14px;
-	text-transform: uppercase;
-}
-
-.comments-nav a { color: #999; }
-.comments-nav a:hover { color: #666; }
-
-*/
 /* -------------------------------------------------------------------------------- */
 /*	9. Respond
 /* -------------------------------------------------------------------------------- */
@@ -1828,17 +1606,11 @@ article.feed-entry .entry-image{
 }
 article.feed-entry .entry-image img{
 	height: auto;
-    border-radius: 15px;
+  border-radius: 15px;
 	max-height: 100%;
 	max-width: 100%;
 }
-article.feed-entry .entry-text{
-	/*display: inline-flex;
-	-webkit-flex-direction: column;
-   flex-direction: column;
-   -webkit-justify-content: flex-start;
-   justify-content: flex-start;*/
-}
+
 @media ( max-width: 400px ) {
 	article.feed-entry {
 		display: flex;
@@ -1860,10 +1632,9 @@ div.user-avatar {
 	flex-direction: row;
 }
 div.user-avatar img {
-	width: auto;
-	height: auto;
-	max-height: 96px;
-	max-width: 96px;
+  height: 96px;
+  width: 96px;
+  object-fit: cover;
 }
 div .user-avatar .info-box {
 	display: block;
@@ -1918,6 +1689,26 @@ p.rank {
 	height: 16px;
 	font-size: 16px;
 }
+
+/*
+Jubilaeum 
+Jubiläum
+Anniversary
+*/
+section.anniversary div {
+  margin: 0 auto 50px;
+}
+
+section.anniversary p {
+  text-align: center;
+  margin: 5px 7px 10px 0;
+}
+
+section.anniversary p#age {
+  font-size: larger;
+  margin-top: 20px;
+}
+
 
 /* -------------------------------------------------------------------------------- */
 /*	15. Responsive
@@ -2319,31 +2110,6 @@ p.rank {
 	.post-inner { 
 		max-width: 90%;
 	}
-	
-	/* Post Content --------------------------------------- */	
-	
-	/*
-	input[type="text"],
-	input[type="email"],
-	input[type="tel"],
-	input[type="url"],
-	input[type="password"],
-	textarea {
-		padding: 13px 15px;
-	}*/
-
-	
-	
-	/* Comments --------------------------------------- */	
-	
-	
-	.comment-title { font-size: 1em; }
-	
-	.comment-title span { 
-		margin-left: 5px;
-		font-size: 0.75rem; 
-	}
-	
 	
 	/* Pagination --------------------------------------- */	
 	
