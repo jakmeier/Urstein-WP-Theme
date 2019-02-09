@@ -14,35 +14,14 @@ function urstein_setup() {
 	// Post thumbnails
 	add_theme_support( 'post-thumbnails' );
 	add_image_size( 'post-image', 1240, 9999 );
-	add_image_size( 'post-thumb', 508, 9999 );
+	add_image_size( 'post-thumb', 508, 9999 );
 	// Title tag
 	add_theme_support( 'title-tag' );
 	
-	// Custom header
-	/*$args = array(
-		'width'         => 1920,
-		'height'        => 1080,
-		'default-image' => get_template_directory_uri() . '/images/bg.jpg',
-		'uploads'       => true,
-		'header-text'  	=> false
-	);
-	add_theme_support( 'custom-header', $args );*/
-	
-	// Post formats
-	//add_theme_support( 'post-formats', array( 'gallery' ) );
-		
-	// Jetpack infinite scroll
-	/*add_theme_support( 'infinite-scroll', array(
-		'type' 				=> 		'click',
-	    'container'			=> 		'posts',
-	    'wrapper'			=>		false,
-		'footer' 			=> 		false,
-	) );*/
-	
 	// Add nav menu
 	register_nav_menu( 'primary', __('Primary Menu','urstein') );
-}// Display line breaks in all contentsfunction keep_breaks_in_content( $content ){	$content = nl2br($content);    return $content;}add_filter( 'the_content', 'keep_breaks_in_content', 0 );
-// Register and enqueue Javascript files
+}
+// Register and enqueue Javascript files
 function urstein_load_javascript_files() {
 	if ( !is_admin() ) { // scripts used on non-admin area only		wp_enqueue_script( 'urstein_flexslider', get_template_directory_uri().'/js/flexslider.js', array('jquery'), '', true );
 		wp_enqueue_script( 'urstein_doubletaptogo', get_template_directory_uri().'/js/doubletaptogo.js', array('jquery'), '', true );
@@ -257,4 +236,4 @@ add_action( 'wp_head' , array( 'urstein_Customize' , 'urstein_header_output' ) )
 // Enqueue live preview javascript in Theme Customizer admin screen
 add_action( 'customize_preview_init' , array( 'urstein_Customize' , 'urstein_live_preview' ) );// Some utility functions
 function get_auto_increment(){	static $counter = 0;	return $counter++;}
-?>
+/* ---------------------------------------------------------------------------------------------   SPECIFY GUTENBERG SUPPORT (copied update from Hitchcock theme)------------------------------------------------------------------------------------------------ */if ( ! function_exists( 'urstein_add_gutenberg_features' ) ) :	function urstein_add_gutenberg_features() {		/* Gutenberg Features --------------------------------------- */		add_theme_support( 'align-wide' );		/* Gutenberg Palette --------------------------------------- */		$accent_color = get_theme_mod( 'accent_color' ) ? get_theme_mod( 'accent_color' ) : '#3bc492';		add_theme_support( 'editor-color-palette', array(			array(				'name' 	=> _x( 'Accent', 'Name of the accent color in the Gutenberg palette', 'urstein' ),				'slug' 	=> 'accent',				'color' => $accent_color,			),			array(				'name' 	=> _x( 'Black', 'Name of the black color in the Gutenberg palette', 'urstein' ),				'slug' 	=> 'black',				'color' => '#1d1d1d',			),			array(				'name' 	=> _x( 'Dark Gray', 'Name of the dark gray color in the Gutenberg palette', 'urstein' ),				'slug' 	=> 'dark-gray',				'color' => '#555',			),			array(				'name' 	=> _x( 'Medium Gray', 'Name of the medium gray color in the Gutenberg palette', 'urstein' ),				'slug' 	=> 'medium-gray',				'color' => '#777',			),			array(				'name' 	=> _x( 'Light Gray', 'Name of the light gray color in the Gutenberg palette', 'urstein' ),				'slug' 	=> 'light-gray',				'color' => '#999',			),			array(				'name' 	=> _x( 'White', 'Name of the white color in the Gutenberg palette', 'urstein' ),				'slug' 	=> 'white',				'color' => '#fff',			),		) );		/* Gutenberg Font Sizes --------------------------------------- */		add_theme_support( 'editor-font-sizes', array(			array(				'name' 		=> _x( 'Small', 'Name of the small font size in Gutenberg', 'urstein' ),				'shortName' => _x( 'S', 'Short name of the small font size in the Gutenberg editor.', 'urstein' ),				'size' 		=> 14,				'slug' 		=> 'small',			),			array(				'name' 		=> _x( 'Regular', 'Name of the regular font size in Gutenberg', 'urstein' ),				'shortName' => _x( 'M', 'Short name of the regular font size in the Gutenberg editor.', 'urstein' ),				'size' 		=> 16,				'slug' 		=> 'regular',			),			array(				'name' 		=> _x( 'Large', 'Name of the large font size in Gutenberg', 'urstein' ),				'shortName' => _x( 'L', 'Short name of the large font size in the Gutenberg editor.', 'urstein' ),				'size' 		=> 21,				'slug' 		=> 'large',			),			array(				'name' 		=> _x( 'Larger', 'Name of the larger font size in Gutenberg', 'urstein' ),				'shortName' => _x( 'XL', 'Short name of the larger font size in the Gutenberg editor.', 'urstein' ),				'size' 		=> 26,				'slug' 		=> 'larger',			),		) );	}	add_action( 'after_setup_theme', 'urstein_add_gutenberg_features' );endif;/* ---------------------------------------------------------------------------------------------   GUTENBERG EDITOR STYLES   --------------------------------------------------------------------------------------------- */if ( ! function_exists( 'urstein_block_editor_styles' ) ) :	function urstein_block_editor_styles() {		$dependencies = array();		/**		 * Translators: If there are characters in your language that are not		 * supported by the theme fonts, translate this to 'off'. Do not translate		 * into your own language.		 */		$google_fonts = _x( 'on', 'Google Fonts: on or off', 'urstein' );		if ( 'off' !== $google_fonts ) {			// Register Google Fonts			wp_register_style( 'urstein-block-editor-styles-font', '//fonts.googleapis.com/css?family=Montserrat:400,400italic,50,500,600,700,700italic|Droid+Serif:400,400italic,700,700italic', false, 1.0, 'all' );			$dependencies[] = 'urstein-block-editor-styles-font';		}		// Enqueue the editor styles		wp_enqueue_style( 'urstein-block-editor-styles', get_theme_file_uri( '/urstein-gutenberg-editor-style.css' ), $dependencies, '1.0', 'all' );	}	add_action( 'enqueue_block_editor_assets', 'urstein_block_editor_styles', 1 );endif;?>
