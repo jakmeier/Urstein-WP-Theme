@@ -19,7 +19,7 @@ get_header();
 			<div class="post-inner">
 			    <div class="post-content">
 					<section class="groups-text">
-						<?php echo nl2br(get_the_content()); ?>
+						<?php the_content(); ?>
 						<?php edit_post_link(__('Diesen Text bearbeiten','urstein'), '<div class="post-meta"><p class="post-edit">', '</p></div>'); ?>
 					</section>
 					<section class="group-list">

@@ -1,6 +1,7 @@
 section.group-text {
 	display: grid;
 	grid-template-columns: 3fr 5fr;
+  grid-gap: 25px;
 }
 section.group-text img {
 	margin: 0 20px 20px 0 ;

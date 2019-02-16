@@ -1,6 +1,6 @@
 <div class="credits section-inner">
 			
-	<p>&copy; <?php echo date('Y'); ?> <a href="<?php echo esc_url( home_url() ); ?>"><?php bloginfo('name'); ?></a></p>	<p><a href="impressum">Impressum</a></p>
+	<p>&copy; <?php echo date('Y'); ?> <a href="<?php echo esc_url( home_url() ); ?>"><?php bloginfo('name'); ?></a></p>	<p><a href="<?php echo esc_url( home_url() ); ?>/impressum">Impressum</a></p>
 	
 	<div class="clear"></div>
 	
