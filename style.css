@@ -4,8 +4,16 @@
 
 	Theme Name: Urstein-Gutenberg
     Text Domain: urstein
-    Version: 3.01
-	Author: Jakob Meier	Description: Urstein is a theme created for the website www.pfadiherisau.ch. It uses the theme Hitchkock as a basis and various changes have been made to it. It is not just a theme in the traditional sense but more like a complete web app. In other words, it includes many features that typically belong in a seperate plugin. Furthermore, some addiontal tables in the database are necessary for the theme to work properly.			Information about Hitchkock theme:		Author: Anders Norén	
+    Version: 3.02
+	Author: Jakob Meier
+
+	Description: Urstein is a theme created for the website www.pfadiherisau.ch. It uses the theme Hitchkock as a basis and various changes have been made to it. It is not just a theme in the traditional sense but more like a complete web app. In other words, it includes many features that typically belong in a seperate plugin. Furthermore, some addiontal tables in the database are necessary for the theme to work properly.
+	
+	
+	Information about Hitchkock theme:
+	
+	Author: Anders Norén
+	
 	Author URI: http://www.andersnoren.se
     Theme URI: http://www.andersnoren.se/teman/hitchcock-wordpress-theme/
 	Description: Hitchcock is a minimal portfolio theme for designers, photographers and other creatives. It features a beautiful responsive design, a social icon menu, Jetpack infinite scroll, custom accent color, custom header image, support for the gallery post format, editor styling and much more. 
@@ -223,7 +231,8 @@ input[type="button"],
 .main-menu a { 
 	display: block;
 	padding: 16px 0;
-	font-size: 20px;	font-weight: 500;
+	font-size: 20px;
+	font-weight: 500;
 	color: #fff;
 	text-transform: uppercase;
 	position: relative;
@@ -263,7 +272,8 @@ input[type="button"],
 .main-menu ul a {
 	display: block;
 	padding: 16px;
-	font-size: 18px;	font-weight: normal;
+	font-size: 18px;
+	font-weight: normal;
 	line-height: 130%;
 	text-align: center;
 	text-transform: none;
@@ -953,7 +963,6 @@ code, kbd, pre {
 
 .post-content .highlight {
 	background: #fcf8a5;
-	width: auto;
 	display: inline;
 	padding: 2px 3px;
 }
@@ -1163,7 +1172,7 @@ tbody > tr:nth-child(odd) { background-color: #f6f6f6; }
 label { 
 	font-family: 'Montserrat', 'Helvetica Neue', 'Helvetica', sans-serif;
 	font-size: 14px; 
-	color: #999;
+	color: #d7d7d7;
 	text-transform: uppercase;
 }
 
@@ -2113,8 +2122,6 @@ section.anniversary p#age {
 	
 	/* Pagination --------------------------------------- */	
 	
-	
-	.page-title p { font-size:  }
 	
 	.page-title h4 { font-size: 1.25em; }
 	

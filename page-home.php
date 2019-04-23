@@ -55,7 +55,8 @@ get_header(); ?>
         </section> <!-- Jubiläum -->
         
 				<section> <!-- News Feed -->
-					<h1> Aktuelles </h1>					<?php
+					<h1> Aktuelles </h1>
+					<?php
 						$news_args = array('fields' => 'ids', 'post_type' => array('news'), 'orderby' => array('date' => 'DESC'), 'posts_per_page' => 10 );
 						$news = new WP_Query( $news_args );
 						
@@ -66,7 +67,7 @@ get_header(); ?>
 						$events = array();
 						if($groups){
 							foreach($groups as $id=>$groupname){
-								$group_events = get_next_x_events($id, 1);
+								$group_events = get_next_x_events($id, 2);
 								if($group_events) {
 									foreach($group_events as $event )
 										if($event->ID){
@@ -78,7 +79,13 @@ get_header(); ?>
 
 						$displayIDs = array_merge($news->posts, $camps->posts, $events);
 
-						$args = array('post__in' => $displayIDs, 'post_type' => array('news', 'event', 'camp'), 'orderby' => array('date' => 'DESC'));
+						$args = array(
+							'post__in' => $displayIDs, 
+							'post_type' => array('news', 'event', 'camp'), 
+							'orderby' => array('date' => 'DESC'),
+							'date_query' => array(
+								'after' => date('Y-m-d', strtotime('-60 days')))
+						);
 						$loop = new WP_Query($args);
 						
 						while ( $loop->have_posts() ) {
@@ -89,12 +96,16 @@ get_header(); ?>
 					?>
 				</section> <!-- /News Feed -->
 			    </div> <!-- /post-content -->
-			    <div class="clear"></div>
+			    <div class="clear"></div>
+
 			    
 				
 				
-			</div> <!-- /post-inner -->			</div> <!-- /post-container -->
-		</div> <!-- /post -->
+			</div> <!-- /post-inner -->
+			</div> <!-- /post-container -->
+
+		</div> <!-- /post -->
+
 
 	<?php endwhile; ?>
 	<div class="clear"></div>	
