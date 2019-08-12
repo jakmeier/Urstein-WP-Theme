@@ -1,4 +1,15 @@
 <?php get_header(); ?>
+<style>
+	.leaflet-map {height: 400px !important;}
+	.leaflet-popup .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+		background: none;
+		color: #000;
+		box-shadow: none;
+		font-weight: bolder;
+		font-size: larger;
+	}
+	.leaflet-popup .leaflet-popup-tip-container{display:none}
+</style>
 <div class="content section-inner">		
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>				
 		<div <?php post_class('post single'); ?>>
@@ -41,4 +52,4 @@
 	<?php endif; ?>
 	<div class="clear"></div>
 </div> <!-- /content -->
-<?php get_footer(); ?>
+<?php get_footer(); ?>leaflet-map
