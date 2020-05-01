@@ -13,13 +13,18 @@
 					<h2>Abteilungsleitung</h2>
 					<section class="leaders">	
 						<?php
-							$president = get_users(
+							$presidents = get_users(
 								array(
 									'role' => 'president',
 									'fields' => array( 'ID' )
 								));
-							set_query_var( 'userid', $president[0]->ID );
-							get_template_part( 'template-parts/user_avatar' );
+							if(is_array($presidents)){
+								foreach($presidents as $president) {
+									set_query_var( 'userid', $president->ID );
+									get_template_part( 'template-parts/user_avatar');
+								}
+							}
+
 						?>
 					</section>
 					<?php 

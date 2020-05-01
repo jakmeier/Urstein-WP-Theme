@@ -120,8 +120,9 @@ if(!function_exists('create_download_post_type')):
 	add_action('save_post','download_post_save_meta',1,2);
 	
 	// Clean deletion
-	function delete_download_post($post_id, $post){
-		if(get_post_type($post) === 'download'){
+	function delete_download_post($post_id){
+
+		if(get_post_type($post_id) === 'download'){
 			$file = get_post_meta($post->ID, 'download', true);
 			if(isset($file['file'])){
 				//Note: pontentially uncaught error

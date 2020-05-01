@@ -47,12 +47,6 @@ get_header(); ?>
 						</div>
 					</div>
 				</section> <!-- /Headline -->
-				        
-        <section class="anniversary"> <!-- Jubiläum -->
-          <a href="jubilaeum">
-            <img src="<?php echo get_template_directory_uri() ?>/images/Logo_weiss1.png"/>
-          </a>
-        </section> <!-- Jubiläum -->
         
 				<section> <!-- News Feed -->
 					<h1> Aktuelles </h1>
