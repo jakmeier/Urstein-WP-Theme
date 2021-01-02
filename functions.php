@@ -117,6 +117,19 @@ function urstein_load_javascript_files() {
 add_action( 'wp_enqueue_scripts', 'urstein_load_javascript_files' );
 
 
+function service_worker_header() {
+	header('Service-Worker-Allowed: /');
+}
+
+// Add service worker registration to <head>
+function register_service_worker () {
+	$service_worker_url =  get_template_directory_uri().'/js/service_worker.js';
+	echo "<script>navigator.serviceWorker.register('$service_worker_url', { scope: '/' })</script>";
+	// The scope '/' for a file from a theme directory requires an additional HTTP header
+	add_action( 'send_headers', 'service_worker_header' );
+}
+add_action ( 'wp_head', 'register_service_worker' );
+
 // Register and enqueue styles
 function urstein_load_style() {
 	if ( !is_admin() ) {

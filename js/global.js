@@ -1,32 +1,4 @@
 jQuery(document).ready(function($) {
-	
-  // Jubiläum 
-  function refreshAnniversary(){
-    var seconds = (new Date().getTime() - new Date(2018-1,8-1,31-0).getTime()) / 1000;
-    var y = 98 + Math.floor( seconds / 31536000);
-    var d = Math.floor((seconds % 31536000) / 86400);
-    var h = Math.floor((seconds % 86400) / 3600);
-    var m = Math.floor((seconds % 3600) / 60);
-    var s = Math.floor(seconds % 60);
-    var age = y + " Jahre ";
-        if (d > 0) {
-      age = age + d + " Tage "
-    }
-    if (h > 0) {
-      age = age + h + " Stunden "
-    }
-    if (m > 0) {
-      age = age + m + " Minuten "
-    }
-    if (s > 0) {
-      age = age + s + " Sekunden"
-    }
-    $("p#age").html(age);
-    setTimeout(refreshAnniversary, 1000);
-  }
-  
-  refreshAnniversary();
-  
 	// Enable dropdown menus on touch devices
 	$( '.main-menu li:has(ul)' ).doubleTapToGo();
 	
