@@ -172,7 +172,9 @@ if(!function_exists('create_camp_post_type')):
 					wp_die("Die Anmeldung konnte nicht hochgeladen werden");
 				} else {
 					$file = get_post_meta($post->ID, 'signup_sheet', true);
-					unlink($file['file']); // Note: Potentially uncaught error
+					if(is_array($file) && array_key_exists('file', $file) && file_exists($file['file'])) {
+						unlink($file['file']); // Note: Potentially uncaught error
+					}
 					$camp_post_meta['signup_sheet'] = wp_slash($upload);
 				}
 			} else {

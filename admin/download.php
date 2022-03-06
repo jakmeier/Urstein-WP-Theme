@@ -85,7 +85,10 @@ if(!function_exists('create_download_post_type')):
 					wp_die("Die Datei konnte nicht hochgeladen werden");
 				} else {
 					$file = get_post_meta($post->ID, 'download', true);
-					unlink($file['file']); // Note: Potentially uncaught error
+					// If file is updated, delete old
+					if(is_array($file) && array_key_exists('file', $file) && file_exists($file['file'])) {
+						unlink($file['file']); // Note: Potentially uncaught error
+					}
 					$download_post_meta['download'] = wp_slash($upload);
 				}
 			} else {
@@ -123,7 +126,7 @@ if(!function_exists('create_download_post_type')):
 	function delete_download_post($post_id){
 
 		if(get_post_type($post_id) === 'download'){
-			$file = get_post_meta($post->ID, 'download', true);
+			$file = get_post_meta($post_id, 'download', true);
 			if(isset($file['file'])){
 				//Note: pontentially uncaught error
 				unlink($file['file']);
