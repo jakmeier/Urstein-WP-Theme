@@ -171,7 +171,7 @@ if(!function_exists('create_camp_post_type')):
 				if(isset($upload['error']) && $upload['error'] != 0){
 					wp_die("Die Anmeldung konnte nicht hochgeladen werden");
 				} else {
-					$file = unserialize(get_post_meta($post->ID, 'signup_sheet', true));
+					$file = get_post_meta($post->ID, 'signup_sheet', true);
 					unlink($file['file']); // Note: Potentially uncaught error
 					$camp_post_meta['signup_sheet'] = wp_slash($upload);
 				}

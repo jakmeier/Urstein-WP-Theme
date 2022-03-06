@@ -84,7 +84,7 @@ if(!function_exists('create_download_post_type')):
 				if(isset($upload['error']) && $upload['error'] != 0){
 					wp_die("Die Datei konnte nicht hochgeladen werden");
 				} else {
-					$file = unserialize(get_post_meta($post->ID, 'download', true));
+					$file = get_post_meta($post->ID, 'download', true);
 					unlink($file['file']); // Note: Potentially uncaught error
 					$download_post_meta['download'] = wp_slash($upload);
 				}
