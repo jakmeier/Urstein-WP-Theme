@@ -41,8 +41,10 @@ function my_custom_roles() {
 			array(
 				'read' => true,  
 				'edit_pages' => true,
+				'edit_posts' => true,
 				'publish_pages' => true,
 				'edit_others_pages' => true,
+				'edit_others_posts' => true,
 				'edit_published_pages' => true,
 				'delete_pages' => false, //otherwise they could delete home or something...
 				'upload_files' => true,
@@ -76,8 +78,10 @@ function my_custom_roles() {
 			array(
 				'read' => true,  
 				'edit_pages' => true,
+				'edit_posts' => true,
 				'publish_pages' => true,
 				'edit_others_pages' => true,
+				'edit_others_posts' => true,
 				'edit_published_pages' => true,
 				'delete_pages' => false, //otherwise they could delete home or something...
 				'upload_files' => true,
@@ -111,8 +115,10 @@ function my_custom_roles() {
 			array(
 				'read' => true,  
 				'edit_pages' => true,
+				'edit_posts' => true,
 				'publish_pages' => true,
 				'edit_others_pages' => true,
+				'edit_others_posts' => true,
 				'edit_published_pages' => true,
 				'delete_pages' => false, //otherwise they could delete home or something...
 				'upload_files' => true,
@@ -148,6 +154,7 @@ function my_custom_roles() {
 				'edit_pages' => true, // The webshop page should be editable
 				'publish_pages' => true,
 				'edit_others_pages' => true,
+				'edit_others_posts' => true,
 				'edit_published_pages' => true,
 				'delete_pages' => false,
 				'upload_files' => true,
@@ -181,8 +188,10 @@ function my_custom_roles() {
 			array(
 				'read' => true,  
 				'edit_pages' => true,
+				'edit_posts' => true,
 				'publish_pages' => true,
 				'edit_others_pages' => true,
+				'edit_others_posts' => true,
 				'edit_published_pages' => true,
 				'delete_pages' => false,
 				'upload_files' => true, 
@@ -213,6 +222,7 @@ function my_custom_roles() {
 				'edit_pages' => true, // The elternrat page should be editable
 				'publish_pages' => true,
 				'edit_others_pages' => true,
+				'edit_others_posts' => true,
 				'edit_published_pages' => true,
 				'delete_pages' => false,
 				'upload_files' => true, // to change the Elternrat page image
