@@ -39,7 +39,8 @@ section.headline .fb a{
 .post-content h3{
 	margin: 0px 0 10px;
 	font-size: 1.25em;
-}
+}
+
 /* Jubiläum */
 section.anniversary {
     padding: 10px;
@@ -83,7 +84,7 @@ section.anniversary {
 		width: 33.33%;
 	}
 }
-@media ( max-width: 400px ) {
+@media ( max-width: 500px ) {
 	.quick-links-list span{
 		width: 50%;
 	}

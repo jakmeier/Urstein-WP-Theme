@@ -65,7 +65,7 @@ a.post-edit-link {
 	}
 }
 
-@media ( max-width: 400px ) {
+@media ( max-width: 500px ) {
 	/* Integrated JS SearchCH map */
 	div.map-container {
 		height: 80vh;

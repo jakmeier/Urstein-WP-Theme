@@ -14,5 +14,5 @@ section.council {
 @media ( max-width: 600px ) {
 	section.council { grid-template-columns: 1fr; }
 }
-@media ( max-width: 400px ){	
+@media ( max-width: 500px ){	
 }

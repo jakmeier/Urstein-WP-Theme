@@ -68,7 +68,7 @@ section.order-info input[type=submit] {
 		margin: 0 20px 10px 0;
 	}
 }
-@media ( max-width: 400px ) {
+@media ( max-width: 500px ) {
 	img.item{
 		width: 100px;
 		height: 100px;

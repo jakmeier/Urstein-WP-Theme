@@ -11,5 +11,5 @@ section.leaders {
 @media ( max-width: 750px ) {
 	section.leaders { grid-template-columns: 1fr; }
 }
-@media ( max-width: 400px ){	
+@media ( max-width: 500px ){	
 }

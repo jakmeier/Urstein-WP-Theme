@@ -1620,7 +1620,7 @@ article.feed-entry .entry-image img{
 	max-width: 100%;
 }
 
-@media ( max-width: 400px ) {
+@media ( max-width: 500px ) {
 	article.feed-entry {
 		display: flex;
 		flex-wrap: wrap;
@@ -2066,7 +2066,7 @@ section.anniversary p#age {
 }
 
 
-@media ( max-width: 400px ) {
+@media ( max-width: 500px ) {
 
 	.header.section-inner { 
 		max-width: 95%; 
