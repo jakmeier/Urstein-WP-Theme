@@ -30,6 +30,7 @@ jobs:
             User $SSH_USER
             IdentityFile ~/.ssh/deploy.key
             StrictHostKeyChecking no
+            IdentitiesOnly yes
           END
         env:
           SSH_KEY: ${{ secrets.DEPLOY_KEY }}
