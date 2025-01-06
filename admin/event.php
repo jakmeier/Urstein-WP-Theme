@@ -41,7 +41,8 @@ if (!function_exists('create_event_post_type')):
 			),
 			'hierarchical' => false,
 			'supports' => array(
-				'thumbnail'
+				'thumbnail',
+				'custom-fields'
 			),
 			'menu_position' => 7,
 			'register_meta_box_cb' => 'add_event_post_type_metabox'
