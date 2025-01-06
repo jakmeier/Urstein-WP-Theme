@@ -34,7 +34,8 @@ if (!function_exists('create_camp_post_type')):
 			),
 			'hierarchical' => false,
 			'supports' => array(
-				'thumbnail'
+				'thumbnail',
+				'custom-fields'
 			),
 			'menu_position' => 7,
 			'register_meta_box_cb' => 'add_camp_post_type_metabox'
@@ -292,6 +293,38 @@ if (!function_exists('create_camp_post_type')):
 		return $vars;
 	}
 	add_filter('request', 'sort_date_camp');
+
+	function register_camp_meta()
+	{
+		register_post_meta('camp', 'start_date', [
+			'type'         => 'string',
+			'description'  => 'Start date of the camp',
+			'single'       => true,
+			'show_in_rest' => true,
+		]);
+
+		register_post_meta('camp', 'end_date', [
+			'type'         => 'string',
+			'description'  => 'End date of the camp',
+			'single'       => true,
+			'show_in_rest' => true,
+		]);
+
+		register_post_meta('camp', 'description', [
+			'type'         => 'string',
+			'description'  => 'Description of the camp',
+			'single'       => true,
+			'show_in_rest' => true,
+		]);
+
+		register_post_meta('camp', 'place', [
+			'type'         => 'integer', // post ID
+			'description'  => 'Where the camp is held',
+			'single'       => true,
+			'show_in_rest' => true,
+		]);
+	}
+	add_action('init', 'register_camp_meta');
 
 endif;
 ?>
