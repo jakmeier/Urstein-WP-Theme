@@ -1,0 +1,45 @@
+name: Deploy Theme
+
+on:
+  push:
+    branches: [master]
+
+env:
+  SSH_USER: ${{ secrets.SSH_USER }}
+  SSH_HOST: ${{ secrets.SSH_HOST }}
+  THEME_PATH: ${{ secrets.THEME_PATH }}
+
+jobs:
+  deploy:
+    name: Deploy WordPress Theme to Test Host
+    runs-on: ubuntu-latest
+    environment: staging
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set SSH Connection
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/deploy.key
+          chmod 600 ~/.ssh/deploy.key
+          cat >>~/.ssh/config <<END
+          Host test_server
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/deploy.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_KEY: ${{ secrets.DEPLOY_KEY }}
+
+      - name: Sync theme files
+        run: "rsync --delete -avO
+          --exclude /deploy_key \
+          --exclude /.git/ \
+          --exclude /.github/ \
+          ./ ${{ env.SSH_USER }}@${{ env.SSH_HOST }}:${{ env.DEST }}"
+        env:
+          SSH_HOST: test_server
+          DEST: "${{ env.THEME_PATH }}"
