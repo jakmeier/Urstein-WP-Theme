@@ -36,7 +36,7 @@ jobs:
           SSH_KEY: ${{ secrets.DEPLOY_KEY }}
 
       - name: Sync theme files
-        run: "rsync --delete -avO
+        run: "rsync --delete -avO --no-perms
           --exclude /deploy_key \
           --exclude /.git/ \
           --exclude /.github/ \
