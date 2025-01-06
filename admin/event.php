@@ -23,6 +23,7 @@ if(!function_exists('create_event_post_type')):
 			'labels' => $labels,
 			'public' => true,
 			'publicly_queryable' => true,
+			'show_in_rest' => true,
 			'show_ui' => true,
 			'query_var' => true,
 			'rewrite' => true,

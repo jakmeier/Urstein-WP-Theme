@@ -13,6 +13,7 @@ if(!function_exists('create_news_post_type')):
 			'label' => 'News',
 			'public' => true,
 			'publicly_queryable' => true,
+			'show_in_rest' => true,
 			'show_ui' => true,
 			'capabilities' => array(
 				'edit_post'          => 'edit_news', 
