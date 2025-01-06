@@ -261,5 +261,51 @@ if (!function_exists('create_event_post_type')):
 	}
 	add_action('admin_menu', 'attendees_admin_menu');
 
+	function register_event_meta()
+	{
+		register_post_meta('event', 'start_time', [
+			'type'         => 'string',
+			'description'  => 'Start time of the event',
+			'single'       => true,
+			'show_in_rest' => true,
+		]);
+
+		register_post_meta('event', 'end_time', [
+			'type'         => 'string',
+			'description'  => 'End time of the event',
+			'single'       => true,
+			'show_in_rest' => true,
+		]);
+
+		register_post_meta('event', 'description', [
+			'type'         => 'string',
+			'description'  => 'Description of the event',
+			'single'       => true,
+			'show_in_rest' => true,
+		]);
+
+		register_post_meta('event', 'place', [
+			'type'         => 'integer', // post ID
+			'description'  => 'Where the event will start',
+			'single'       => true,
+			'show_in_rest' => true,
+		]);
+
+		register_post_meta('event', 'finish_place', [
+			'type'         => 'integer', // optional post ID
+			'description'  => 'Finish place of the event, if any',
+			'single'       => true,
+			'show_in_rest' => true,
+		]);
+
+		register_post_meta('event', 'bring', [
+			'type'         => 'string',
+			'description'  => 'What to bring for the event',
+			'single'       => true,
+			'show_in_rest' => true,
+		]);
+	}
+	add_action('init', 'register_event_meta');
+
 endif;
 ?>
